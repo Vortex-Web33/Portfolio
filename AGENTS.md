@@ -10,7 +10,7 @@
 
 - Static multi-page Astro site, **all content in Spanish** (Spanish agency site, not the French reference site). Do not translate or anglicize copy.
 - Routes live in `src/pages/<slug>.astro` (flat files). Slugs are keyword-driven SEO URLs — never rename them. Currently the site ships with a single route (`index.astro`); add pages here following the same flat pattern.
-- `src/components/App.astro` is the **parent component** — it imports and composes the page sections (the "routes" of the app). Pages import `<App />` and stay as thin route definitions (`Layout` + `App`).
+- `src/App.astro` is the **parent component** — it imports and composes the page sections (the "routes" of the app). It lives at the root of `src/` on purpose (entry-point of the app, not a visual block). Pages import `<App />` and stay as thin route definitions (`Layout` + `App`).
 - Site config (brand, contact, address, socials) lives in `src/config/site.ts` — edit copy/data there, not in components.
 - Shared TypeScript contracts (Service, Project, site config types) live in `src/types/index.ts`. Data files (`src/data/*.ts`) import these types.
 - Content data (services, projects, clients) lives in `src/data/*.ts` as typed arrays.
