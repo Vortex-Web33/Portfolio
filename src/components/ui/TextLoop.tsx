@@ -90,10 +90,17 @@ export default function TextLoop({
   const uid = useId().replace(/[:]/g, "");
   const pathId = `text-loop-${uid}`;
 
+  const room = Math.max(20, CY - Math.max(0, ribbonWidth) / 2 - EDGE_PAD);
   const isWave = shape === "wave" && !path;
-  const waveAmp = isWave ? Math.min(Math.max(0, curviness) * 2.2, Math.max(20, CY - Math.max(0, ribbonWidth) / 2 - EDGE_PAD) * 2) : 0;
-  const vbY = isWave ? CY - waveAmp - Math.max(0, ribbonWidth) / 2 : 0;
-  const vbH = isWave ? 2 * (waveAmp + Math.max(0, ribbonWidth) / 2) : VIEW_H;
+  const waveAmp = isWave ? Math.min(Math.max(0, curviness) * 2.2, room * 2) : 0;
+
+  const circleR = shape === "circle" && !path ? Math.min(90 + Math.max(0, curviness) * 0.95, room) : 0;
+  const isCircleCrop = shape === "circle" && !path;
+  const circlePad = circleR * 0.39;
+  const vbX = isCircleCrop ? CX - circleR - circlePad : 0;
+  const vbY = isCircleCrop ? CY - circleR - circlePad : isWave ? CY - waveAmp - Math.max(0, ribbonWidth) / 2 : 0;
+  const vbW = isCircleCrop ? 2 * (circleR + circlePad) : VIEW_W;
+  const vbH = isCircleCrop ? 2 * (circleR + circlePad) : isWave ? 2 * (waveAmp + Math.max(0, ribbonWidth) / 2) : VIEW_H;
 
   const d = path || buildPath(shape, curviness, ribbonWidth);
   const unit = `${uppercase ? String(text).toUpperCase() : String(text)}\u00A0${separator || ""}\u00A0`;
@@ -107,11 +114,14 @@ export default function TextLoop({
     const tailEl = tailRef.current;
     if (!root || !pathEl || !measureEl || !headEl || !tailEl) return;
 
+    let length = 0;
+
     const measure = () => {
       try {
-        const length = pathEl.getTotalLength();
+        const newLength = pathEl.getTotalLength();
         const unitWidth = measureEl.getComputedTextLength();
-        if (!length || !unitWidth) return;
+        if (!newLength || !unitWidth) return;
+        length = newLength;
         const reps = Math.max(1, Math.round(length / unitWidth));
         const loopText = unit.repeat(reps);
         headEl.textContent = loopText;
@@ -127,13 +137,6 @@ export default function TextLoop({
     if (document.fonts?.ready) {
       document.fonts.ready.then(measure).catch(() => {});
     }
-
-    let length = 0;
-    try {
-      length = pathEl.getTotalLength();
-    } catch {
-      return;
-    }
     if (!length) return;
 
     const apply = (offset: number) => {
@@ -144,7 +147,8 @@ export default function TextLoop({
 
     apply(0);
 
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || speed <= 0) return;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reducedMotion || speed <= 0) return;
 
     const state = { offset: 0 };
     const tween = gsap.to(state, {
@@ -172,11 +176,13 @@ export default function TextLoop({
     };
   }, [speed, direction, pauseOnHover, unit, d]);
 
+  const hasPosition = /(?:^|\s)(?:absolute|fixed|relative|static|sticky)(?:\s|$)/.test(className);
+
   return (
-    <div ref={rootRef} className={`relative w-full overflow-hidden ${className}`.trim()}>
+    <div ref={rootRef} className={`${hasPosition ? "" : "relative w-full"} overflow-hidden ${className}`.trim()}>
       <svg
         className="block h-auto w-full"
-        viewBox={`0 ${vbY} ${VIEW_W} ${vbH}`}
+        viewBox={`${vbX} ${vbY} ${vbW} ${vbH}`}
         preserveAspectRatio="xMidYMid meet"
         role="img"
         aria-label={text}
@@ -192,7 +198,7 @@ export default function TextLoop({
           strokeLinejoin="round"
         />
 
-        <text ref={measureRef} className="invisible pointer-events-none" style={textStyle} aria-hidden="true">
+        <text ref={measureRef} className="text-loop-measure invisible pointer-events-none" style={textStyle} aria-hidden="true">
           {unit}
         </text>
 
