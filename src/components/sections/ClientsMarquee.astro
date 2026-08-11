@@ -1,0 +1,12 @@
+---
+import Marquee from "../ui/Marquee.astro";
+import { clients } from "../../data/projects";
+---
+
+<section class="border-y border-white/5 py-10" aria-label="Clientes que confían en nosotros">
+  <Marquee direction="ltr" speed="50">
+    {clients.map((client) => (
+      <span class="mx-8 font-mono text-sm tracking-widest text-cream/40 uppercase">{client}</span>
+    ))}
+  </Marquee>
+</section>

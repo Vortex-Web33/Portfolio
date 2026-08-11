@@ -1,0 +1,20 @@
+---
+interface Props {
+  href: string;
+  variant?: "primary" | "dark";
+  className?: string;
+  external?: boolean;
+  ariaLabel?: string;
+}
+
+const { href, variant = "primary", className = "", external = false, ariaLabel } = Astro.props;
+---
+
+<a
+  href={href}
+  class:list={[variant === "primary" ? "btn" : "btn-dark", className]}
+  {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+  {...(ariaLabel ? { "aria-label": ariaLabel } : {})}
+>
+  <slot />
+</a>

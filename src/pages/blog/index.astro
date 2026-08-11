@@ -1,30 +1,29 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import PageHero from "../../components/sections/PageHero.astro";
+import Button from "../../components/ui/Button.astro";
 ---
 
-<Layout title="El Blog">
-  <section class="relative overflow-hidden px-6 pt-44 pb-24 text-center">
-    <div class="pointer-events-none absolute -top-32 left-1/2 size-96 -translate-x-1/2 rounded-full bg-vortex-blue/15 blur-[120px]"></div>
-    <div class="relative mx-auto max-w-3xl">
-      <p data-hero-anim class="kicker mb-4 text-cream/40">El Blog</p>
-      <h1 data-hero-anim class="text-5xl font-bold tracking-tight text-white md:text-7xl">
-        Ideas y <span class="highlight-gradient">consejos</span>
-      </h1>
-      <p data-hero-anim class="mx-auto mt-8 max-w-2xl font-mono text-sm leading-relaxed text-cream/60">
-        Consejos para crear un sitio que funciona, entender Google y dominar lo digital sin humo.
-      </p>
-    </div>
-  </section>
+<Layout
+  title="El Blog"
+  description="Ideas y consejos sobre creación de sitios web, posicionamiento SEO y automatización. El blog de la agencia VORTEX."
+>
+  <PageHero
+    kicker="El Blog"
+    title={'Ideas y <span class="highlight-gradient">consejos</span>'}
+    description="Consejos para crear un sitio que funciona, entender Google y dominar lo digital sin humo."
+    glowClass="bg-vortex-blue/15"
+  />
 
   <section class="mx-auto max-w-5xl px-6 pb-24">
     <div data-reveal class="flex flex-col items-center gap-8 rounded-3xl border border-white/5 bg-ink-soft/30 p-16 text-center">
-      <span class="text-5xl">✎</span>
+      <span class="text-5xl" aria-hidden="true">✎</span>
       <h2 class="text-2xl font-bold text-white">Artículos próximamente</h2>
       <p class="max-w-xl text-sm leading-relaxed text-cream/60">
         Estamos preparando artículos sobre creación de sitios web, posicionamiento SEO y
         automatización. Vuelve pronto o suscríbete a nuestra newsletter.
       </p>
-      <a href="/contacto/" class="btn">Contactar</a>
+      <Button href="/contacto/">Contactar</Button>
     </div>
   </section>
 </Layout>

@@ -1,0 +1,81 @@
+---
+import { site, contact } from "../../config/site";
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  type?: "website" | "article";
+  noindex?: boolean;
+  canonicalPath?: string;
+}
+
+const {
+  title = site.defaultTitle,
+  description = site.defaultDescription,
+  image = site.ogImage,
+  type = "website",
+  noindex = false,
+  canonicalPath = Astro.url.pathname,
+} = Astro.props;
+
+const fullTitle = title === site.defaultTitle ? title : `${title} - ${site.name}`;
+const canonical = new URL(canonicalPath, site.url).toString();
+const ogImage = new URL(image, site.url).toString();
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": `${site.url}/#organization`,
+  name: site.name,
+  url: site.url,
+  logo: `${site.url}/logo-vortex.svg`,
+  contactPoint: {
+    "@type": "ContactPoint",
+    telephone: contact.phone,
+    email: contact.email,
+    contactType: "sales",
+    areaServed: "ES",
+    availableLanguage: ["Spanish"],
+  },
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: contact.address.street,
+    addressLocality: contact.address.city,
+    postalCode: contact.address.postalCode,
+    addressCountry: "ES",
+  },
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${site.url}/#website`,
+  url: site.url,
+  name: site.name,
+  inLanguage: "es",
+  publisher: { "@id": `${site.url}/#organization` },
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(organizationSchema)}></script>
+<script type="application/ld+json" set:html={JSON.stringify(websiteSchema)}></script>
+
+<title>{fullTitle}</title>
+<meta name="description" content={description} />
+<meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large"} />
+<link rel="canonical" href={canonical} />
+<meta name="theme-color" content={site.themeColor} />
+
+<meta property="og:type" content={type} />
+<meta property="og:site_name" content={site.name} />
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:locale" content={site.locale} />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={fullTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />

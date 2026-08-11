@@ -1,0 +1,84 @@
+---
+import { contact, footerNav, socials } from "../../config/site";
+import Button from "../ui/Button.astro";
+---
+
+<footer class="border-t border-hairline/40">
+  <div class="mx-auto max-w-7xl px-6 pb-10">
+    <div class="flex flex-col items-center gap-16 py-24 text-center">
+      <p class="kicker text-cream/40">Es ahora cuando empieza</p>
+      <h2 class="max-w-3xl text-4xl font-bold tracking-tight text-white md:text-6xl">
+        ¿Listo para tu <span class="highlight-gradient">proyecto</span> web?
+      </h2>
+      <Button href="/contacto/">Solicitar presupuesto</Button>
+    </div>
+
+    <div class="grid gap-12 border-t border-hairline/40 py-16 md:grid-cols-2 lg:grid-cols-4">
+      <nav aria-label="La Agencia">
+        <strong class="kicker text-cream/40">La Agencia</strong>
+        <ul class="mt-4 space-y-3 text-sm">
+          {footerNav.agency.map((link) => (
+            <li>
+              <a href={link.href} class="text-cream/70 hover:text-vortex">{link.label}</a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <nav aria-label="Ofertas y Servicios">
+        <strong class="kicker text-cream/40">Ofertas y Servicios</strong>
+        <ul class="mt-4 space-y-3 text-sm">
+          {footerNav.offers.map((link) => (
+            <li>
+              <a href={link.href} class="text-cream/70 hover:text-vortex">{link.label}</a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <div>
+        <strong class="kicker text-cream/40">Contacto</strong>
+        <ul class="mt-4 space-y-3 text-sm">
+          <li>
+            <a href={contact.phoneHref} class="text-cream/70 hover:text-vortex">{contact.phone}</a>
+          </li>
+          <li>
+            <a href={contact.emailHref} class="text-cream/70 hover:text-vortex">{contact.email}</a>
+          </li>
+          <li class="text-cream/50">
+            {contact.address.street}
+            <br />
+            {contact.address.postalCode} {contact.address.city} – {contact.address.country}
+          </li>
+        </ul>
+      </div>
+
+      <nav aria-label="Redes sociales">
+        <strong class="kicker text-cream/40">Redes</strong>
+        <ul class="mt-4 space-y-3 text-sm">
+          {socials.map((social) => (
+            <li>
+              <a
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-cream/70 hover:text-vortex"
+              >
+                {social.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </div>
+
+    <div class="flex flex-col items-center justify-between gap-4 border-t border-hairline/40 py-8 text-xs text-cream/40 md:flex-row">
+      <p>© {new Date().getFullYear()} Agencia VORTEX – Todos los derechos reservados</p>
+      <ul class="flex gap-6">
+        <li><a href="/aviso-legal/" class="hover:text-vortex">Aviso legal</a></li>
+        <li><a href="/contacto/" class="hover:text-vortex">Contacto</a></li>
+        <li><a href="/blog/" class="hover:text-vortex">El Blog</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>

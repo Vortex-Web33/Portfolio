@@ -1,193 +1,56 @@
 ---
 import "../styles/global.css";
+import SEO from "../components/seo/SEO.astro";
+import Header from "../components/layout/Header.astro";
+import Footer from "../components/layout/Footer.astro";
 
 interface Props {
   title?: string;
   description?: string;
+  image?: string;
+  type?: "website" | "article";
+  noindex?: boolean;
 }
 
-const {
-  title = "Agencia Web Madrid - Creación de sitios web, SEO & SEA",
-  description = "VORTEX es una agencia web con sede en Madrid, especialista en creación de sitios web a medida, webdesign, e-commerce y estrategia digital.",
-} = Astro.props;
+const { title, description, image, type, noindex } = Astro.props;
+
+const csp = import.meta.env.PROD
+  ? "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'"
+  : "";
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang="es" prefix="og: https://ogp.me/ns#">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content={description} />
+    {csp && <meta http-equiv="Content-Security-Policy" content={csp} />}
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Geist+Mono:wght@100..900&display=swap"
+      as="style"
+    />
     <link
       href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Geist+Mono:wght@100..900&display=swap"
       rel="stylesheet"
     />
-    <title>{title} - VORTEX</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <SEO title={title} description={description} image={image} type={type} noindex={noindex} />
   </head>
   <body>
-    <header class="site-header fixed inset-x-0 top-0 z-50">
-      <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
-        <a href="/" class="font-mono text-xl font-bold tracking-tight text-white">
-          VORTEX<span class="text-vortex">.</span>
-        </a>
-
-        <nav class="hidden items-center gap-8 lg:flex" aria-label="Navegación principal">
-          <a href="/agencia-web-lyon/" class="text-sm text-cream/70 hover:text-white">La Agencia</a>
-          <a href="/realizaciones/" class="text-sm text-cream/70 hover:text-white">Realizaciones</a>
-          <div class="group relative">
-            <a href="/servicios/" class="text-sm text-cream/70 hover:text-white">Servicios ▾</a>
-            <div class="invisible absolute left-1/2 top-full w-72 -translate-x-1/2 translate-y-2 rounded-2xl border border-white/10 bg-ink p-4 opacity-0 shadow-2xl transition-all duration-300 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
-              <a href="/creacion-sitios-web/" class="block rounded-xl px-4 py-2 text-sm text-cream/70 hover:bg-white/5 hover:text-white">Creación de sitios web</a>
-              <a href="/auditoria-consultoria/" class="block rounded-xl px-4 py-2 text-sm text-cream/70 hover:bg-white/5 hover:text-white">Auditoría y Consultoría</a>
-              <a href="/diseno-identidad-visual/" class="block rounded-xl px-4 py-2 text-sm text-cream/70 hover:bg-white/5 hover:text-white">Diseño e Identidad visual</a>
-              <a href="/posicionamiento-seo-lyon/" class="block rounded-xl px-4 py-2 text-sm text-cream/70 hover:bg-white/5 hover:text-white">Posicionamiento SEO</a>
-            </div>
-          </div>
-          <a href="/ofertas-tarifas/" class="text-sm text-cream/70 hover:text-white">Ofertas</a>
-        </nav>
-
-        <div class="flex items-center gap-4">
-          <a href="/contacto/" class="btn hidden px-6 py-3 text-sm md:inline-flex">Contacto y Presupuesto</a>
-          <button class="menu-toggle flex size-10 flex-col items-center justify-center gap-1.5 lg:hidden" aria-label="Abrir menú" aria-expanded="false">
-            <span class="h-0.5 w-6 bg-white"></span>
-            <span class="h-0.5 w-6 bg-white"></span>
-            <span class="h-0.5 w-6 bg-white"></span>
-          </button>
-        </div>
-      </div>
-    </header>
-
-    <nav class="mobile-nav fixed inset-x-0 top-0 z-40 flex h-screen flex-col items-center justify-center gap-8 bg-ink pt-20 lg:hidden" aria-label="Menú móvil">
-      <a href="/agencia-web-lyon/" class="text-2xl font-bold text-white">La Agencia</a>
-      <a href="/realizaciones/" class="text-2xl font-bold text-white">Realizaciones</a>
-      <a href="/servicios/" class="text-2xl font-bold text-white">Servicios</a>
-      <a href="/ofertas-tarifas/" class="text-2xl font-bold text-white">Ofertas</a>
-      <a href="/contacto/" class="btn mt-4">Contacto y Presupuesto</a>
-    </nav>
-
-    <main id="ajax-content-wrap">
+    <Header />
+    <main id="contenido">
       <slot />
     </main>
-
-    <footer class="border-t border-hairline/40">
-      <div class="mx-auto max-w-7xl px-6 pb-10">
-        <div class="flex flex-col items-center gap-16 py-24 text-center">
-          <p class="kicker text-cream/40">Es ahora cuando empieza</p>
-          <h2 class="max-w-3xl text-4xl font-bold tracking-tight text-white md:text-6xl">
-            ¿Listo para tu <span class="highlight-gradient">proyecto</span> web?
-          </h2>
-          <a href="/contacto/" class="btn">Solicitar presupuesto</a>
-        </div>
-
-        <div class="grid gap-12 border-t border-hairline/40 py-16 md:grid-cols-2 lg:grid-cols-4">
-          <div class="space-y-4">
-            <strong class="kicker text-cream/40">La Agencia</strong>
-            <ul class="space-y-3 text-sm">
-              <li><a href="/agencia-web-lyon/" class="text-cream/70 hover:text-vortex">¿Quiénes son?</a></li>
-              <li><a href="/realizaciones/" class="text-cream/70 hover:text-vortex">Realizaciones</a></li>
-              <li><a href="/blog/" class="text-cream/70 hover:text-vortex">El Blog</a></li>
-              <li><a href="/observatorio-agencia-web/" class="text-cream/70 hover:text-vortex">Observatorio de Agencias Web</a></li>
-              <li><a href="/contacto/" class="text-cream/70 hover:text-vortex">Contacto y presupuesto</a></li>
-            </ul>
-          </div>
-          <div class="space-y-4">
-            <strong class="kicker text-cream/40">Ofertas y Servicios</strong>
-            <ul class="space-y-3 text-sm">
-              <li><a href="/servicios/" class="text-cream/70 hover:text-vortex">Servicios y competencias</a></li>
-              <li><a href="/ofertas-tarifas/" class="text-cream/70 hover:text-vortex">Ofertas y tarifas</a></li>
-              <li><a href="/creacion-sitios-web/" class="text-cream/70 hover:text-vortex">Creación de sitios web</a></li>
-              <li><a href="/posicionamiento-seo-lyon/" class="text-cream/70 hover:text-vortex">Posicionamiento SEO</a></li>
-              <li><a href="/auditoria-consultoria/" class="text-cream/70 hover:text-vortex">Auditoría y Consultoría</a></li>
-            </ul>
-          </div>
-          <div class="space-y-4">
-            <strong class="kicker text-cream/40">Contacto</strong>
-            <ul class="space-y-3 text-sm">
-              <li><a href="tel:+34663007473" class="text-cream/70 hover:text-vortex">+34 663 00 74 73</a></li>
-              <li><a href="mailto:hello@vortex.agency" class="text-cream/70 hover:text-vortex">hello@vortex.agency</a></li>
-              <li class="text-cream/50">Calle de Ferrandière<br />28013 Madrid – España</li>
-            </ul>
-          </div>
-          <div class="space-y-4">
-            <strong class="kicker text-cream/40">Redes</strong>
-            <ul class="space-y-3 text-sm">
-              <li><a href="https://www.facebook.com/profile.php?id=61587578708999" target="_blank" rel="noopener noreferrer" class="text-cream/70 hover:text-vortex">Facebook</a></li>
-              <li><a href="https://www.instagram.com/m0r3z" target="_blank" rel="noopener noreferrer" class="text-cream/70 hover:text-vortex">Instagram</a></li>
-              <li><a href="https://www.linkedin.com/company/m0r3z" target="_blank" rel="noopener noreferrer" class="text-cream/70 hover:text-vortex">LinkedIn</a></li>
-              <li><a href="https://github.com/m0r3z" target="_blank" rel="noopener noreferrer" class="text-cream/70 hover:text-vortex">GitHub</a></li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="flex flex-col items-center justify-between gap-4 border-t border-hairline/40 py-8 text-xs text-cream/40 md:flex-row">
-          <p>© Agencia VORTEX – Todos los derechos reservados</p>
-          <ul class="flex gap-6">
-            <li><a href="/aviso-legal/" class="hover:text-vortex">Aviso legal</a></li>
-            <li><a href="/contacto/" class="hover:text-vortex">Contacto</a></li>
-            <li><a href="/blog/" class="hover:text-vortex">El Blog</a></li>
-          </ul>
-        </div>
-      </div>
-    </footer>
+    <Footer />
 
     <script>
-      import gsap from "gsap";
-      import { ScrollTrigger } from "gsap/ScrollTrigger";
+      import { initAnimations } from "../lib/animations";
 
-      gsap.registerPlugin(ScrollTrigger);
-
-      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-      const header = document.querySelector(".site-header");
-      const onScroll = () => header?.classList.toggle("scrolled", window.scrollY > 40);
-      onScroll();
-      window.addEventListener("scroll", onScroll, { passive: true });
-
-      const toggle = document.querySelector(".menu-toggle");
-      const mobileNav = document.querySelector(".mobile-nav");
-      toggle?.addEventListener("click", () => {
-        const open = mobileNav?.classList.toggle("open");
-        toggle.setAttribute("aria-expanded", String(open));
-        toggle.classList.toggle("hidden", open);
-      });
-
-      if (!reducedMotion) {
-        gsap.utils.toArray<HTMLElement>("[data-hero-anim]").forEach((el, i) => {
-          gsap.fromTo(
-            el,
-            { y: 48, opacity: 0 },
-            { y: 0, opacity: 1, duration: 1, ease: "power3.out", delay: 0.12 * i + 0.15 },
-          );
-        });
-
-        gsap.utils.toArray<HTMLElement>("[data-reveal]").forEach((el) => {
-          gsap.fromTo(
-            el,
-            { y: 48, opacity: 0 },
-            {
-              y: 0,
-              opacity: 1,
-              duration: 1,
-              ease: "power3.out",
-              scrollTrigger: { trigger: el, start: "top 88%" },
-            },
-          );
-        });
-
-        gsap.utils.toArray<HTMLElement>("[data-marquee]").forEach((mq) => {
-          const track = mq.querySelector(".marquee-track");
-          if (!track) return;
-          const dir = mq.dataset.direction === "rtl" ? -1 : 1;
-          const speed = Number(mq.dataset.speed) || 40;
-          gsap.fromTo(
-            track,
-            { xPercent: 0 },
-            { xPercent: dir * 50, duration: speed, ease: "none", repeat: -1 },
-          );
-        });
-      }
+      initAnimations();
     </script>
   </body>
 </html>

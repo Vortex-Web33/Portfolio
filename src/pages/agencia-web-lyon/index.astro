@@ -1,22 +1,19 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import Marquee from "../../components/Marquee.astro";
+import PageHero from "../../components/sections/PageHero.astro";
+import Marquee from "../../components/ui/Marquee.astro";
+import Button from "../../components/ui/Button.astro";
 ---
 
-<Layout title="La Agencia">
-  <section class="relative overflow-hidden px-6 pt-44 pb-20 text-center">
-    <div class="pointer-events-none absolute -top-32 left-1/2 size-96 -translate-x-1/2 rounded-full bg-vortex/15 blur-[120px]"></div>
-    <div class="relative mx-auto max-w-3xl">
-      <p data-hero-anim class="kicker mb-4 text-cream/40">La Agencia</p>
-      <h1 data-hero-anim class="text-5xl font-bold tracking-tight text-white md:text-7xl">
-        ¿Quiénes <span class="highlight-gradient">son?</span>
-      </h1>
-      <p data-hero-anim class="mx-auto mt-8 max-w-2xl font-mono text-sm leading-relaxed text-cream/60">
-        VORTEX es una agencia web con sede en Madrid desde 2012. Hemos vivido los inicios de Internet
-        y hoy acompañamos a empresas de todos los tamaños.
-      </p>
-    </div>
-  </section>
+<Layout
+  title="La Agencia"
+  description="VORTEX es una agencia web con sede en Madrid desde 2012. Conoce al equipo detrás de los sitios web que funcionan, se ven geniales y se encuentran en Google."
+>
+  <PageHero
+    kicker="La Agencia"
+    title={'¿Quiénes <span class="highlight-gradient">son?</span>'}
+    description="VORTEX es una agencia web con sede en Madrid desde 2012. Hemos vivido los inicios de Internet y hoy acompañamos a empresas de todos los tamaños."
+  />
 
   <section class="mx-auto max-w-5xl px-6 pb-24">
     <div data-reveal class="space-y-6 text-lg leading-relaxed text-cream/70">
@@ -35,7 +32,7 @@ import Marquee from "../../components/Marquee.astro";
       </p>
     </div>
     <div data-reveal class="mt-12 flex flex-wrap items-center gap-6">
-      <a href="/contacto/" class="btn">Solicitar presupuesto</a>
+      <Button href="/contacto/">Solicitar presupuesto</Button>
       <a href="/realizaciones/" class="inline-flex items-center gap-2 font-mono text-xs tracking-widest text-cream/60 uppercase hover:text-white">
         Ver nuestras realizaciones →
       </a>

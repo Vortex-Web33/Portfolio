@@ -1,0 +1,24 @@
+---
+import { site, contact } from "../../config/site";
+import type { Service } from "../../data/services";
+
+interface Props {
+  service: Service;
+}
+
+const { service } = Astro.props;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: service.title,
+  description: service.seo.description,
+  url: `${site.url}${service.href}`,
+  provider: { "@id": `${site.url}/#organization` },
+  areaServed: { "@type": "Country", name: "España" },
+  availableLanguage: "es",
+  providerMobility: "static",
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)}></script>

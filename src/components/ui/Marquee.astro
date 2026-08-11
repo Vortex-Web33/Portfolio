@@ -6,12 +6,12 @@ interface Props {
 }
 
 const { direction = "ltr", speed = 40, className = "" } = Astro.props;
-const speedValue = Number(speed);
 const content = await Astro.slots.render("default");
+const speedValue = Number(speed);
 ---
 
 <div
-  class={className}
+  class:list={["overflow-hidden", className]}
   data-marquee
   data-direction={direction}
   data-speed={speedValue}
