@@ -1,0 +1,24 @@
+---
+interface Props {
+  direction?: "ltr" | "rtl";
+  speed?: number | string;
+  className?: string;
+}
+
+const { direction = "ltr", speed = 40, className = "" } = Astro.props;
+const speedValue = Number(speed);
+const content = await Astro.slots.render("default");
+---
+
+<div
+  class={className}
+  data-marquee
+  data-direction={direction}
+  data-speed={speedValue}
+  aria-hidden="true"
+>
+  <div class="marquee-track">
+    <div class="marquee-group" set:html={content}></div>
+    <div class="marquee-group" set:html={content}></div>
+  </div>
+</div>

@@ -1,0 +1,71 @@
+---
+interface Service {
+  title: string;
+  desc: string;
+  href: string;
+  accent: string;
+  glyph: string;
+}
+
+const services: Service[] = [
+  {
+    title: "Creación de sitios web",
+    desc: "Cada sitio se fabrica a medida. Montamos, probamos, pulimos y entregamos. Llave en mano, listo para rendir.",
+    href: "/creacion-sitios-web/",
+    accent: "from-vortex/25",
+    glyph: "</>",
+  },
+  {
+    title: "Diseño e Identidad visual",
+    desc: "Se acabaron los visuales torcidos y los logos que espantan. Diseñamos una identidad que atrapa la mirada para quedarse en la mente.",
+    href: "/diseno-identidad-visual/",
+    accent: "from-vortex-blue/25",
+    glyph: "✦",
+  },
+  {
+    title: "Posicionamiento SEO & SEA",
+    desc: "Un sitio invisible en Google es un comercial que se queda en la cama. Te lanzamos justo donde tus clientes te buscan.",
+    href: "/posicionamiento-seo-lyon/",
+    accent: "from-vortex-coral/25",
+    glyph: "◉",
+  },
+  {
+    title: "Auditoría y Consultoría",
+    desc: "Publicar posts al azar esperando que funcionen no es una estrategia. Te construimos un verdadero plan de batalla.",
+    href: "/auditoria-consultoria/",
+    accent: "from-vortex-green/25",
+    glyph: "⚡",
+  },
+  {
+    title: "Automatización e Inteligencia",
+    desc: "Los correos repetitivos, los recordatorios olvidados, los procesos que se eternizan… Lo automatizamos todo. Guarda tu energía para lo demás.",
+    href: "/automatizacion-inteligencia/",
+    accent: "from-vortex/25",
+    glyph: "❋",
+  },
+];
+---
+
+<ul class="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+  {
+    services.map((s) => (
+      <li data-reveal>
+        <a
+          href={s.href}
+          class={`group flex h-full flex-col gap-10 rounded-3xl border border-white/5 bg-gradient-to-br ${s.accent} to-transparent p-10 transition-all duration-300 hover:-translate-y-1 hover:border-white/15 hover:bg-ink-soft/60`}
+        >
+          <span class="flex size-20 items-center justify-center rounded-full border border-white/10 font-mono text-2xl text-cream/80 transition-colors duration-300 group-hover:border-vortex/60 group-hover:text-vortex">
+            {s.glyph}
+          </span>
+          <div class="flex flex-1 flex-col gap-4">
+            <h3 class="text-2xl font-bold text-white">{s.title}</h3>
+            <p class="text-sm leading-relaxed text-cream/60">{s.desc}</p>
+          </div>
+          <span class="font-mono text-xs tracking-widest uppercase text-cream/50 transition-colors duration-300 group-hover:text-vortex">
+            Descubrir →
+          </span>
+        </a>
+      </li>
+    ))
+  }
+</ul>

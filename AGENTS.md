@@ -1,22 +1,20 @@
-## Development
+# AGENTS.md
 
-When starting the dev server, use background mode:
+## Commands
 
-```
-astro dev --background
-```
+- Package manager is **pnpm** (pnpm-lock.yaml, workspace file present). Node >= 22.12.0.
+- Dev server: `astro dev --background` (Astro 7 background mode). Manage it with `astro dev stop`, `astro dev status`, `astro dev logs` (use `pnpm astro dev ...` to avoid relying on PATH).
+- No tests, lint, or typecheck scripts. Verification is `pnpm build` (outputs to `dist/`, gitignored); `astro check` works for typechecking since tsconfig extends `astro/tsconfigs/strict`.
 
-Manage the background server with `astro dev stop`, `astro dev status`, and `astro dev logs`.
+## Architecture
 
-## Documentation
+- Static multi-page Astro site, **all content in French**. Do not translate or anglicize copy.
+- Each route is `src/pages/<slug>/index.astro`. Slugs are keyword-driven SEO URLs (e.g. `creation-site-internet-lyon`, `referencement-naturel-seo-lyon`) — never rename them.
+- Header/nav/footer and all internal links are hardcoded in `src/layouts/Layout.astro`. New pages must be added to the nav there manually; every page passes `title` to `<Layout>` (rendered as `{title} - VORTEX`).
+- No content collections or markdown; blog is a placeholder page.
 
-Full documentation: https://docs.astro.build
+## Styling
 
-Consult these guides before working on related tasks:
-
-- [Adding pages, dynamic routes, or middleware](https://docs.astro.build/en/guides/routing/)
-- [Working with Astro components](https://docs.astro.build/en/basics/astro-components/)
-- [Using React, Vue, Svelte, or other framework components](https://docs.astro.build/en/guides/framework-components/)
-- [Adding or managing content](https://docs.astro.build/en/guides/content-collections/)
-- [Adding styles or using Tailwind](https://docs.astro.build/en/guides/styling/)
-- [Supporting multiple languages](https://docs.astro.build/en/guides/internationalization/)
+- Tailwind CSS **v4** via `@tailwindcss/vite` plugin — there is no `tailwind.config.js` and one should not be created. Theme customization goes in `src/styles/global.css` (CSS-first via `@theme`).
+- The site is currently unstyled: markup uses semantic class names (`.site-header`, `.hero`, ...) with no definitions yet, and `global.css` only contains `@import "tailwindcss"`. Put new styles in `global.css` or page frontmatter-scoped `<style>` blocks.
+- `gsap` is a dependency but not used anywhere yet.

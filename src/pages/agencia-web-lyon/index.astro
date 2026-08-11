@@ -1,0 +1,53 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Marquee from "../../components/Marquee.astro";
+---
+
+<Layout title="La Agencia">
+  <section class="relative overflow-hidden px-6 pt-44 pb-20 text-center">
+    <div class="pointer-events-none absolute -top-32 left-1/2 size-96 -translate-x-1/2 rounded-full bg-vortex/15 blur-[120px]"></div>
+    <div class="relative mx-auto max-w-3xl">
+      <p data-hero-anim class="kicker mb-4 text-cream/40">La Agencia</p>
+      <h1 data-hero-anim class="text-5xl font-bold tracking-tight text-white md:text-7xl">
+        ¿Quiénes <span class="highlight-gradient">son?</span>
+      </h1>
+      <p data-hero-anim class="mx-auto mt-8 max-w-2xl font-mono text-sm leading-relaxed text-cream/60">
+        VORTEX es una agencia web con sede en Madrid desde 2012. Hemos vivido los inicios de Internet
+        y hoy acompañamos a empresas de todos los tamaños.
+      </p>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-5xl px-6 pb-24">
+    <div data-reveal class="space-y-6 text-lg leading-relaxed text-cream/70">
+      <p>
+        Hemos conocido los comienzos de la web, las primeras páginas amarillas digitales y los
+        primeros e-commerce. Toda esa experiencia nos permite crear sitios que funcionan de verdad,
+        para usuarios de <strong class="text-white">7 a 77 años.</strong>
+      </p>
+      <p>
+        No hacemos copia-pega. Cada proyecto nace de una hoja en blanco, se piensa para tu identidad
+        y se construye para responder a tus objetivos: más clientes, más visibilidad, más ventas.
+      </p>
+      <p>
+        Nos gustan los retos que nos hacen progresar. Los sitios que nos obligan a exprimir el
+        cerebro son los que mejor nos salen.
+      </p>
+    </div>
+    <div data-reveal class="mt-12 flex flex-wrap items-center gap-6">
+      <a href="/contacto/" class="btn">Solicitar presupuesto</a>
+      <a href="/realizaciones/" class="inline-flex items-center gap-2 font-mono text-xs tracking-widest text-cream/60 uppercase hover:text-white">
+        Ver nuestras realizaciones →
+      </a>
+    </div>
+  </section>
+
+  <section class="border-t border-white/5 py-12 overflow-hidden" aria-hidden="true">
+    <Marquee direction="ltr" speed="35">
+      <span class="mx-6 text-3xl font-bold tracking-tight text-white/60 md:text-5xl">ESTRATEGIA ❋</span>
+      <span class="mx-6 text-3xl font-bold tracking-tight text-white/60 md:text-5xl">DISEÑO ❊</span>
+      <span class="mx-6 text-3xl font-bold tracking-tight text-white/60 md:text-5xl">DESARROLLO ❈</span>
+      <span class="mx-6 text-3xl font-bold tracking-tight text-white/60 md:text-5xl">POSICIONAMIENTO ✢</span>
+    </Marquee>
+  </section>
+</Layout>
