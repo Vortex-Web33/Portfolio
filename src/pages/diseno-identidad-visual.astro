@@ -1,19 +1,19 @@
 ---
-import Layout from "../../layouts/Layout.astro";
-import PageHero from "../../components/sections/PageHero.astro";
-import Button from "../../components/ui/Button.astro";
-import { services } from "../../data/services";
-import ServiceSchema from "../../components/seo/ServiceSchema.astro";
+import Layout from "../layouts/Layout.astro";
+import PageHero from "../components/sections/PageHero.astro";
+import Button from "../components/ui/Button.astro";
+import { services } from "../data/services";
+import ServiceSchema from "../components/seo/ServiceSchema.astro";
 
-const service = services.find((s) => s.slug === "posicionamiento-seo-lyon")!;
+const service = services.find((s) => s.slug === "diseno-identidad-visual")!;
 ---
 
 <Layout title={service.seo.title} description={service.seo.description}>
   <PageHero
     kicker="Servicio"
-    title={'Posicionamiento <span class="highlight-gradient">SEO & SEA</span>'}
+    title={'Diseño e <span class="highlight-gradient">Identidad visual</span>'}
     description={service.description}
-    glowClass="bg-vortex-coral/15"
+    glowClass="bg-vortex-blue/15"
   />
 
   <section class="mx-auto max-w-5xl px-6 pb-24">
@@ -29,7 +29,7 @@ const service = services.find((s) => s.slug === "posicionamiento-seo-lyon")!;
     </div>
     <div data-reveal class="mt-16 text-center">
       <p class="mb-6 font-mono text-xs tracking-[0.3em] text-cream/40 uppercase">
-        Sé visible donde te buscan
+        Una imagen que se queda en la mente
       </p>
       <Button href="/contacto/">Solicitar presupuesto</Button>
     </div>

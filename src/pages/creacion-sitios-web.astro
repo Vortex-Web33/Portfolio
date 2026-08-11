@@ -1,19 +1,19 @@
 ---
-import Layout from "../../layouts/Layout.astro";
-import PageHero from "../../components/sections/PageHero.astro";
-import Button from "../../components/ui/Button.astro";
-import { services } from "../../data/services";
-import ServiceSchema from "../../components/seo/ServiceSchema.astro";
+import Layout from "../layouts/Layout.astro";
+import PageHero from "../components/sections/PageHero.astro";
+import Button from "../components/ui/Button.astro";
+import { services } from "../data/services";
+import ServiceSchema from "../components/seo/ServiceSchema.astro";
 
-const service = services.find((s) => s.slug === "auditoria-consultoria")!;
+const service = services.find((s) => s.slug === "creacion-sitios-web")!;
 ---
 
 <Layout title={service.seo.title} description={service.seo.description}>
   <PageHero
     kicker="Servicio"
-    title={'Auditoría y <span class="highlight-gradient">Consultoría</span>'}
+    title={'Creación de <span class="highlight-gradient">sitios web</span>'}
     description={service.description}
-    glowClass="bg-vortex-green/15"
+    glowClass="bg-vortex/15"
   />
 
   <section class="mx-auto max-w-5xl px-6 pb-24">
@@ -29,10 +29,9 @@ const service = services.find((s) => s.slug === "auditoria-consultoria")!;
     </div>
     <div data-reveal class="mt-16 text-center">
       <p class="mb-6 font-mono text-xs tracking-[0.3em] text-cream/40 uppercase">
-        Una estrategia sin humo
+        ¿Listo para tu sitio web?
       </p>
       <Button href="/contacto/">Solicitar presupuesto</Button>
     </div>
   </section>
-</Layout>
-<ServiceSchema service={service} />
+<ServiceSchema service={service} />`n</Layout>

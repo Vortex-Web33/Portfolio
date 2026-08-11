@@ -9,7 +9,7 @@
 ## Architecture
 
 - Static multi-page Astro site, **all content in Spanish** (Spanish agency site, not the French reference site). Do not translate or anglicize copy.
-- Each route is `src/pages/<slug>/index.astro`. Slugs are keyword-driven SEO URLs (e.g. `creacion-sitios-web`, `posicionamiento-seo-lyon`, `agencia-web-lyon`) — never rename them.
+- Each route is `src/pages/<slug>.astro` (flat files, no folders). Slugs are keyword-driven SEO URLs (e.g. `creacion-sitios-web`, `posicionamiento-seo-lyon`, `agencia-web-lyon`) — never rename them.
 - Site config (brand, contact, address, nav, socials) lives in `src/config/site.ts` — edit copy/data there, not in components.
 - Shared TypeScript contracts (Service, Project, PricingPlan, NavItem, site config types) live in `src/types/index.ts`. Data files (`src/data/*.ts`) import these types.
 - Content data (services, projects, clients, pricing) lives in `src/data/*.ts` as typed arrays. Services pages are driven by `src/data/services.ts` (add a feature/service there).
