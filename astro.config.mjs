@@ -3,6 +3,7 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import prefetch from '@astrojs/prefetch';
 import tailwindcss from '@tailwindcss/vite';
+import react from '@astrojs/react';
 
 // https://astro.build/config
 export default defineConfig({
@@ -13,6 +14,7 @@ export default defineConfig({
     inlineStylesheets: 'auto',
   },
   integrations: [
+    react(),
     sitemap({
       changefreq: 'monthly',
       priority: 0.7,
