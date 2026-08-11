@@ -6,9 +6,9 @@ export const site: SiteConfig = {
   url: "https://vortex.agency",
   locale: "es_ES",
   lang: "es",
-  defaultTitle: "Agencia Web Madrid - Creación de sitios web, SEO & SEA",
+  defaultTitle: "Agencia Web Malaga - Creación de sitios web, SEO & SEA",
   defaultDescription:
-    "VORTEX es una agencia web con sede en Madrid, especialista en creación de sitios web a medida, webdesign, e-commerce y estrategia digital.",
+    "VORTEX es una agencia web con sede en Malaga, especialista en creación de sitios web a medida, webdesign, e-commerce y estrategia digital.",
   ogImage: "/og-default.svg",
   themeColor: "#000000",
   twitterHandle: "@vortex_agency",
@@ -21,17 +21,20 @@ export const contact: ContactConfig = {
   email: "hello@vortex.agency",
   emailHref: "mailto:hello@vortex.agency",
   address: {
-    street: "Calle de Ferrandière",
-    city: "Madrid",
-    postalCode: "28013",
+    street: "Calle Larios, 15",
+    city: "Malaga",
+    postalCode: "29015",
     country: "España",
-    full: "Calle de Ferrandière, 28013 Madrid – España",
+    full: "Calle Larios, 15, 29015 Málaga – España",
   },
 };
 
 export const socials: SocialLink[] = [
-  { label: "Facebook", href: "https://www.facebook.com/profile.php?id=61587578708999" },
-  { label: "Instagram", href: "https://www.instagram.com/m0r3z" },
-  { label: "LinkedIn", href: "https://www.linkedin.com/company/m0r3z" },
-  { label: "GitHub", href: "https://github.com/m0r3z" },
+  { label: "Facebook", href: "https://www.facebook.com/vortex.agency/" },
+  { label: "Instagram", href: "https://www.instagram.com/vortex.agency/" },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/company/vortex.agency/",
+  },
+  { label: "GitHub", href: "https://github.com/vortex.agency/" },
 ];
