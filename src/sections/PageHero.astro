@@ -1,4 +1,6 @@
 ---
+import Reveal from "@/components/ui/Reveal";
+
 interface Props {
   kicker?: string;
   title: string;
@@ -12,12 +14,18 @@ const { kicker, title, description, glowClass = "bg-vortex/15" } = Astro.props;
 <section class="relative overflow-hidden px-6 pt-44 pb-20 text-center">
   <div class:list={["pointer-events-none absolute -top-32 left-1/2 size-96 -translate-x-1/2 rounded-full blur-[120px]", glowClass]}></div>
   <div class="relative mx-auto max-w-3xl">
-    {kicker && <p data-hero-anim class="kicker mb-4 text-cream/40">{kicker}</p>}
-    <h1 data-hero-anim class="text-5xl font-bold tracking-tight text-white md:text-7xl" set:html={title} />
+    {kicker && (
+      <Reveal client:load as="p" trigger="mount" delay={0.15} className="kicker mb-4 text-cream/40">
+        {kicker}
+      </Reveal>
+    )}
+    <Reveal client:load trigger="mount" delay={0.27}>
+      <h1 class="text-5xl font-bold tracking-tight text-white md:text-7xl" set:html={title} />
+    </Reveal>
     {description && (
-      <p data-hero-anim class="mx-auto mt-8 max-w-2xl font-mono text-sm leading-relaxed text-cream/60">
+      <Reveal client:load as="p" trigger="mount" delay={0.39} className="mx-auto mt-8 max-w-2xl font-mono text-sm leading-relaxed text-cream/60">
         {description}
-      </p>
+      </Reveal>
     )}
   </div>
 </section>

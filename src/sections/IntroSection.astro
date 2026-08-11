@@ -1,24 +1,25 @@
 ---
-import Button from "@/components/ui/Button.astro";
+import Button from "@/components/ui/Button";
+import Reveal from "@/components/ui/Reveal";
 import BigWordsMarquee from "@/sections/BigWordsMarquee.astro";
 ---
 
 <section class="mx-auto max-w-5xl px-6 py-24 text-center">
-  <p data-reveal class="mx-auto max-w-3xl text-xl leading-relaxed text-cream/70 md:text-2xl">
+  <Reveal client:load as="p" className="mx-auto max-w-3xl text-xl leading-relaxed text-cream/70 md:text-2xl">
     No solo hacemos sitios web: <span class="font-bold text-white">los hacemos visibles ante todos y en Google.</span>{" "}
     Te ayudamos a entender los entresijos de Internet sin soltarte términos incomprensibles.
     En definitiva, te acompañamos para que lo digital sea genial.
-  </p>
-  <p data-reveal class="mx-auto mt-8 max-w-3xl text-lg leading-relaxed text-cream/50">
+  </Reveal>
+  <Reveal client:load as="p" className="mx-auto mt-8 max-w-3xl text-lg leading-relaxed text-cream/50">
     Hemos trabajado en proyectos fuera de lo común. Sitios que nos obligaron a exprimir el cerebro.
     Eso es lo que nos gusta: los retos que nos hacen progresar, no los copia-pega.
-  </p>
-  <p data-reveal class="mt-16 font-mono text-xs tracking-[0.3em] text-cream/40 uppercase">
+  </Reveal>
+  <Reveal client:load as="p" className="mt-16 font-mono text-xs tracking-[0.3em] text-cream/40 uppercase">
     El botón más útil del sitio está justo aquí abajo
-  </p>
-  <div data-reveal class="mt-6">
-    <Button href="/contacto/">Solicitar presupuesto</Button>
-  </div>
+  </Reveal>
+  <Reveal client:load className="mt-6">
+    <Button href="/#contacto">Solicitar presupuesto</Button>
+  </Reveal>
 </section>
 
 <BigWordsMarquee

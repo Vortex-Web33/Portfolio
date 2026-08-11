@@ -1,16 +1,19 @@
 ---
+import Reveal from "@/components/ui/Reveal";
 import { projects } from "@/data/projects";
 ---
 
 <ul class="grid gap-8">
   {
     projects.map((project, index) => (
-      <li data-reveal>
-        <a
+      <li>
+        <Reveal
+          client:load
+          as="a"
           href={project.url}
           target="_blank"
           rel="noopener noreferrer"
-          class:list={[project.bg, "group flex flex-col items-center gap-6 rounded-3xl px-8 py-20 text-center md:py-28"]}
+          className={[project.bg, "group flex flex-col items-center gap-6 rounded-3xl px-8 py-20 text-center md:py-28"].join(" ")}
           aria-label={`${project.name} ${project.tagline} - abrir sitio externo`}
         >
           <span class="font-mono text-xs tracking-[0.3em] text-white/70 uppercase">
@@ -21,7 +24,7 @@ import { projects } from "@/data/projects";
           <span class="mt-4 inline-flex items-center gap-2 border-b border-white/40 pb-1 font-mono text-xs text-white transition-colors duration-300 group-hover:border-white group-hover:text-white">
             {project.url.replace("https://", "").replace(/\/$/, "")} →
           </span>
-        </a>
+        </Reveal>
       </li>
     ))
   }

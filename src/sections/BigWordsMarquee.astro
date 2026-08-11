@@ -1,5 +1,5 @@
 ---
-import Marquee from "@/components/ui/Marquee.astro";
+import Marquee from "@/components/ui/Marquee";
 
 interface Props {
   words: string[];
@@ -19,7 +19,7 @@ const {
 ---
 
 <section class:list={["overflow-hidden py-12", className]} aria-hidden="true">
-  <Marquee direction={direction} speed={speed}>
+  <Marquee client:load direction={direction} speed={speed}>
     {words.map((word) => (
       <span class:list={["mx-6", textClass]}>{word}</span>
     ))}

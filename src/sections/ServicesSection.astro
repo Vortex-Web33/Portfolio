@@ -1,17 +1,20 @@
 ---
+import Reveal from "@/components/ui/Reveal";
 import { services } from "@/data/services";
 ---
 
 <ul class="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
   {
     services.map((service) => (
-      <li data-reveal>
-        <a
+      <li>
+        <Reveal
+          client:load
+          as="a"
           href={service.href}
-          class:list={[
+          className={[
             service.accent,
             "group flex h-full flex-col gap-10 rounded-3xl border border-white/5 bg-gradient-to-br to-transparent p-10 transition-all duration-300 hover:-translate-y-1 hover:border-white/15 hover:bg-ink-soft/60",
-          ]}
+          ].join(" ")}
         >
           <span class="flex size-20 items-center justify-center rounded-full border border-white/10 font-mono text-2xl text-cream/80 transition-colors duration-300 group-hover:border-vortex/60 group-hover:text-vortex">
             {service.glyph}
@@ -23,7 +26,7 @@ import { services } from "@/data/services";
           <span class="font-mono text-xs tracking-widest uppercase text-cream/50 transition-colors duration-300 group-hover:text-vortex">
             Descubrir →
           </span>
-        </a>
+        </Reveal>
       </li>
     ))
   }
