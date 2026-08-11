@@ -1,4 +1,4 @@
-import type { SiteConfig, ContactConfig, SocialLink, NavItem } from "../types";
+import type { SiteConfig, ContactConfig, SocialLink, NavItem } from "@/types";
 
 export const site: SiteConfig = {
   name: "VORTEX",

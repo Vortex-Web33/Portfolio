@@ -1,9 +1,9 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import PageHero from "../components/sections/PageHero.astro";
-import Button from "../components/ui/Button.astro";
-import { services } from "../data/services";
-import ServiceSchema from "../components/seo/ServiceSchema.astro";
+import Layout from "@/layouts/Layout.astro";
+import PageHero from "@/components/sections/PageHero.astro";
+import ServiceDetailSection from "@/components/sections/ServiceDetailSection.astro";
+import { services } from "@/data/services";
+import ServiceSchema from "@/components/seo/ServiceSchema.astro";
 
 const service = services.find((s) => s.slug === "auditoria-consultoria")!;
 ---
@@ -15,24 +15,6 @@ const service = services.find((s) => s.slug === "auditoria-consultoria")!;
     description={service.description}
     glowClass="bg-vortex-green/15"
   />
-
-  <section class="mx-auto max-w-5xl px-6 pb-24">
-    <div data-reveal class="grid gap-8 md:grid-cols-2">
-      {
-        service.features.map((feature) => (
-          <article class="rounded-3xl border border-white/5 bg-ink-soft/30 p-10">
-            <h2 class="text-2xl font-bold text-white">{feature.title}</h2>
-            <p class="mt-4 leading-relaxed text-cream/60">{feature.description}</p>
-          </article>
-        ))
-      }
-    </div>
-    <div data-reveal class="mt-16 text-center">
-      <p class="mb-6 font-mono text-xs tracking-[0.3em] text-cream/40 uppercase">
-        Una estrategia sin humo
-      </p>
-      <Button href="/contacto/">Solicitar presupuesto</Button>
-    </div>
-  </section>
+  <ServiceDetailSection service={service} />
 </Layout>
 <ServiceSchema service={service} />

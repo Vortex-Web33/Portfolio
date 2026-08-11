@@ -1,8 +1,8 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import PageHero from "../components/sections/PageHero.astro";
-import Marquee from "../components/ui/Marquee.astro";
-import Button from "../components/ui/Button.astro";
+import Layout from "@/layouts/Layout.astro";
+import PageHero from "@/components/sections/PageHero.astro";
+import BigWordsMarquee from "@/components/sections/BigWordsMarquee.astro";
+import Button from "@/components/ui/Button.astro";
 ---
 
 <Layout
@@ -39,12 +39,9 @@ import Button from "../components/ui/Button.astro";
     </div>
   </section>
 
-  <section class="border-t border-white/5 py-12 overflow-hidden" aria-hidden="true">
-    <Marquee direction="ltr" speed="35">
-      <span class="mx-6 text-3xl font-bold tracking-tight text-white/60 md:text-5xl">ESTRATEGIA ❋</span>
-      <span class="mx-6 text-3xl font-bold tracking-tight text-white/60 md:text-5xl">DISEÑO ❊</span>
-      <span class="mx-6 text-3xl font-bold tracking-tight text-white/60 md:text-5xl">DESARROLLO ❈</span>
-      <span class="mx-6 text-3xl font-bold tracking-tight text-white/60 md:text-5xl">POSICIONAMIENTO ✢</span>
-    </Marquee>
-  </section>
+  <BigWordsMarquee
+    words={["ESTRATEGIA ❋", "DISEÑO ❊", "DESARROLLO ❈", "POSICIONAMIENTO ✢"]}
+    className="border-t"
+    textClass="text-3xl font-bold tracking-tight text-white/60 md:text-5xl"
+  />
 </Layout>

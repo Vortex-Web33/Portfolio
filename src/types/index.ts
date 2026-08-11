@@ -12,6 +12,7 @@ export interface Service {
   accent: string;
   glyph: string;
   heroColor: string;
+  ctaLabel: string;
   features: ServiceFeature[];
   seo: {
     title: string;

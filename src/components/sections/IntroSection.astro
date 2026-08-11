@@ -1,6 +1,6 @@
 ---
-import Button from "../ui/Button.astro";
-import Marquee from "../ui/Marquee.astro";
+import Button from "@/components/ui/Button.astro";
+import BigWordsMarquee from "@/components/sections/BigWordsMarquee.astro";
 ---
 
 <section class="mx-auto max-w-5xl px-6 py-24 text-center">
@@ -21,11 +21,8 @@ import Marquee from "../ui/Marquee.astro";
   </div>
 </section>
 
-<section class="border-y border-white/5 py-12 overflow-hidden" aria-hidden="true">
-  <Marquee direction="rtl" speed="30">
-    <span class="mx-6 text-4xl font-bold tracking-tight text-white/80 md:text-6xl">VORTEX ❋</span>
-    <span class="mx-6 text-4xl font-bold tracking-tight text-white/80 md:text-6xl">VORTEX ❊</span>
-    <span class="mx-6 text-4xl font-bold tracking-tight text-white/80 md:text-6xl">VORTEX ❈</span>
-    <span class="mx-6 text-4xl font-bold tracking-tight text-white/80 md:text-6xl">VORTEX ✢</span>
-  </Marquee>
-</section>
+<BigWordsMarquee
+  words={["VORTEX ❋", "VORTEX ❊", "VORTEX ❈", "VORTEX ✢"]}
+  direction="rtl"
+  speed={30}
+/>

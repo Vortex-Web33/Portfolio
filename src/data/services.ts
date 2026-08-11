@@ -1,4 +1,4 @@
-import type { Service } from "../types";
+import type { Service } from "@/types";
 
 export const services: Service[] = [
   {
@@ -11,6 +11,7 @@ export const services: Service[] = [
     accent: "from-vortex/25",
     glyph: "</>",
     heroColor: "bg-vortex/15",
+    ctaLabel: "¿Listo para tu sitio web?",
     features: [
       {
         title: "Sitios vitrina",
@@ -48,6 +49,7 @@ export const services: Service[] = [
     accent: "from-vortex-green/25",
     glyph: "⚡",
     heroColor: "bg-vortex-green/15",
+    ctaLabel: "Una estrategia sin humo",
     features: [
       {
         title: "Diagnóstico completo",
@@ -85,6 +87,7 @@ export const services: Service[] = [
     accent: "from-vortex-blue/25",
     glyph: "✦",
     heroColor: "bg-vortex-blue/15",
+    ctaLabel: "Una imagen que se queda en la mente",
     features: [
       {
         title: "Identidad de marca",
@@ -121,6 +124,7 @@ export const services: Service[] = [
     accent: "from-vortex-coral/25",
     glyph: "◉",
     heroColor: "bg-vortex-coral/15",
+    ctaLabel: "Sé visible donde te buscan",
     features: [
       {
         title: "SEO natural",
@@ -156,6 +160,7 @@ export const services: Service[] = [
     accent: "from-vortex/25",
     glyph: "❋",
     heroColor: "bg-vortex/15",
+    ctaLabel: "Menos tareas, más resultados",
     features: [
       {
         title: "Automatización de procesos",

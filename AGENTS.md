@@ -16,7 +16,7 @@
 - Components are organized:
   - `src/components/layout/` → `Header.astro`, `Footer.astro` (nav built from `site.ts`)
   - `src/components/seo/` → `SEO.astro` (meta/OG/Twitter/JSON-LD), `ServiceSchema.astro`
-  - `src/components/sections/` → page sections (`Hero`, `PageHero`, `ProjectsSection`, `ServicesSection`, `PricingSection`, `ContactSection`, ...)
+  - `src/components/sections/` → page sections (`Hero`, `PageHero`, `ProjectsSection`, `ServicesSection`, `PricingSection`, `ContactSection`, `ServiceDetailSection`, `ComingSoonSection`, `BigWordsMarquee`, ...)
   - `src/components/ui/` → primitives (`Container`, `Button`, `Marquee`, `SectionHeading`)
 - `src/layouts/Layout.astro` wires global.css, SEO, Header/Footer and the animation bootstrap. Every page passes `title`/`description` to `<Layout>`.
 - Animations (GSAP) live in `src/scripts/animations.ts` and attach to `[data-hero-anim]`, `[data-reveal]`, `[data-marquee]` hooks. Respects `prefers-reduced-motion`.

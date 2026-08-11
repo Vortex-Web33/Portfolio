@@ -1,7 +1,7 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import PageHero from "../components/sections/PageHero.astro";
-import Button from "../components/ui/Button.astro";
+import Layout from "@/layouts/Layout.astro";
+import PageHero from "@/components/sections/PageHero.astro";
+import ComingSoonSection from "@/components/sections/ComingSoonSection.astro";
 ---
 
 <Layout
@@ -15,15 +15,10 @@ import Button from "../components/ui/Button.astro";
     glowClass="bg-vortex-green/15"
   />
 
-  <section class="mx-auto max-w-5xl px-6 pb-24">
-    <div data-reveal class="flex flex-col items-center gap-8 rounded-3xl border border-white/5 bg-ink-soft/30 p-16 text-center">
-      <span class="text-5xl" aria-hidden="true">◉</span>
-      <h2 class="text-2xl font-bold text-white">El estudio está en curso</h2>
-      <p class="max-w-xl text-sm leading-relaxed text-cream/60">
-        Estamos recopilando datos sobre tarifas, plazos y calidad de las agencias web. Los
-        resultados se publicarán aquí próximamente.
-      </p>
-      <Button href="/contacto/">Solicitar presupuesto</Button>
-    </div>
-  </section>
+  <ComingSoonSection
+    icon="◉"
+    title="El estudio está en curso"
+    description="Estamos recopilando datos sobre tarifas, plazos y calidad de las agencias web. Los resultados se publicarán aquí próximamente."
+    ctaText="Solicitar presupuesto"
+  />
 </Layout>

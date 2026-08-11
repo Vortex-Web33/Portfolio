@@ -1,8 +1,8 @@
 ---
-import "../styles/global.css";
-import SEO from "../components/seo/SEO.astro";
-import Header from "../components/layout/Header.astro";
-import Footer from "../components/layout/Footer.astro";
+import "@/styles/global.css";
+import SEO from "@/components/seo/SEO.astro";
+import Header from "@/components/layout/Header.astro";
+import Footer from "@/components/layout/Footer.astro";
 
 interface Props {
   title?: string;
@@ -48,7 +48,7 @@ const csp = import.meta.env.PROD
     <Footer />
 
     <script>
-      import { initAnimations } from "../scripts/animations";
+      import { initAnimations } from "@/scripts/animations";
 
       initAnimations();
     </script>

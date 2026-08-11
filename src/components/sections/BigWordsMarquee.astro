@@ -1,0 +1,27 @@
+---
+import Marquee from "@/components/ui/Marquee.astro";
+
+interface Props {
+  words: string[];
+  direction?: "ltr" | "rtl";
+  speed?: number;
+  className?: string;
+  textClass?: string;
+}
+
+const {
+  words,
+  direction = "ltr",
+  speed = 35,
+  className = "border-y",
+  textClass = "text-4xl font-bold tracking-tight text-white/80 md:text-6xl",
+} = Astro.props;
+---
+
+<section class:list={["overflow-hidden py-12", className]} aria-hidden="true">
+  <Marquee direction={direction} speed={speed}>
+    {words.map((word) => (
+      <span class:list={["mx-6", textClass]}>{word}</span>
+    ))}
+  </Marquee>
+</section>
