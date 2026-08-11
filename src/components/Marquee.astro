@@ -17,8 +17,8 @@ const content = await Astro.slots.render("default");
   data-speed={speedValue}
   aria-hidden="true"
 >
-  <div class="marquee-track">
-    <div class="marquee-group" set:html={content}></div>
-    <div class="marquee-group" set:html={content}></div>
+  <div class="inline-flex will-change-transform" data-marquee-track>
+    <div class="inline-flex items-center whitespace-nowrap" set:html={content}></div>
+    <div class="inline-flex items-center whitespace-nowrap" set:html={content}></div>
   </div>
 </div>

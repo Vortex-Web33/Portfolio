@@ -3,34 +3,67 @@ import Layout from "../layouts/Layout.astro";
 import Marquee from "../components/Marquee.astro";
 import ServicesGrid from "../components/ServicesGrid.astro";
 import ProjectCards from "../components/ProjectCards.astro";
+import StickerTrail from "../components/StickerTrail.astro";
+import TextLoop from "../components/TextLoop.astro";
+import Topography from "../components/Topography.astro";
+import Grainient from "../components/Grainient.astro";
 ---
 
-<Layout title="Agencia Web Madrid - Creación de sitios web, SEO & SEA">
+<Layout title="Agencia Web Málaga - Creación de sitios web, SEO & SEA">
   <!-- HERO -->
   <section class="relative overflow-hidden px-6 pt-44 pb-10 text-center">
     <div class="pointer-events-none absolute -top-32 -left-32 size-96 rounded-full bg-vortex/20 blur-[120px]"></div>
     <div class="pointer-events-none absolute -right-32 top-40 size-96 rounded-full bg-vortex-blue/15 blur-[120px]"></div>
 
-    <div class="relative mx-auto max-w-5xl">
-      <h1 class="text-5xl font-bold leading-tight tracking-tight text-white md:text-7xl">
-        <span data-hero-anim>Agencia Web</span><br />
-        <span data-hero-anim>Posicionamiento SEO</span><br />
-        <span data-hero-anim>&amp; Marketing</span>
-      </h1>
-      <p data-hero-anim class="mx-auto mt-8 max-w-2xl font-mono text-sm leading-relaxed text-cream/60 md:text-base">
-        VORTEX es una <strong class="text-white">agencia web con sede en Madrid</strong> desde 2012.
-        Hemos vivido los inicios de Internet; hoy creamos sitios para usuarios de{" "}
-        <strong class="text-white">7 a 77 años.</strong>
-      </p>
-      <div data-hero-anim class="mt-12 flex flex-col items-center gap-6 md:flex-row md:justify-center">
-        <a href="/contacto/" class="btn">Solicitar presupuesto</a>
-        <a href="/agencia-web-lyon/" class="inline-flex items-center gap-2 font-mono text-xs tracking-widest text-cream/60 uppercase hover:text-white">
-          Conocer la agencia →
-        </a>
+    <div class="relative mx-auto flex min-h-[750px] w-full max-w-[1600px] flex-col items-center justify-center gap-10 rounded-3xl border border-vortex/30 bg-white/5 px-8">
+      <div class="absolute inset-0 z-0 overflow-hidden rounded-3xl">
+        <Grainient
+          color1="#bc80bb"
+          color2="#5227FF"
+          color3="#4b2e66"
+          timeSpeed={0.25}
+          colorBalance={0.0}
+          warpStrength={1.0}
+          warpFrequency={5.0}
+          warpSpeed={2.0}
+          warpAmplitude={50.0}
+          blendAngle={0.0}
+          blendSoftness={0.05}
+          rotationAmount={500.0}
+          noiseScale={2.0}
+          grainAmount={0.1}
+          grainScale={2.0}
+          grainAnimated={false}
+          contrast={1.5}
+          gamma={1.0}
+          saturation={1.0}
+          centerX={0.0}
+          centerY={0.0}
+          zoom={0.9}
+        />
+      </div>
+      <StickerTrail />
+      <div class="relative z-10 max-w-5xl">
+        <h1 class="text-5xl font-bold leading-tight tracking-tight text-white md:text-7xl">
+          <span data-hero-anim>Agencia Web</span><br />
+          <span data-hero-anim>Posicionamiento SEO</span><br />
+          <span data-hero-anim>&amp; Marketing</span>
+        </h1>
+        <p data-hero-anim class="mx-auto mt-8 max-w-2xl font-mono text-sm leading-relaxed text-cream/60 md:text-base">
+          VORTEX es una <strong class="text-white">agencia web con sede en Málaga</strong>,
+          creada en 2026. Jóvenes y ambiciosos, hoy creamos sitios para usuarios de{" "}
+          <strong class="text-white">7 a 77 años.</strong>
+        </p>
+        <div data-hero-anim class="mt-12 flex flex-col items-center gap-6 md:flex-row md:justify-center">
+          <a href="/contacto/" class="btn">Solicitar presupuesto</a>
+          <a href="/agencia-web-lyon/" class="inline-flex items-center gap-2 font-mono text-xs tracking-widest text-cream/60 uppercase hover:text-white">
+            Conocer la agencia →
+          </a>
+        </div>
       </div>
     </div>
 
-    <div class="relative mx-auto -mt-10 max-w-7xl">
+    <div class="relative mx-auto -mt-20 max-w-7xl">
       <a href="/contacto/" class="animate-loop-rotate mx-auto flex size-44 items-center justify-center rounded-full border border-white/10" aria-label="Solicitar presupuesto">
         <svg viewBox="0 0 200 200" class="absolute inset-0 size-full">
           <defs>
@@ -45,30 +78,33 @@ import ProjectCards from "../components/ProjectCards.astro";
     </div>
   </section>
 
-  <!-- CLIENTES MARQUEE -->
-  <section class="border-y border-white/5 py-10" aria-label="Clientes">
-    <Marquee direction="ltr" speed="50">
-      <span class="mx-8 font-mono text-sm tracking-widest text-cream/40 uppercase">Atable</span>
-      <span class="mx-8 font-mono text-sm tracking-widest text-cream/40 uppercase">Toyota</span>
-      <span class="mx-8 font-mono text-sm tracking-widest text-cream/40 uppercase">Energies</span>
-      <span class="mx-8 font-mono text-sm tracking-widest text-cream/40 uppercase">Wood</span>
-      <span class="mx-8 font-mono text-sm tracking-widest text-cream/40 uppercase">Isautier</span>
-      <span class="mx-8 font-mono text-sm tracking-widest text-cream/40 uppercase">Ness</span>
-      <span class="mx-8 font-mono text-sm tracking-widest text-cream/40 uppercase">Akoya</span>
-      <span class="mx-8 font-mono text-sm tracking-widest text-cream/40 uppercase">Canaille</span>
-      <span class="mx-8 font-mono text-sm tracking-widest text-cream/40 uppercase">REP</span>
-      <span class="mx-8 font-mono text-sm tracking-widest text-cream/40 uppercase">Archipel</span>
-      <span class="mx-8 font-mono text-sm tracking-widest text-cream/40 uppercase">Dentalpei</span>
-      <span class="mx-8 font-mono text-sm tracking-widest text-cream/40 uppercase">Vakoa</span>
-      <span class="mx-8 font-mono text-sm tracking-widest text-cream/40 uppercase">Truckingo</span>
-      <span class="mx-8 font-mono text-sm tracking-widest text-cream/40 uppercase">Coffee</span>
-    </Marquee>
+  <!-- MARQUEE VORTEX -->
+  <section class="overflow-hidden border-y border-white/5">
+    <div class="w-full">
+      <TextLoop
+        text="VORTEX"
+        shape="wave"
+        speed={90}
+        direction="forward"
+        separator="✦"
+        curviness={70}
+        fontSize={38}
+        fontWeight={800}
+        letterSpacing={2}
+        uppercase
+        color="#ffffff"
+        ribbon
+        ribbonColor="#bc80bb"
+        ribbonWidth={56}
+        pauseOnHover={false}
+      />
+    </div>
   </section>
 
   <!-- PROYECTOS -->
   <section class="mx-auto max-w-7xl px-6 py-24">
     <div class="mb-16 max-w-2xl" data-reveal>
-      <p class="kicker mb-4 text-cream/40">Realizaciones</p>
+      <p class="kicker mb-4 text-cream/40">Proyectos</p>
       <h2 class="text-4xl font-bold tracking-tight text-white md:text-5xl">
         Proyectos que nos hicieron <span class="highlight-gradient">expresar la cabeza</span>
       </h2>
@@ -87,12 +123,6 @@ import ProjectCards from "../components/ProjectCards.astro";
       Hemos trabajado en proyectos fuera de lo común. Sitios que nos obligaron a exprimir el cerebro.
       Eso es lo que nos gusta: los retos que nos hacen progresar, no los copia-pega.
     </p>
-    <p data-reveal class="mt-16 font-mono text-xs tracking-[0.3em] text-cream/40 uppercase">
-      El botón más útil del sitio está justo aquí abajo
-    </p>
-    <div data-reveal class="mt-6">
-      <a href="/contacto/" class="btn">Solicitar presupuesto</a>
-    </div>
   </section>
 
   <!-- MARQUEE TEXTO -->
@@ -133,26 +163,52 @@ import ProjectCards from "../components/ProjectCards.astro";
           identidad y responder a tus necesidades.
         </p>
         <p>
-          Colaborar con la agencia es elegir un equipo de Madrid que conoce su oficio, contesta al
+          Colaborar con la agencia es elegir un equipo de Málaga que conoce su oficio, contesta al
           teléfono y te acompaña a largo plazo.
         </p>
-        <a href="/contacto/" class="btn mt-4">Solicitar presupuesto</a>
       </div>
     </div>
   </section>
 
-  <!-- CTA FINAL -->
-  <section class="relative overflow-hidden px-6 py-32 text-center">
-    <div class="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-vortex/10 to-transparent"></div>
-    <div class="relative mx-auto max-w-3xl">
-      <p data-reveal class="kicker mb-6 text-vortex">Let's gooo !!</p>
-      <h2 data-reveal class="text-5xl font-bold tracking-tight text-white md:text-7xl">
-        ¿Necesitas un <span class="highlight-gradient">sitio web</span>?
+  <!-- RESEÑAS -->
+  <section class="mx-auto max-w-7xl px-6 py-24">
+    <div class="mb-16 max-w-2xl" data-reveal>
+      <p class="kicker mb-4 text-cream/40">Testimonios</p>
+      <h2 class="text-4xl font-bold tracking-tight text-white md:text-5xl">
+        Lo que dicen de <span class="highlight-gradient">nuestro trabajo</span>
       </h2>
-      <p data-reveal class="mt-6 font-mono text-sm text-cream/50">¡Lo hablamos!</p>
-      <div data-reveal class="mt-10">
-        <a href="/contacto/" class="btn">Solicitar presupuesto</a>
-      </div>
+    </div>
+    <div class="grid gap-8 md:grid-cols-3">
+      <article data-reveal class="flex flex-col justify-between gap-8 rounded-3xl border border-white/5 bg-ink-soft/30 p-10">
+        <p class="text-lg leading-relaxed text-cream/70">
+          "Nos montaron la tienda online en tiempo récord y las ventas no tardaron en llegar.
+          Comunicación directa y cero humo."
+        </p>
+        <footer>
+          <p class="font-bold text-white">María G.</p>
+          <p class="mt-1 font-mono text-xs text-cream/50">Tienda de moda online</p>
+        </footer>
+      </article>
+      <article data-reveal class="flex flex-col justify-between gap-8 rounded-3xl border border-white/5 bg-ink-soft/30 p-10">
+        <p class="text-lg leading-relaxed text-cream/70">
+          "Por fin una agencia que contesta al teléfono y hace lo que dice. Nuestra web carga rápido
+          y por fin aparecemos en Google."
+        </p>
+        <footer>
+          <p class="font-bold text-white">Javier R.</p>
+          <p class="mt-1 font-mono text-xs text-cream/50">Restaurante</p>
+        </footer>
+      </article>
+      <article data-reveal class="flex flex-col justify-between gap-8 rounded-3xl border border-white/5 bg-ink-soft/30 p-10">
+        <p class="text-lg leading-relaxed text-cream/70">
+          "Del presupuesto al lanzamiento todo fue claro. Exprimieron hasta el último detalle y
+          el resultado habla por sí solo."
+        </p>
+        <footer>
+          <p class="font-bold text-white">Ana L.</p>
+          <p class="mt-1 font-mono text-xs text-cream/50">Clínica dental</p>
+        </footer>
+      </article>
     </div>
   </section>
 </Layout>

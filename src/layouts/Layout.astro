@@ -7,8 +7,8 @@ interface Props {
 }
 
 const {
-  title = "Agencia Web Madrid - Creación de sitios web, SEO & SEA",
-  description = "VORTEX es una agencia web con sede en Madrid, especialista en creación de sitios web a medida, webdesign, e-commerce y estrategia digital.",
+  title = "Agencia Web Málaga - Creación de sitios web, SEO & SEA",
+  description = "VORTEX es una agencia web con sede en Málaga, especialista en creación de sitios web a medida, webdesign, e-commerce y estrategia digital.",
 } = Astro.props;
 ---
 
@@ -27,7 +27,7 @@ const {
     <title>{title} - VORTEX</title>
   </head>
   <body>
-    <header class="site-header fixed inset-x-0 top-0 z-50">
+    <header class="fixed inset-x-0 top-0 z-50 transition-[background-color,backdrop-filter,box-shadow] duration-[400ms] data-[scrolled=true]:bg-ink/85 data-[scrolled=true]:shadow-[0_1px_0_rgba(255,255,255,0.06)] data-[scrolled=true]:backdrop-blur-xl" data-site-header>
       <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
         <a href="/" class="font-mono text-xl font-bold tracking-tight text-white">
           VORTEX<span class="text-vortex">.</span>
@@ -35,7 +35,7 @@ const {
 
         <nav class="hidden items-center gap-8 lg:flex" aria-label="Navegación principal">
           <a href="/agencia-web-lyon/" class="text-sm text-cream/70 hover:text-white">La Agencia</a>
-          <a href="/realizaciones/" class="text-sm text-cream/70 hover:text-white">Realizaciones</a>
+          <a href="/realizaciones/" class="text-sm text-cream/70 hover:text-white">Proyectos</a>
           <div class="group relative">
             <a href="/servicios/" class="text-sm text-cream/70 hover:text-white">Servicios ▾</a>
             <div class="invisible absolute left-1/2 top-full w-72 -translate-x-1/2 translate-y-2 rounded-2xl border border-white/10 bg-ink p-4 opacity-0 shadow-2xl transition-all duration-300 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
@@ -45,7 +45,7 @@ const {
               <a href="/posicionamiento-seo-lyon/" class="block rounded-xl px-4 py-2 text-sm text-cream/70 hover:bg-white/5 hover:text-white">Posicionamiento SEO</a>
             </div>
           </div>
-          <a href="/ofertas-tarifas/" class="text-sm text-cream/70 hover:text-white">Ofertas</a>
+          <a href="/ofertas-tarifas/" class="text-sm text-cream/70 hover:text-white">Precios</a>
         </nav>
 
         <div class="flex items-center gap-4">
@@ -59,11 +59,11 @@ const {
       </div>
     </header>
 
-    <nav class="mobile-nav fixed inset-x-0 top-0 z-40 flex h-screen flex-col items-center justify-center gap-8 bg-ink pt-20 lg:hidden" aria-label="Menú móvil">
+    <nav class="fixed inset-x-0 top-0 z-40 flex h-screen flex-col items-center justify-center gap-8 bg-ink pt-20 transition-transform duration-[400ms] ease-[cubic-bezier(0.22,1,0.36,1)] -translate-y-full data-[open=true]:translate-y-0 lg:hidden" aria-label="Menú móvil" data-mobile-nav>
       <a href="/agencia-web-lyon/" class="text-2xl font-bold text-white">La Agencia</a>
-      <a href="/realizaciones/" class="text-2xl font-bold text-white">Realizaciones</a>
+      <a href="/realizaciones/" class="text-2xl font-bold text-white">Proyectos</a>
       <a href="/servicios/" class="text-2xl font-bold text-white">Servicios</a>
-      <a href="/ofertas-tarifas/" class="text-2xl font-bold text-white">Ofertas</a>
+      <a href="/ofertas-tarifas/" class="text-2xl font-bold text-white">Precios</a>
       <a href="/contacto/" class="btn mt-4">Contacto y Presupuesto</a>
     </nav>
 
@@ -86,17 +86,17 @@ const {
             <strong class="kicker text-cream/40">La Agencia</strong>
             <ul class="space-y-3 text-sm">
               <li><a href="/agencia-web-lyon/" class="text-cream/70 hover:text-vortex">¿Quiénes son?</a></li>
-              <li><a href="/realizaciones/" class="text-cream/70 hover:text-vortex">Realizaciones</a></li>
+              <li><a href="/realizaciones/" class="text-cream/70 hover:text-vortex">Proyectos</a></li>
               <li><a href="/blog/" class="text-cream/70 hover:text-vortex">El Blog</a></li>
               <li><a href="/observatorio-agencia-web/" class="text-cream/70 hover:text-vortex">Observatorio de Agencias Web</a></li>
               <li><a href="/contacto/" class="text-cream/70 hover:text-vortex">Contacto y presupuesto</a></li>
             </ul>
           </div>
           <div class="space-y-4">
-            <strong class="kicker text-cream/40">Ofertas y Servicios</strong>
+            <strong class="kicker text-cream/40">Precios y Servicios</strong>
             <ul class="space-y-3 text-sm">
               <li><a href="/servicios/" class="text-cream/70 hover:text-vortex">Servicios y competencias</a></li>
-              <li><a href="/ofertas-tarifas/" class="text-cream/70 hover:text-vortex">Ofertas y tarifas</a></li>
+              <li><a href="/ofertas-tarifas/" class="text-cream/70 hover:text-vortex">Precios y tarifas</a></li>
               <li><a href="/creacion-sitios-web/" class="text-cream/70 hover:text-vortex">Creación de sitios web</a></li>
               <li><a href="/posicionamiento-seo-lyon/" class="text-cream/70 hover:text-vortex">Posicionamiento SEO</a></li>
               <li><a href="/auditoria-consultoria/" class="text-cream/70 hover:text-vortex">Auditoría y Consultoría</a></li>
@@ -107,7 +107,7 @@ const {
             <ul class="space-y-3 text-sm">
               <li><a href="tel:+34663007473" class="text-cream/70 hover:text-vortex">+34 663 00 74 73</a></li>
               <li><a href="mailto:hello@vortex.agency" class="text-cream/70 hover:text-vortex">hello@vortex.agency</a></li>
-              <li class="text-cream/50">Calle de Ferrandière<br />28013 Madrid – España</li>
+              <li class="text-cream/50">Calle Marqués de Larios<br />29005 Málaga – España</li>
             </ul>
           </div>
           <div class="space-y-4">
@@ -122,7 +122,7 @@ const {
         </div>
 
         <div class="flex flex-col items-center justify-between gap-4 border-t border-hairline/40 py-8 text-xs text-cream/40 md:flex-row">
-          <p>© Agencia VORTEX – Todos los derechos reservados</p>
+          <p>© 2026 Agencia VORTEX – Todos los derechos reservados</p>
           <ul class="flex gap-6">
             <li><a href="/aviso-legal/" class="hover:text-vortex">Aviso legal</a></li>
             <li><a href="/contacto/" class="hover:text-vortex">Contacto</a></li>
@@ -140,15 +140,15 @@ const {
 
       const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-      const header = document.querySelector(".site-header");
-      const onScroll = () => header?.classList.toggle("scrolled", window.scrollY > 40);
+      const header = document.querySelector("[data-site-header]");
+      const onScroll = () => header?.toggleAttribute("data-scrolled", window.scrollY > 40);
       onScroll();
       window.addEventListener("scroll", onScroll, { passive: true });
 
       const toggle = document.querySelector(".menu-toggle");
-      const mobileNav = document.querySelector(".mobile-nav");
+      const mobileNav = document.querySelector("[data-mobile-nav]");
       toggle?.addEventListener("click", () => {
-        const open = mobileNav?.classList.toggle("open");
+        const open = mobileNav?.toggleAttribute("data-open", !mobileNav.hasAttribute("data-open"));
         toggle.setAttribute("aria-expanded", String(open));
         toggle.classList.toggle("hidden", open);
       });
@@ -177,7 +177,7 @@ const {
         });
 
         gsap.utils.toArray<HTMLElement>("[data-marquee]").forEach((mq) => {
-          const track = mq.querySelector(".marquee-track");
+          const track = mq.querySelector("[data-marquee-track]");
           if (!track) return;
           const dir = mq.dataset.direction === "rtl" ? -1 : 1;
           const speed = Number(mq.dataset.speed) || 40;

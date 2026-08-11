@@ -1,0 +1,210 @@
+---
+interface Props {
+  text?: string;
+  shape?: "circle" | "infinity" | "arch" | "line" | "wave";
+  path?: string;
+  speed?: number;
+  direction?: "forward" | "reverse";
+  separator?: string;
+  curviness?: number;
+  fontSize?: number;
+  fontWeight?: number;
+  letterSpacing?: number;
+  uppercase?: boolean;
+  color?: string;
+  ribbon?: boolean;
+  ribbonColor?: string;
+  ribbonWidth?: number;
+  pauseOnHover?: boolean;
+  className?: string;
+}
+
+const {
+  text = "React ✦ Bits",
+  shape = "wave",
+  path,
+  speed = 90,
+  direction = "forward",
+  separator = "✦",
+  curviness = 90,
+  fontSize = 46,
+  fontWeight = 800,
+  letterSpacing = 2,
+  uppercase = true,
+  color = "#ffffff",
+  ribbon = true,
+  ribbonColor = "#5227FF",
+  ribbonWidth = 86,
+  pauseOnHover = true,
+  className = "",
+} = Astro.props;
+
+const VIEW_W = 1200;
+const VIEW_H = 520;
+const CX = VIEW_W / 2;
+const CY = VIEW_H / 2;
+const EDGE_PAD = 6;
+
+const room = Math.max(20, CY - Math.max(0, ribbonWidth) / 2 - EDGE_PAD);
+const isWave = shape === "wave" && !path;
+const waveAmp = isWave ? Math.min(Math.max(0, curviness) * 2.2, room * 2) : 0;
+const vbY = isWave ? CY - waveAmp - Math.max(0, ribbonWidth) / 2 : 0;
+const vbH = isWave ? 2 * (waveAmp + Math.max(0, ribbonWidth) / 2) : VIEW_H;
+
+const buildPath = (shape: string, curviness: number, ribbonWidth: number) => {
+  const c = Math.max(0, curviness);
+  const room = Math.max(20, CY - Math.max(0, ribbonWidth) / 2 - EDGE_PAD);
+
+  switch (shape) {
+    case "circle": {
+      const r = Math.min(90 + c * 0.95, room);
+      return `M ${CX - r} ${CY} A ${r} ${r} 0 1 1 ${CX + r} ${CY} A ${r} ${r} 0 1 1 ${CX - r} ${CY} Z`;
+    }
+    case "infinity": {
+      const r = 150 + c * 1.4;
+      const h = Math.min(60 + c * 0.95, room);
+      return [
+        `M ${CX} ${CY}`,
+        `C ${CX + r * 0.55} ${CY - h} ${CX + r} ${CY - h} ${CX + r} ${CY}`,
+        `C ${CX + r} ${CY + h} ${CX + r * 0.55} ${CY + h} ${CX} ${CY}`,
+        `C ${CX - r * 0.55} ${CY - h} ${CX - r} ${CY - h} ${CX - r} ${CY}`,
+        `C ${CX - r} ${CY + h} ${CX - r * 0.55} ${CY + h} ${CX} ${CY}`,
+        "Z",
+      ].join(" ");
+    }
+    case "arch": {
+      const rise = Math.min(120 + c * 1.1, room * 2);
+      return `M 120 ${CY + rise / 2} Q ${CX} ${CY - rise * 1.5} ${VIEW_W - 120} ${CY + rise / 2}`;
+    }
+    case "line":
+      return `M -320 ${CY} L ${VIEW_W + 320} ${CY}`;
+    case "wave":
+    default: {
+      const a = Math.min(c * 2.2, room * 2);
+      return `M -320 ${CY} Q -160 ${CY - a} 0 ${CY} T 320 ${CY} T 640 ${CY} T 960 ${CY} T 1280 ${CY} T ${VIEW_W + 320} ${CY}`;
+    }
+  }
+};
+
+const d = path || buildPath(shape, curviness, ribbonWidth);
+const uid = Math.random().toString(36).slice(2, 10);
+const pathId = `text-loop-${uid}`;
+const unit = `${uppercase ? String(text).toUpperCase() : String(text)}\u00A0${separator || ""}\u00A0`;
+const textStyle = { fontSize: `${fontSize}px`, fontWeight, letterSpacing: `${letterSpacing}px` };
+---
+
+<div
+  class={`relative w-full overflow-hidden ${className}`.trim()}
+  data-text-loop={uid}
+  data-speed={speed}
+  data-direction={direction}
+  data-pause-on-hover={String(pauseOnHover)}
+>
+  <svg
+    class="block h-auto w-full"
+    viewBox={`0 ${vbY} ${VIEW_W} ${vbH}`}
+    preserveAspectRatio="xMidYMid meet"
+    role="img"
+    aria-label={text}
+  >
+    <path
+      id={pathId}
+      d={d}
+      fill="none"
+      stroke={ribbon ? ribbonColor : "none"}
+      stroke-width={ribbon ? ribbonWidth : 0}
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+
+    <text class="text-loop-measure invisible pointer-events-none" style={textStyle} aria-hidden="true">
+      {unit}
+    </text>
+
+    <text class="select-none" style={textStyle} fill={color} dominant-baseline="central" aria-hidden="true">
+      <textPath class="text-loop-head" href={`#${pathId}`} startOffset={0} lengthAdjust="spacing">
+        {unit.repeat(1)}
+      </textPath>
+    </text>
+
+    <text class="select-none" style={textStyle} fill={color} dominant-baseline="central" aria-hidden="true">
+      <textPath class="text-loop-tail" href={`#${pathId}`} startOffset={0} lengthAdjust="spacing">
+        {unit.repeat(1)}
+      </textPath>
+    </text>
+  </svg>
+</div>
+
+<script>
+  import gsap from "gsap";
+
+  (() => {
+    const uid = document.querySelector<HTMLElement>("[data-text-loop]")?.dataset.textLoop;
+    if (!uid) return;
+    const root = document.querySelector<HTMLElement>(`[data-text-loop="${uid}"]`);
+    if (!root) return;
+
+    const pathEl = root.querySelector<SVGPathElement>("path");
+    const measureEl = root.querySelector<SVGTextElement>(".text-loop-measure");
+    const headEl = root.querySelector<SVGTextPathElement>(".text-loop-head");
+    const tailEl = root.querySelector<SVGTextPathElement>(".text-loop-tail");
+    if (!pathEl || !measureEl || !headEl || !tailEl) return;
+
+    const unit = measureEl.textContent || "";
+    let length = 0;
+
+    const measure = () => {
+      try {
+        length = pathEl.getTotalLength();
+        const unitWidth = measureEl.getComputedTextLength();
+        if (!length || !unitWidth) return;
+        const reps = Math.max(1, Math.round(length / unitWidth));
+        const loopText = unit.repeat(reps);
+        headEl.textContent = loopText;
+        tailEl.textContent = loopText;
+        headEl.setAttribute("textLength", String(length));
+        tailEl.setAttribute("textLength", String(length));
+      } catch {
+        return;
+      }
+    };
+
+    measure();
+    if (document.fonts?.ready) {
+      document.fonts.ready.then(measure).catch(() => {});
+    }
+    if (!length) return;
+
+    const apply = (offset: number) => {
+      const partner = offset >= 0 ? offset - length : offset + length;
+      headEl.setAttribute("startOffset", String(offset));
+      tailEl.setAttribute("startOffset", String(partner));
+    };
+
+    apply(0);
+
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const speed = Number(root.dataset.speed) || 90;
+    const direction = root.dataset.direction === "reverse" ? "reverse" : "forward";
+    const pauseOnHover = root.dataset.pauseOnHover === "true";
+
+    if (reducedMotion || speed <= 0) return;
+
+    const state = { offset: 0 };
+    const tween = gsap.to(state, {
+      offset: direction === "reverse" ? -length : length,
+      duration: length / speed,
+      ease: "none",
+      repeat: -1,
+      onUpdate: () => apply(state.offset),
+    });
+
+    const pause = () => tween.pause();
+    const resume = () => tween.resume();
+
+    if (pauseOnHover) {
+      root.addEventListener("pointerenter", pause);
+      root.addEventListener("pointerleave", resume);
+    }
+  })();
+</script>
