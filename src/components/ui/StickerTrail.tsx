@@ -33,20 +33,14 @@ export default function StickerTrail({
     if (!trail) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-    stickers.forEach((src) => {
-      const pre = new Image();
-      pre.src = src;
-    });
-
+    const sourceImgs = [...trail.querySelectorAll<HTMLImageElement>("img")];
     const rendered: HTMLImageElement[] = [];
     let last = { x: 0, y: 0 };
 
     const spawn = (x: number, y: number) => {
       if (rendered.length >= maxRendered) return;
-      const source = stickers[Math.floor(Math.random() * stickers.length)];
-      const img = document.createElement("img");
-      img.src = source;
-      img.alt = "";
+      const source = sourceImgs[Math.floor(Math.random() * sourceImgs.length)];
+      const img = source.cloneNode() as HTMLImageElement;
       img.className = `absolute h-auto pointer-events-none will-change-transform ${size}`;
       const rotate = Math.random() * 40 - 20;
       img.style.left = `${x}px`;
@@ -114,6 +108,16 @@ export default function StickerTrail({
       ref={elRef}
       className={`pointer-events-none absolute inset-0 z-10 overflow-clip ${className}`.trim()}
       aria-hidden="true"
-    />
+    >
+      {stickers.map((src) => (
+        <img
+          key={src}
+          className="pointer-events-none absolute top-0 left-[-9999px] h-auto w-[72px] opacity-0 md:w-20"
+          src={src}
+          alt=""
+          draggable={false}
+        />
+      ))}
+    </div>
   );
 }
