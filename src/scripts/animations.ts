@@ -11,14 +11,6 @@ export function initAnimations(): void {
   onScroll();
   window.addEventListener("scroll", onScroll, { passive: true });
 
-  const toggle = document.querySelector<HTMLButtonElement>(".menu-toggle");
-  const mobileNav = document.querySelector<HTMLElement>("#mobile-nav");
-  toggle?.addEventListener("click", () => {
-    const open = mobileNav?.classList.toggle("open");
-    toggle.setAttribute("aria-expanded", String(Boolean(open)));
-    toggle.classList.toggle("hidden", Boolean(open));
-  });
-
   if (reducedMotion) return;
 
   gsap.utils.toArray<HTMLElement>("[data-hero-anim]").forEach((el, i) => {

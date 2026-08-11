@@ -9,21 +9,20 @@
 ## Architecture
 
 - Static multi-page Astro site, **all content in Spanish** (Spanish agency site, not the French reference site). Do not translate or anglicize copy.
-- Each route is `src/pages/<slug>.astro` (flat files, no folders). Slugs are keyword-driven SEO URLs (e.g. `creacion-sitios-web`, `posicionamiento-seo-lyon`, `agencia-web-lyon`) — never rename them.
-- Site config (brand, contact, address, nav, socials) lives in `src/config/site.ts` — edit copy/data there, not in components.
-- Shared TypeScript contracts (Service, Project, PricingPlan, NavItem, site config types) live in `src/types/index.ts`. Data files (`src/data/*.ts`) import these types.
-- Content data (services, projects, clients, pricing) lives in `src/data/*.ts` as typed arrays. Services pages are driven by `src/data/services.ts` (add a feature/service there).
+- Routes live in `src/pages/<slug>.astro` (flat files). Slugs are keyword-driven SEO URLs — never rename them. Currently the site ships with a single route (`index.astro`); add pages here following the same flat pattern.
+- `src/App.astro` is the **parent component** — it imports and composes the page sections (the "routes" of the app). Pages import `<App />` and stay as thin route definitions (`Layout` + `App`).
+- Site config (brand, contact, address, socials) lives in `src/config/site.ts` — edit copy/data there, not in components.
+- Shared TypeScript contracts (Service, Project, site config types) live in `src/types/index.ts`. Data files (`src/data/*.ts`) import these types.
+- Content data (services, projects, clients) lives in `src/data/*.ts` as typed arrays.
 - Components are organized:
-  - `src/components/layout/` → `Header.astro`, `Footer.astro` (nav built from `site.ts`) — site chrome, used on every page
-  - `src/components/seo/` → `SEO.astro` (meta/OG/Twitter/JSON-LD), `ServiceSchema.astro` — used on every page
+  - `src/sections/` → **repetitive blocks** (`Header`, `Footer`, `Hero`, `ClientsMarquee`, `IntroSection`, `AgencySection`, `CTASection`, `PageHero`, `ProjectsSection`, `ServicesSection`, `ContactSection`, `BigWordsMarquee`)
+  - `src/components/seo/` → `SEO.astro` (meta/OG/Twitter/JSON-LD) — used on every page
   - `src/components/ui/` → primitives (`Container`, `Button`, `Marquee`) — no business logic
-  - `src/components/sections/` → **general/reusable** sections used by multiple pages (`PageHero`, `ProjectsSection`, `ServicesSection`, `ServiceDetailSection`, `BigWordsMarquee`)
-  - `src/components/page/` → **page-specific** sections, grouped by route: `home/` (Hero, ClientsMarquee, IntroSection, AgencySection, CTASection), `pricing/` (PricingSection), `contact/` (ContactSection)
-  - Rule: a section used by exactly one page goes in `src/components/page/<route>/`; once a second page needs it, promote it to `src/components/sections/`.
+  - Rule: a block used on one page stays in `sections/`; if a route needs its own private blocks, group them under `src/components/page/<route>/` and import them from the page.
 - `src/layouts/Layout.astro` wires global.css, SEO, Header/Footer and the animation bootstrap. Every page passes `title`/`description` to `<Layout>`.
 - Animations (GSAP) live in `src/scripts/animations.ts` and attach to `[data-hero-anim]`, `[data-reveal]`, `[data-marquee]` hooks. Respects `prefers-reduced-motion`.
-- No content collections or markdown; blog is a placeholder page.
-- SEO: `@astrojs/sitemap` generates `sitemap-index.xml` (excludes `/aviso-legal/`); `@astrojs/prefetch` prefetches internal links; robots.txt, `site.webmanifest` and favicon live in `public/`. Site URL is `https://vortex.agency` in `astro.config.mjs`.
+- No content collections or markdown.
+- SEO: `@astrojs/sitemap` generates `sitemap-index.xml`; `@astrojs/prefetch` prefetches internal links; robots.txt, `site.webmanifest` and favicon live in `public/`. Site URL is `https://vortex.agency` in `astro.config.mjs`.
 - Security: a strict CSP meta tag is emitted only in production builds (`import.meta.env.PROD`) — do not enable it in dev or HMR breaks.
 
 ## Styling
@@ -31,5 +30,5 @@
 - Tailwind CSS **v4** via `@tailwindcss/vite` plugin — there is no `tailwind.config.js` and one should not be created. Styles are layered in `src/styles/`: `theme.css` (design tokens via `@theme`), `base.css` (base layer, component classes, keyframes), and `global.css` (entry that imports tailwindcss + the other two).
 - Brand colors are Tailwind tokens: `ink` (black), `cream`, `vortex` (#bc80bb purple), `vortex-blue`, `vortex-coral`, `vortex-green`, `hairline`. Use them as `bg-vortex`, `text-cream/60`, etc.
 - Fonts: Geist + Geist Mono via Google Fonts (loaded in Layout). `font-mono` is used for kickers/labels.
-- Custom classes: `.btn` (gradient primary), `.btn-dark`, `.kicker` (mono uppercase label), `.highlight-gradient` (purple→green text). Add new styles to `global.css`, not page styles.
+- Custom classes: `.btn` (gradient primary), `.btn-dark`, `.kicker` (mono uppercase label), `.highlight-gradient` (purple→green text). Add new styles to `base.css`, not page styles.
 - `gsap` (v3, with ScrollTrigger) is used for hero intro, scroll reveals and marquees.

@@ -1,4 +1,4 @@
-import type { SiteConfig, ContactConfig, SocialLink, NavItem } from "@/types";
+import type { SiteConfig, ContactConfig, SocialLink } from "@/types";
 
 export const site: SiteConfig = {
   name: "VORTEX",
@@ -35,36 +35,3 @@ export const socials: SocialLink[] = [
   { label: "LinkedIn", href: "https://www.linkedin.com/company/m0r3z" },
   { label: "GitHub", href: "https://github.com/m0r3z" },
 ];
-
-export const navItems: NavItem[] = [
-  { label: "La Agencia", href: "/agencia-web-lyon/" },
-  { label: "Realizaciones", href: "/realizaciones/" },
-  {
-    label: "Servicios",
-    href: "/servicios/",
-    children: [
-      { label: "Creación de sitios web", href: "/creacion-sitios-web/" },
-      { label: "Auditoría y Consultoría", href: "/auditoria-consultoria/" },
-      { label: "Diseño e Identidad visual", href: "/diseno-identidad-visual/" },
-      { label: "Posicionamiento SEO", href: "/posicionamiento-seo-lyon/" },
-    ],
-  },
-  { label: "Ofertas", href: "/ofertas-tarifas/" },
-  { label: "Contacto y Presupuesto", href: "/contacto/" },
-];
-
-export const footerNav: { agency: NavItem[]; offers: NavItem[] } = {
-  agency: [
-    { label: "¿Quiénes son?", href: "/agencia-web-lyon/" },
-    { label: "Realizaciones", href: "/realizaciones/" },
-    { label: "Servicios y competencias", href: "/servicios/" },
-    { label: "Contacto y presupuesto", href: "/contacto/" },
-  ],
-  offers: [
-    { label: "Servicios y competencias", href: "/servicios/" },
-    { label: "Ofertas y tarifas", href: "/ofertas-tarifas/" },
-    { label: "Creación de sitios web", href: "/creacion-sitios-web/" },
-    { label: "Posicionamiento SEO", href: "/posicionamiento-seo-lyon/" },
-    { label: "Auditoría y Consultoría", href: "/auditoria-consultoria/" },
-  ],
-};

@@ -1,5 +1,5 @@
 ---
-import { contact, footerNav, socials } from "@/config/site";
+import { contact, socials } from "@/config/site";
 import Button from "@/components/ui/Button.astro";
 ---
 
@@ -10,32 +10,10 @@ import Button from "@/components/ui/Button.astro";
       <h2 class="max-w-3xl text-4xl font-bold tracking-tight text-white md:text-6xl">
         ¿Listo para tu <span class="highlight-gradient">proyecto</span> web?
       </h2>
-      <Button href="/contacto/">Solicitar presupuesto</Button>
+      <Button href="/#contacto">Solicitar presupuesto</Button>
     </div>
 
-    <div class="grid gap-12 border-t border-hairline/40 py-16 md:grid-cols-2 lg:grid-cols-4">
-      <nav aria-label="La Agencia">
-        <strong class="kicker text-cream/40">La Agencia</strong>
-        <ul class="mt-4 space-y-3 text-sm">
-          {footerNav.agency.map((link) => (
-            <li>
-              <a href={link.href} class="text-cream/70 hover:text-vortex">{link.label}</a>
-            </li>
-          ))}
-        </ul>
-      </nav>
-
-      <nav aria-label="Ofertas y Servicios">
-        <strong class="kicker text-cream/40">Ofertas y Servicios</strong>
-        <ul class="mt-4 space-y-3 text-sm">
-          {footerNav.offers.map((link) => (
-            <li>
-              <a href={link.href} class="text-cream/70 hover:text-vortex">{link.label}</a>
-            </li>
-          ))}
-        </ul>
-      </nav>
-
+    <div class="grid gap-12 border-t border-hairline/40 py-16 md:grid-cols-2">
       <div>
         <strong class="kicker text-cream/40">Contacto</strong>
         <ul class="mt-4 space-y-3 text-sm">
@@ -74,10 +52,6 @@ import Button from "@/components/ui/Button.astro";
 
     <div class="flex flex-col items-center justify-between gap-4 border-t border-hairline/40 py-8 text-xs text-cream/40 md:flex-row">
       <p>© {new Date().getFullYear()} Agencia VORTEX – Todos los derechos reservados</p>
-      <ul class="flex gap-6">
-        <li><a href="/aviso-legal/" class="hover:text-vortex">Aviso legal</a></li>
-        <li><a href="/contacto/" class="hover:text-vortex">Contacto</a></li>
-      </ul>
     </div>
   </div>
 </footer>

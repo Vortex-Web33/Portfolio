@@ -27,21 +27,6 @@ export interface Project {
   bg: string;
 }
 
-export interface PricingPlan {
-  name: string;
-  description: string;
-  price: string;
-  featured?: boolean;
-  ctaLabel: string;
-  ctaHref: string;
-}
-
-export interface NavItem {
-  label: string;
-  href: string;
-  children?: NavItem[];
-}
-
 export interface Address {
   street: string;
   city: string;

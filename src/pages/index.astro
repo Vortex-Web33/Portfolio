@@ -1,39 +1,8 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import Hero from "@/components/page/home/Hero.astro";
-import ClientsMarquee from "@/components/page/home/ClientsMarquee.astro";
-import IntroSection from "@/components/page/home/IntroSection.astro";
-import AgencySection from "@/components/page/home/AgencySection.astro";
-import CTASection from "@/components/page/home/CTASection.astro";
-import PageHero from "@/components/sections/PageHero.astro";
-import ProjectsSection from "@/components/sections/ProjectsSection.astro";
-import ServicesSection from "@/components/sections/ServicesSection.astro";
-import Container from "@/components/ui/Container.astro";
+import App from "@/App.astro";
 ---
 
 <Layout title="Agencia Web Madrid - Creación de sitios web, SEO & SEA">
-  <Hero />
-  <ClientsMarquee />
-
-  <Container className="py-24">
-    <PageHero
-      kicker="Realizaciones"
-      title={'Proyectos que nos hicieron <span class="highlight-gradient">exprimir el cerebro</span>'}
-    />
-    <ProjectsSection />
-  </Container>
-
-  <IntroSection />
-
-  <Container className="py-24">
-    <PageHero
-      kicker="Lo que hacemos a la perfección"
-      title={'Nuestros <span class="highlight-gradient">servicios</span>'}
-      description="Del sitio vitrina a la tienda online, pasando por el posicionamiento y la estrategia digital… Gestionamos todo para que tu presencia en línea esté a la altura de tus ambiciones."
-    />
-    <ServicesSection />
-  </Container>
-
-  <AgencySection />
-  <CTASection />
+  <App />
 </Layout>

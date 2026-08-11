@@ -17,7 +17,6 @@ export default defineConfig({
       changefreq: 'monthly',
       priority: 0.7,
       lastmod: new Date(),
-      filter: (page) => !page.includes('/aviso-legal/'),
     }),
     prefetch({
       selector: 'a[href^="/"]:not([href^="/_astro"]):not([rel~="external"])',
