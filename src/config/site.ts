@@ -1,4 +1,6 @@
-export const site = {
+import type { SiteConfig, ContactConfig, SocialLink, NavItem } from "../types";
+
+export const site: SiteConfig = {
   name: "VORTEX",
   legalName: "Agencia VORTEX",
   url: "https://vortex.agency",
@@ -13,7 +15,7 @@ export const site = {
   founded: "2012",
 };
 
-export const contact = {
+export const contact: ContactConfig = {
   phone: "+34 663 00 74 73",
   phoneHref: "tel:+34663007473",
   email: "hello@vortex.agency",
@@ -27,18 +29,12 @@ export const contact = {
   },
 };
 
-export const socials = [
+export const socials: SocialLink[] = [
   { label: "Facebook", href: "https://www.facebook.com/profile.php?id=61587578708999" },
   { label: "Instagram", href: "https://www.instagram.com/m0r3z" },
   { label: "LinkedIn", href: "https://www.linkedin.com/company/m0r3z" },
   { label: "GitHub", href: "https://github.com/m0r3z" },
-] as const;
-
-export interface NavItem {
-  label: string;
-  href: string;
-  children?: NavItem[];
-}
+];
 
 export const navItems: NavItem[] = [
   { label: "La Agencia", href: "/agencia-web-lyon/" },
@@ -57,7 +53,7 @@ export const navItems: NavItem[] = [
   { label: "Contacto y Presupuesto", href: "/contacto/" },
 ];
 
-export const footerNav = {
+export const footerNav: { agency: NavItem[]; offers: NavItem[] } = {
   agency: [
     { label: "¿Quiénes son?", href: "/agencia-web-lyon/" },
     { label: "Realizaciones", href: "/realizaciones/" },
@@ -72,4 +68,4 @@ export const footerNav = {
     { label: "Posicionamiento SEO", href: "/posicionamiento-seo-lyon/" },
     { label: "Auditoría y Consultoría", href: "/auditoria-consultoria/" },
   ],
-} as const;
+};

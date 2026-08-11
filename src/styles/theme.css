@@ -1,0 +1,13 @@
+@theme {
+  --font-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-ink: #000000;
+  --color-ink-soft: #333333;
+  --color-cream: #e3e3e3;
+  --color-vortex: #bc80bb;
+  --color-vortex-blue: #669aca;
+  --color-vortex-coral: #eb5f69;
+  --color-vortex-green: #97c594;
+  --color-hairline: #575757;
+}

@@ -1,18 +1,4 @@
-export interface Service {
-  slug: string;
-  title: string;
-  tagline: string;
-  description: string;
-  href: string;
-  accent: string;
-  glyph: string;
-  heroColor: string;
-  features: { title: string; description: string }[];
-  seo: {
-    title: string;
-    description: string;
-  };
-}
+import type { Service } from "../types";
 
 export const services: Service[] = [
   {

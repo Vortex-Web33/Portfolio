@@ -1,11 +1,4 @@
-export interface PricingPlan {
-  name: string;
-  description: string;
-  price: string;
-  featured?: boolean;
-  ctaLabel: string;
-  ctaHref: string;
-}
+import type { PricingPlan } from "../types";
 
 export const pricingPlans: PricingPlan[] = [
   {
