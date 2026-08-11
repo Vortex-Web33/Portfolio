@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://vortex.agency/sitemap-index.xml
