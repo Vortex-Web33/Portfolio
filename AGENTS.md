@@ -14,10 +14,12 @@
 - Shared TypeScript contracts (Service, Project, PricingPlan, NavItem, site config types) live in `src/types/index.ts`. Data files (`src/data/*.ts`) import these types.
 - Content data (services, projects, clients, pricing) lives in `src/data/*.ts` as typed arrays. Services pages are driven by `src/data/services.ts` (add a feature/service there).
 - Components are organized:
-  - `src/components/layout/` → `Header.astro`, `Footer.astro` (nav built from `site.ts`)
-  - `src/components/seo/` → `SEO.astro` (meta/OG/Twitter/JSON-LD), `ServiceSchema.astro`
-  - `src/components/sections/` → page sections (`Hero`, `PageHero`, `ProjectsSection`, `ServicesSection`, `PricingSection`, `ContactSection`, `ServiceDetailSection`, `ComingSoonSection`, `BigWordsMarquee`, ...)
-  - `src/components/ui/` → primitives (`Container`, `Button`, `Marquee`, `SectionHeading`)
+  - `src/components/layout/` → `Header.astro`, `Footer.astro` (nav built from `site.ts`) — site chrome, used on every page
+  - `src/components/seo/` → `SEO.astro` (meta/OG/Twitter/JSON-LD), `ServiceSchema.astro` — used on every page
+  - `src/components/ui/` → primitives (`Container`, `Button`, `Marquee`) — no business logic
+  - `src/components/sections/` → **general/reusable** sections used by multiple pages (`PageHero`, `ProjectsSection`, `ServicesSection`, `ServiceDetailSection`, `BigWordsMarquee`)
+  - `src/components/page/` → **page-specific** sections, grouped by route: `home/` (Hero, ClientsMarquee, IntroSection, AgencySection, CTASection), `pricing/` (PricingSection), `contact/` (ContactSection)
+  - Rule: a section used by exactly one page goes in `src/components/page/<route>/`; once a second page needs it, promote it to `src/components/sections/`.
 - `src/layouts/Layout.astro` wires global.css, SEO, Header/Footer and the animation bootstrap. Every page passes `title`/`description` to `<Layout>`.
 - Animations (GSAP) live in `src/scripts/animations.ts` and attach to `[data-hero-anim]`, `[data-reveal]`, `[data-marquee]` hooks. Respects `prefers-reduced-motion`.
 - No content collections or markdown; blog is a placeholder page.

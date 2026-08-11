@@ -57,8 +57,7 @@ export const footerNav: { agency: NavItem[]; offers: NavItem[] } = {
   agency: [
     { label: "¿Quiénes son?", href: "/agencia-web-lyon/" },
     { label: "Realizaciones", href: "/realizaciones/" },
-    { label: "El Blog", href: "/blog/" },
-    { label: "Observatorio de Agencias Web", href: "/observatorio-agencia-web/" },
+    { label: "Servicios y competencias", href: "/servicios/" },
     { label: "Contacto y presupuesto", href: "/contacto/" },
   ],
   offers: [
