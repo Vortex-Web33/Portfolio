@@ -4,11 +4,15 @@ import Button from "@/components/ui/Button";
 
 <header class="site-header fixed inset-x-0 top-0 z-50">
   <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
-    <a href="/" class="font-mono text-xl font-bold tracking-tight text-white" aria-label="VORTEX - Inicio">
+    <a
+      href="/"
+      class="font-mono text-xl font-bold tracking-tight text-white"
+      aria-label="VORTEX - Inicio"
+    >
       VORTEX<span class="text-vortex">.</span>
     </a>
 
-    <Button client:load href="/#contacto" className="hidden px-6 py-3 text-sm md:inline-flex">
+    <Button href="/#contacto" className="hidden px-6 py-3 text-sm md:inline-flex">
       Contacto y Presupuesto
     </Button>
   </div>
@@ -16,7 +20,8 @@ import Button from "@/components/ui/Button";
 
 <script>
   const header = document.querySelector(".site-header");
-  const onScroll = () => header?.classList.toggle("scrolled", window.scrollY > 40);
+  const onScroll = () =>
+    header?.classList.toggle("scrolled", window.scrollY > 40);
   onScroll();
   window.addEventListener("scroll", onScroll, { passive: true });
 </script>
