@@ -273,5 +273,7 @@ export default function Grainient({
     };
   }, [timeSpeed, colorBalance, warpStrength, warpFrequency, warpSpeed, warpAmplitude, blendAngle, blendSoftness, rotationAmount, noiseScale, grainAmount, grainScale, grainAnimated, contrast, gamma, saturation, centerX, centerY, zoom, color1, color2, color3]);
 
-  return <div ref={elRef} className={`relative h-full w-full overflow-hidden ${className}`.trim()} />;
+  const hasPosition = /(?:^|\s)(?:absolute|fixed|relative|static|sticky)(?:\s|$)/.test(className);
+
+  return <div ref={elRef} className={`${hasPosition ? "" : "relative h-full w-full"} overflow-hidden ${className}`.trim()} />;
 }
