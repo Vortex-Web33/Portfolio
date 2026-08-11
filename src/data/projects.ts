@@ -4,25 +4,25 @@ export const projects: Project[] = [
   {
     name: "WOOD",
     tagline: "Hotel & Spa",
-    url: "https://woodhotel.re/",
+    url: "/404",
     bg: "bg-vortex",
   },
   {
     name: "ISAUTIER",
     tagline: "Patrimonio & Promoción",
-    url: "https://isautier-ipp.com",
+    url: "/404",
     bg: "bg-vortex-blue",
   },
   {
     name: "TOYOTA",
     tagline: "Yaris Cross",
-    url: "https://yariscross.re",
+    url: "/404",
     bg: "bg-vortex-coral",
   },
   {
     name: "VAKOA",
     tagline: "Destilería",
-    url: "https://vakoadistillerie.com",
+    url: "/404",
     bg: "bg-vortex",
   },
 ];

@@ -16,10 +16,30 @@ import StickerTrail from "@/components/ui/StickerTrail";
   />
 
   <div class="relative mx-auto max-w-5xl">
-    <h1 class="text-5xl font-bold leading-tight tracking-tight text-white md:text-7xl">
-      <Reveal client:load as="span" trigger="mount" delay={0.15} className="block">Agencia Web</Reveal>
-      <Reveal client:load as="span" trigger="mount" delay={0.27} className="block">Posicionamiento SEO</Reveal>
-      <Reveal client:load as="span" trigger="mount" delay={0.39} className="block">&amp; Marketing</Reveal>
+    <h1
+      class="text-5xl font-bold leading-tight tracking-tight text-white md:text-7xl"
+    >
+      <Reveal
+        client:load
+        as="span"
+        trigger="mount"
+        delay={0.15}
+        className="block">Agencia Web</Reveal
+      >
+      <Reveal
+        client:load
+        as="span"
+        trigger="mount"
+        delay={0.27}
+        className="block">Posicionamiento SEO</Reveal
+      >
+      <Reveal
+        client:load
+        as="span"
+        trigger="mount"
+        delay={0.39}
+        className="block">&amp; Marketing</Reveal
+      >
     </h1>
     <Reveal
       client:load
@@ -28,9 +48,9 @@ import StickerTrail from "@/components/ui/StickerTrail";
       delay={0.51}
       className="mx-auto mt-8 max-w-2xl font-mono text-sm leading-relaxed text-cream/60 md:text-base"
     >
-      VORTEX es una <strong class="text-white">agencia web con sede en Madrid</strong> desde 2012.
-      Hemos vivido los inicios de Internet; hoy creamos sitios para usuarios de{" "}
-      <strong class="text-white">7 a 77 años.</strong>
+      VORTEX es una <strong class="text-white"
+        >agencia web con sede en Málaga</strong
+      > desde 2026.
     </Reveal>
     <Reveal
       client:load
@@ -39,14 +59,21 @@ import StickerTrail from "@/components/ui/StickerTrail";
       className="mt-12 flex flex-col items-center gap-6 md:flex-row md:justify-center"
     >
       <Button href="/#contacto">Solicitar presupuesto</Button>
-      <a href="/#contacto" class="inline-flex items-center gap-2 font-mono text-xs tracking-widest text-cream/60 uppercase hover:text-white">
+      <a
+        href="/#contacto"
+        class="inline-flex items-center gap-2 font-mono text-xs tracking-widest text-cream/60 uppercase hover:text-white"
+      >
         Conocer la agencia →
       </a>
     </Reveal>
   </div>
 
   <div class="relative mx-auto -mt-10 max-w-7xl">
-    <a href="/#contacto" class="group relative mx-auto flex size-52 items-center justify-center md:size-60" aria-label="Solicitar presupuesto">
+    <a
+      href="/#contacto"
+      class="group relative mx-auto flex size-52 items-center justify-center md:size-60"
+      aria-label="Solicitar presupuesto"
+    >
       <TextLoop
         client:load
         shape="circle"
@@ -62,7 +89,10 @@ import StickerTrail from "@/components/ui/StickerTrail";
         ribbon={false}
         className="absolute inset-0"
       />
-      <span class="relative z-10 text-3xl text-vortex transition-transform duration-300 group-hover:scale-110" aria-hidden="true">❋</span>
+      <span
+        class="relative z-10 text-3xl text-vortex transition-transform duration-300 group-hover:scale-110"
+        aria-hidden="true">❋</span
+      >
     </a>
   </div>
 

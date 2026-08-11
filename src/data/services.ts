@@ -25,7 +25,8 @@ export const services: Service[] = [
       },
       {
         title: "Webs a medida",
-        description: "Funcionalidades específicas para tu negocio. Si lo imaginas, lo construimos.",
+        description:
+          "Funcionalidades específicas para tu negocio. Si lo imaginas, lo construimos.",
       },
       {
         title: "Optimización SEO",
@@ -34,9 +35,9 @@ export const services: Service[] = [
       },
     ],
     seo: {
-      title: "Creación de sitios web Madrid",
+      title: "Creación de sitios web Málaga",
       description:
-        "Creamos sitios web a medida en Madrid: vitrina, tiendas online y webs corporativas, optimizadas para Google y listas para vender.",
+        "Creamos sitios web a medida en Málaga: vitrina, tiendas online y webs corporativas, optimizadas para Google y listas para vender.",
     },
   },
   {
@@ -68,13 +69,14 @@ export const services: Service[] = [
       },
       {
         title: "Estrategia digital",
-        description: "Definimos objetivos, canales y KPIs para que cada euro y cada hora cuente.",
+        description:
+          "Definimos objetivos, canales y KPIs para que cada euro y cada hora cuente.",
       },
     ],
     seo: {
       title: "Auditoría y Consultoría web",
       description:
-        "Auditoría de tu presencia online y consultoría estratégica en Madrid: diagnóstico claro, acciones concretas y acompañamiento real.",
+        "Auditoría de tu presencia online y consultoría estratégica en Málaga: diagnóstico claro, acciones concretas y acompañamiento real.",
     },
   },
   {
@@ -96,7 +98,8 @@ export const services: Service[] = [
       },
       {
         title: "Webdesign",
-        description: "Interfaces pensadas para el usuario: bonitas, claras y que guían hacia la acción.",
+        description:
+          "Interfaces pensadas para el usuario: bonitas, claras y que guían hacia la acción.",
       },
       {
         title: "Soportes de comunicación",
@@ -105,13 +108,14 @@ export const services: Service[] = [
       },
       {
         title: "Dirección de arte",
-        description: "Mirada fresca y exigente sobre tus visuales para que destaques frente a la competencia.",
+        description:
+          "Mirada fresca y exigente sobre tus visuales para que destaques frente a la competencia.",
       },
     ],
     seo: {
       title: "Diseño e Identidad visual",
       description:
-        "Diseño de identidad visual y webdesign en Madrid: logos, paletas e interfaces que atraen la mirada y construyen marca.",
+        "Diseño de identidad visual y webdesign en Málaga: logos, paletas e interfaces que atraen la mirada y construyen marca.",
     },
   },
   {
@@ -133,21 +137,24 @@ export const services: Service[] = [
       },
       {
         title: "SEA / Google Ads",
-        description: "Campañas publicitarias rentables, segmentadas y medidas. Visibilidad inmediata donde importa.",
+        description:
+          "Campañas publicitarias rentables, segmentadas y medidas. Visibilidad inmediata donde importa.",
       },
       {
         title: "Web analytics",
-        description: "Instalación y lectura de datos para entender qué funciona y qué hay que ajustar.",
+        description:
+          "Instalación y lectura de datos para entender qué funciona y qué hay que ajustar.",
       },
       {
         title: "Estrategia de contenidos",
-        description: "Palabras clave, estructura y redacción orientada a responder lo que tus clientes buscan.",
+        description:
+          "Palabras clave, estructura y redacción orientada a responder lo que tus clientes buscan.",
       },
     ],
     seo: {
-      title: "Posicionamiento SEO Madrid",
+      title: "Posicionamiento SEO Málaga",
       description:
-        "Posicionamiento SEO y SEA en Madrid: optimización técnica, contenidos y campañas Google Ads para ser visible donde tus clientes te buscan.",
+        "Posicionamiento SEO y SEA en Málaga: optimización técnica, contenidos y campañas Google Ads para ser visible donde tus clientes te buscan.",
     },
   },
   {
@@ -174,11 +181,13 @@ export const services: Service[] = [
       },
       {
         title: "CRM y conexiones",
-        description: "Conectamos tus herramientas para que la información fluya sola, sin copiar-pegar.",
+        description:
+          "Conectamos tus herramientas para que la información fluya sola, sin copiar-pegar.",
       },
       {
         title: "Formación",
-        description: "Te explicamos cómo funcionan tus herramientas en un lenguaje claro, sin humo.",
+        description:
+          "Te explicamos cómo funcionan tus herramientas en un lenguaje claro, sin humo.",
       },
     ],
     seo: {
