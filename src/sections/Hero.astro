@@ -7,68 +7,75 @@ import StickerTrail from "@/components/ui/StickerTrail";
 ---
 
 <section class="relative overflow-hidden px-6 pt-44 pb-10 text-center">
-  <Grainient
-    client:load
-    color1="#bc80bb"
-    color2="#669aca"
-    color3="#1a1a1a"
-    className="absolute inset-0 opacity-30"
-  />
+  <div
+    class="relative mx-auto flex min-h-[750px] w-full max-w-[1600px] flex-col items-center justify-center gap-10 overflow-hidden rounded-3xl border border-vortex/30 bg-white/5 px-8"
+  >
+    <div class="absolute inset-0 z-0 overflow-hidden rounded-3xl">
+      <Grainient
+        client:load
+        color1="#bc80bb"
+        color2="#669aca"
+        color3="#1a1a1a"
+      />
+    </div>
 
-  <div class="relative mx-auto max-w-5xl">
-    <h1
-      class="text-5xl font-bold leading-tight tracking-tight text-white md:text-7xl"
-    >
+    <StickerTrail client:load />
+
+    <div class="relative z-10 max-w-5xl">
+      <h1
+        class="text-5xl font-bold leading-tight tracking-tight text-white md:text-7xl"
+      >
+        <Reveal
+          client:load
+          as="span"
+          trigger="mount"
+          delay={0.15}
+          className="block">Agencia Web</Reveal
+        >
+        <Reveal
+          client:load
+          as="span"
+          trigger="mount"
+          delay={0.27}
+          className="block">Posicionamiento SEO</Reveal
+        >
+        <Reveal
+          client:load
+          as="span"
+          trigger="mount"
+          delay={0.39}
+          className="block">&amp; Marketing</Reveal
+        >
+      </h1>
       <Reveal
         client:load
-        as="span"
+        as="p"
         trigger="mount"
-        delay={0.15}
-        className="block">Agencia Web</Reveal
+        delay={0.51}
+        className="mx-auto mt-8 max-w-2xl font-mono text-sm leading-relaxed text-cream/60 md:text-base"
       >
+        VORTEX es una <strong class="text-white"
+          >agencia web con sede en Málaga</strong
+        > desde 2026.
+      </Reveal>
       <Reveal
         client:load
-        as="span"
         trigger="mount"
-        delay={0.27}
-        className="block">Posicionamiento SEO</Reveal
+        delay={0.63}
+        className="mt-12 flex flex-col items-center gap-6 md:flex-row md:justify-center"
       >
-      <Reveal
-        client:load
-        as="span"
-        trigger="mount"
-        delay={0.39}
-        className="block">&amp; Marketing</Reveal
-      >
-    </h1>
-    <Reveal
-      client:load
-      as="p"
-      trigger="mount"
-      delay={0.51}
-      className="mx-auto mt-8 max-w-2xl font-mono text-sm leading-relaxed text-cream/60 md:text-base"
-    >
-      VORTEX es una <strong class="text-white"
-        >agencia web con sede en Málaga</strong
-      > desde 2026.
-    </Reveal>
-    <Reveal
-      client:load
-      trigger="mount"
-      delay={0.63}
-      className="mt-12 flex flex-col items-center gap-6 md:flex-row md:justify-center"
-    >
-      <Button href="/#contacto">Solicitar presupuesto</Button>
-      <a
-        href="/#contacto"
-        class="inline-flex items-center gap-2 font-mono text-xs tracking-widest text-cream/60 uppercase hover:text-white"
-      >
-        Conocer la agencia →
-      </a>
-    </Reveal>
+        <Button href="/#contacto">Solicitar presupuesto</Button>
+        <a
+          href="/#contacto"
+          class="inline-flex items-center gap-2 font-mono text-xs tracking-widest text-cream/60 uppercase hover:text-white"
+        >
+          Conocer la agencia →
+        </a>
+      </Reveal>
+    </div>
   </div>
 
-  <div class="relative mx-auto -mt-10 max-w-7xl">
+  <div class="relative mx-auto -mt-30 max-w-7xl">
     <a
       href="/#contacto"
       class="group relative mx-auto flex size-52 items-center justify-center md:size-60"
@@ -86,6 +93,7 @@ import StickerTrail from "@/components/ui/StickerTrail";
         letterSpacing={4}
         uppercase
         color="#c9c9c9"
+        pauseOnHover={false}
         ribbon={false}
         className="absolute inset-0"
       />
@@ -95,6 +103,4 @@ import StickerTrail from "@/components/ui/StickerTrail";
       >
     </a>
   </div>
-
-  <StickerTrail client:load />
 </section>
