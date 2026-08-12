@@ -48,7 +48,7 @@ export const services: Service[] = [
       "Publicar posts al azar esperando que funcionen no es una estrategia. Te construimos un verdadero plan de batalla.",
     href: "/auditoria-consultoria/",
     accent: "from-vortex-green/25",
-    glyph: "⚡",
+    glyph: " ϟ ",
     heroColor: "bg-vortex-green/15",
     ctaLabel: "Una estrategia sin humo",
     features: [

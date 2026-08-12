@@ -12,7 +12,7 @@ export const site: SiteConfig = {
   ogImage: "/og-default.svg",
   themeColor: "#000000",
   twitterHandle: "@vortex_agency",
-  founded: "2012",
+  founded: "2026",
 };
 
 export const contact: ContactConfig = {
@@ -21,11 +21,11 @@ export const contact: ContactConfig = {
   email: "hello@vortex.agency",
   emailHref: "mailto:hello@vortex.agency",
   address: {
-    street: "Calle Larios, 15",
+    street: "",
     city: "Malaga",
-    postalCode: "29015",
+    postalCode: "29010",
     country: "España",
-    full: "Calle Larios, 15, 29015 Málaga – España",
+    full: "29010 Málaga – España",
   },
 };
 
