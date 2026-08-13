@@ -7,7 +7,7 @@ import "lenis/dist/lenis.css";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const lenis = new Lenis({
-  lerp: 0.1,
+  lerp: 0.3,
   duration: 1.2,
   smoothWheel: true,
   wheelMultiplier: 1,
