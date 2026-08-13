@@ -159,8 +159,6 @@ export default function Grainient({
     const el = elRef.current;
     if (!el) return;
 
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
     const renderer = new Renderer({
       webgl: 2,
       alpha: true,
@@ -261,7 +259,7 @@ export default function Grainient({
     };
     document.addEventListener("visibilitychange", onVisibility);
 
-    if (!reducedMotion) tryStart();
+    tryStart();
 
     return () => {
       cancelAnimationFrame(raf);

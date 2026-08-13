@@ -147,8 +147,7 @@ export default function TextLoop({
 
     apply(0);
 
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reducedMotion || speed <= 0) return;
+    if (speed <= 0) return;
 
     const state = { offset: 0 };
     const tween = gsap.to(state, {

@@ -31,7 +31,6 @@ export default function StickerTrail({
   useLayoutEffect(() => {
     const trail = elRef.current;
     if (!trail) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const sourceImgs = [...trail.querySelectorAll<HTMLImageElement>("img")];
     const rendered: HTMLImageElement[] = [];

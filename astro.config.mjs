@@ -50,6 +50,12 @@ export default defineConfig({
     },
     build: {
       cssMinify: 'lightningcss',
+      // Mantén assetsInlineLimit a 0: Astro 7 inlinea en el HTML todo
+      // chunk de script sin imports (p. ej. el del Header o los bootstrap
+      // de las islas). Con la CSP estricta de Layout.astro (script-src
+      // 'self') esos scripts inline quedarían bloqueados y ninguna isla
+      // React se hidrataría. Forzando la externalización, la CSP funciona.
+      assetsInlineLimit: 0,
     },
   },
 });

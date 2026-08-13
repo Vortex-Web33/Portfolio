@@ -25,6 +25,7 @@ export interface Project {
   tagline: string;
   url: string;
   bg: string;
+  image?: string;
 }
 
 export interface Address {

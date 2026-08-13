@@ -1,8 +1,59 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import App from "@/App.astro";
+import Hero from "@/sections/Hero.astro";
+import ClientsMarquee from "@/sections/ClientsMarquee.astro";
+import IntroSection from "@/sections/IntroSection.astro";
+import AgencySection from "@/sections/AgencySection.astro";
+import CTASection from "@/sections/CTASection.astro";
+import PageHero from "@/sections/PageHero.astro";
+import ProjectsSection from "@/sections/ProjectsSection.astro";
+import ServicesSection from "@/sections/ServicesSection.astro";
+import ContactSection from "@/sections/ContactSection.astro";
+import BigWordsMarquee from "@/sections/BigWordsMarquee.astro";
+import Container from "@/components/ui/Container.astro";
 ---
 
 <Layout title="Vortex - Agencia de Marketing Digital">
-  <App />
+  <Hero />
+  <ClientsMarquee />
+
+  <Container className="py-24">
+    <PageHero
+      title={'¿Quiénes <span class="highlight-gradient">somos</span>?'}
+    />
+    <IntroSection />
+  </Container>
+
+  <BigWordsMarquee
+    words={["VORTEX ❋", "VORTEX ❊", "VORTEX ❈", "VORTEX ✢"]}
+    direction="rtl"
+    speed={30}
+  />
+
+  <Container className="py-24">
+    <PageHero
+      kicker="Proyectos"
+      title={'Proyectos que nos hicieron <span class="highlight-gradient">exprimir el cerebro</span>'}
+    />
+  </Container>
+
+  <div>
+    <ProjectsSection />
+  </div>
+
+  <Container className="py-24">
+    <PageHero
+      kicker="Lo que hacemos a la perfección"
+      title={'Nuestros <span class="highlight-gradient">servicios</span>'}
+      description="Del sitio vitrina a la tienda online, pasando por el posicionamiento y la estrategia digital… Gestionamos todo para que tu presencia en línea esté a la altura de tus ambiciones."
+    />
+    <ServicesSection />
+  </Container>
+
+  <AgencySection />
+  <CTASection />
+
+  <div id="contacto">
+    <ContactSection />
+  </div>
 </Layout>

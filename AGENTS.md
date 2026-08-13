@@ -9,23 +9,43 @@
 ## Architecture
 
 - Static multi-page Astro site, **all content in Spanish** (Spanish agency site, not the French reference site). Do not translate or anglicize copy.
-- Routes live in `src/pages/<slug>.astro` (flat files). Slugs are keyword-driven SEO URLs — never rename them. Currently the site ships with a single route (`index.astro`); add pages here following the same flat pattern.
-- `src/App.astro` is the **parent component** — it imports and composes the page sections (the "routes" of the app). It lives at the root of `src/` on purpose (entry-point of the app, not a visual block). Pages import `<App />` and stay as thin route definitions (`Layout` + `App`).
-- Site config (brand, contact, address, socials) lives in `src/config/site.ts` — edit copy/data there, not in components.
-- Shared TypeScript contracts (Service, Project, site config types) live in `src/types/index.ts`. Data files (`src/data/*.ts`) import these types.
-- Content data (services, projects, clients) lives in `src/data/*.ts` as typed arrays.
-- Components are organized:
-  - `src/sections/` → **repetitive blocks** (`Header.astro`, `Footer.astro`, `Hero.astro`, `ClientsMarquee.astro`, `IntroSection.astro`, `AgencySection.astro`, `CTASection.astro`, `PageHero.astro`, `ProjectsSection.astro`, `ServicesSection.astro`, `ContactSection.astro`, `BigWordsMarquee.astro`) — all in Astro, they are the markup/design of the page
-  - `src/seo/` → `SEO.astro` (meta/OG/Twitter/JSON-LD) — used on every page, lives outside `components/` (it is page metadata, not a visual block)
-  - `src/components/ui/` → **primitives with logic in React/JSX** (`Button.tsx`, `Marquee.tsx`, `Reveal.tsx`, `TextLoop.tsx`, `Grainient.tsx`, `StickerTrail.tsx`) + static ones in Astro (`Container.astro`) — no business logic
-  - Rule: a block used on one page stays in `sections/`; if a route needs its own private blocks, group them under `src/components/page/<route>/` and import them from the page.
-- **React + TypeScript only for UI primitives that need logic** (animations, interactivity): pages, layouts and sections stay `.astro` (fast static HTML); sections import the React primitives with `client:load` (e.g. `<Reveal client:load />` in `Hero.astro`). Animation logic lives inside each React primitive (GSAP in `useLayoutEffect`, cleanup + kill on unmount, `prefers-reduced-motion` guard). `@astrojs/react` with `react-jsx` (`tsconfig.json`).
+- Folders are split by **concern**, inside `src/`:
+
+  | Carpeta | Para qué sirve | Extensión |
+  | --- | --- | --- |
+  | `src/pages/` | Rutas. Un archivo por URL: pasa `title`/`description` a `<Layout>` y compone la página desde `sections/`. Nada más vive aquí | `.astro` |
+  | `src/layouts/` | Shell del documento (`Layout.astro`: global.css, SEO, Header/Footer) | `.astro` |
+  | `src/sections/` | Bloques de página (Hero, ProjectsSection, ContactSection…). Importan primitivas de `components/ui` con `client:load` cuando necesitan animar | `.astro` |
+  | `src/components/layout/` | Chrome del sitio usado por `Layout.astro` (Header, Footer) | `.astro` |
+  | `src/components/ui/` | Primitivas reutilizables, sin lógica de negocio (Button, Container, Marquee, Reveal, CardStack) | `.astro` o `.tsx` (ver guía) |
+  | `src/lib/config/` | Config global: brand, contacto, dirección, redes (editar copy aquí, no en componentes) | `.ts` |
+  | `src/lib/data/` | Contenido tipado (servicios, proyectos, clientes) como arrays | `.ts` |
+  | `src/lib/types/` | Contratos compartidos (Service, Project, SiteConfig…) | `.ts` |
+  | `src/lib/` | Lógica no visual reutilizable (helpers, utils) | `.ts` |
+  | `src/scripts/` | Scripts vanilla de cliente que cargan los componentes (`header.ts`) | `.ts` |
+  | `src/seo/` | `SEO.astro`: meta/OG/Twitter/JSON-LD, lo usa `Layout.astro` | `.astro` |
+  | `src/styles/` | `theme.css`, `base.css`, `global.css` | `.css` |
+- **Naming**: componentes PascalCase (`ProjectsSection.astro`, `Button.astro`); datos y config en kebab-case (`site.ts`, `projects.ts`); secciones de página con sufijo `Section` (`Hero` es la excepción del hero único).
+- **Technology rule per utility**: `.astro` unless the component needs client-side logic (GSAP/DOM/WebGL/WAAPI) → then `.tsx` (React); plain TS for non-visual logic in `lib/`; vanilla JS via `src/scripts/` when a tiny DOM script is enough. Anchoring: GSAP is the primary animation lib (e.g. `CardStack.tsx` animates its card fan with GSAP `fromTo`/`to` + imperative pointer drag; `TextLoop.tsx` tweens `startOffset`). **framer-motion** remains installed and accepted for React primitives that need declarative animation, but CardStack was ported from framer to GSAP on purpose (more control over the fan/swipe). There is **no `prefers-reduced-motion` guard**: animations always run (removed on purpose because the client's browser had reduce-motion enabled). `@astrojs/react` with `react-jsx` (`tsconfig.json`); pages, layouts and sections stay `.astro`, sections import the React primitives with `client:load` (e.g. `<Reveal client:load />` in `Hero.astro`). Animation logic lives inside each React primitive (GSAP in `useLayoutEffect` with cleanup, or framer-motion with declarative `animate`); don't use `useReducedMotion`/reduced-motion guards.
 - `src/layouts/Layout.astro` wires global.css, SEO and Header/Footer. Every page passes `title`/`description` to `<Layout>`.
-- Animations (GSAP) are per-component, no global bootstrap script. `Reveal.tsx` (scroll reveal with ScrollTrigger, `as`/`delay`/`trigger` props; `trigger="mount"` for entrance-on-load) and `Marquee.tsx` (loop marquee, `direction`/`speed` props) are the shared animated primitives. `Header.astro` has a small vanilla `<script>` for the `scrolled` state (no React needed for that).
-- Fancy UI primitives: `TextLoop.tsx` (text flowing along an SVG path — `shape` circle/infinity/arch/line/wave, GSAP tween on `startOffset`), `Grainient.tsx` (animated WebGL gradient, requires `ogl`, renders a fullscreen triangle with a fragment shader, pauses when off-screen or `prefers-reduced-motion`), `StickerTrail.tsx` (cursor-following sticker trail — spawns cloned `<img>`s from `/stickers/` in `public/` with the Web Animations API, guarded by reduced motion).
+- Animations (GSAP) are per-component, no global bootstrap script. `Reveal.tsx` (scroll reveal with ScrollTrigger, `as`/`delay`/`trigger` props; `trigger="mount"` for entrance-on-load) and `Marquee.tsx` (loop marquee, `direction`/`speed` props) are the shared animated primitives. `Header.astro` loads a small vanilla script (`src/scripts/header.ts`) for the `scrolled` state (no React needed for that).
+
+### Creating new files
+
+- **Decide the type by utility, in this order:**
+  1. ¿Es una ruta? → `.astro` en `src/pages/` (pasando `title`/`description` al `<Layout>`, URL SEO — no renombrar slugs).
+  2. ¿Es un bloque de página? → `.astro` en `src/sections/` con sufijo `Section`. Usa `<Reveal client:load />` y demás primitivas para animar. Si el bloque es privado de una sola ruta, agrúpalo en `src/components/page/<route>/` e impórtalo desde la página.
+  3. ¿Es una pieza reutilizable? → `src/components/`: documento/chrome del sitio a `layout/`; todo lo demás a `ui/`.
+     - ¿Necesita lógica de cliente (GSAP, DOM, WebGL, WAAPI)? → `ui/*.tsx` con React, `export default`, efectos en `useLayoutEffect` con cleanup, y el consumo con `client:load` desde el `.astro` que lo use.
+     - ¿Es solo markup/estilos? → `ui/*.astro` (p. ej. `Button.astro`, `Container.astro`). **No** crear `.tsx` sin lógica de cliente: evita islas React innecesarias.
+  4. ¿Es contenido/config/tipos? → `.ts` en `src/lib/` (`data/`, `config/`, `types/`) — nunca en componentes.
+  5. ¿Es un script DOM tiny que no necesita React? → `src/scripts/*.ts` importado desde el `<script>` de un `.astro` (p. ej. `Header.astro` → `src/scripts/header.ts`).
+- **Reglas de import**: escribir la extensión explícita en imports de `.astro` (`@/components/ui/Button.astro`) — la resolución sin extensión falla en el build; para `.tsx`/`.ts` es opcional. Usar siempre el alias `@/` → `src/`.
+- **Reglas de componente**: una responsabilidad por archivo; `ui/` sin lógica de negocio; secciones no importan secciones; `client:load` solo sobre el primitivo que anima (no sobre wrappers estáticos).
+- Fancy UI primitives: `CardStack.tsx` (deck of stacked cards with GSAP — `items`/`maxVisible`/`cardWidth`/`overlap`/`spreadDeg`/`autoAdvance`/`intervalMs`/`pauseOnHover`/`showDots` props; fan geometry + swipe-to-change with GSAP, dots below to select), `TextLoop.tsx` (text flowing along an SVG path — `shape` circle/infinity/arch/line/wave, GSAP tween on `startOffset`), `Grainient.tsx` (animated WebGL gradient, requires `ogl`, renders a fullscreen triangle with a fragment shader, pauses when off-screen), `StickerTrail.tsx` (cursor-following sticker trail — spawns cloned `<img>`s from `/stickers/` in `public/` with the Web Animations API).
 - No content collections or markdown.
 - SEO: `@astrojs/sitemap` generates `sitemap-index.xml`; Astro's **native `prefetch` config** prefetches internal links (no `@astrojs/prefetch` package); favicon, logo and stickers live in `public/`. **Meta files (`robots.txt`, `site.webmanifest`) live at the project root** and are emitted to the site root by the custom `metaFiles()` integration in `astro.config.mjs` (`astro:build:done` hook) — do not move them into `public/`. Site URL is `https://vortex.agency` in `astro.config.mjs`.
-- Security: a strict CSP meta tag is emitted only in production builds (`import.meta.env.PROD`) — do not enable it in dev or HMR breaks.
+- Security: a strict CSP meta tag is emitted only in production builds (`import.meta.env.PROD`) — do not enable it in dev or HMR breaks. `script-src 'self'` needs the two Astro island-bootstrap hashes present in `src/layouts/Layout.astro` (they are prebuilt strings, stable per Astro version — recompute them if Astro is upgraded); every other script is externalized by `build.assetsInlineLimit: 0` in `astro.config.mjs` — do not raise that limit or Astro 7 will inline leaf scripts (e.g. the header's) into the HTML and the strict CSP will block them, killing all React island hydration (no animations).
 
 ## Styling
 

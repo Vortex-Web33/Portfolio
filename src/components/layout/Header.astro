@@ -1,5 +1,5 @@
 ---
-import Button from "@/components/ui/Button";
+import Button from "@/components/ui/Button.astro";
 ---
 
 <header class="site-header fixed inset-x-0 top-0 z-50">
@@ -12,16 +12,12 @@ import Button from "@/components/ui/Button";
       VORTEX<span class="text-vortex">.</span>
     </a>
 
-    <Button href="/#contacto" className="hidden px-6 py-3 text-sm md:inline-flex">
+    <Button href="/#contacto" class="hidden px-6 py-3 text-sm md:inline-flex">
       Contacto y Presupuesto
     </Button>
   </div>
 </header>
 
 <script>
-  const header = document.querySelector(".site-header");
-  const onScroll = () =>
-    header?.classList.toggle("scrolled", window.scrollY > 40);
-  onScroll();
-  window.addEventListener("scroll", onScroll, { passive: true });
+  import "@/scripts/header.ts";
 </script>

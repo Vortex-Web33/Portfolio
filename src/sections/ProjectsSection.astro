@@ -1,31 +1,26 @@
 ---
-import Reveal from "@/components/ui/Reveal";
-import { projects } from "@/data/projects";
+import { CardStack } from "@/components/ui/CardStack";
+import { projects } from "@/lib/data/projects";
+
+const cards = projects.map((project) => ({
+  id: project.name,
+  title: project.name,
+  description: project.tagline,
+  imageSrc: project.image,
+  href: project.url,
+  tag: project.bg,
+}));
 ---
 
-<ul class="grid gap-8 md:grid-cols-2">
-  {
-    projects.map((project, index) => (
-      <li>
-        <Reveal
-          client:load
-          as="a"
-          href={project.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={[project.bg, "group flex flex-col items-center gap-6 rounded-3xl px-8 py-20 text-center md:py-28"].join(" ")}
-          aria-label={`${project.name} ${project.tagline} - abrir sitio externo`}
-        >
-          <span class="font-mono text-xs tracking-[0.3em] text-white/70 uppercase">
-            Proyecto {String(index + 1).padStart(2, "0")}
-          </span>
-          <span class="text-4xl font-bold tracking-tight text-white md:text-5xl">{project.name}</span>
-          <span class="text-lg text-white/80">{project.tagline}</span>
-          <span class="mt-4 inline-flex items-center gap-2 border-b border-white/40 pb-1 font-mono text-xs text-white transition-colors duration-300 group-hover:border-white group-hover:text-white">
-            {project.url.replace("https://", "").replace(/\/$/, "")} →
-          </span>
-        </Reveal>
-      </li>
-    ))
-  }
-</ul>
+<div class="overflow-x-clip">
+  <CardStack
+    client:load
+    items={cards}
+    autoAdvance
+    intervalMs={1700}
+    pauseOnHover
+    showDots
+    cardWidth={800}
+    cardHeight={580}
+  />
+</div>

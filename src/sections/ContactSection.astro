@@ -1,6 +1,6 @@
 ---
-import { contact } from "@/config/site";
-import Button from "@/components/ui/Button";
+import { contact } from "@/lib/config/site";
+import Button from "@/components/ui/Button.astro";
 import Reveal from "@/components/ui/Reveal";
 ---
 
@@ -32,6 +32,6 @@ import Reveal from "@/components/ui/Reveal";
     <h2 class="mx-auto max-w-2xl text-3xl font-bold tracking-tight text-white md:text-5xl">
       Es ahora cuando <span class="highlight-gradient">empieza</span>
     </h2>
-    <Button client:load href={contact.emailHref} className="mt-8">Solicitar presupuesto</Button>
+    <Button href={contact.emailHref} class="mt-8">Solicitar presupuesto</Button>
   </Reveal>
 </section>

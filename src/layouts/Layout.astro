@@ -1,8 +1,8 @@
 ---
 import "@/styles/global.css";
 import SEO from "@/seo/SEO.astro";
-import Header from "@/sections/Header.astro";
-import Footer from "@/sections/Footer.astro";
+import Header from "@/components/layout/Header.astro";
+import Footer from "@/components/layout/Footer.astro";
 
 interface Props {
   title?: string;
@@ -14,8 +14,16 @@ interface Props {
 
 const { title, description, image, type, noindex } = Astro.props;
 
+// Los dos hashes de script-src permiten los bootstraps inline que Astro
+// inyecta para hidratar islas (ver dist/index.html tras build):
+//  - bootstrap del directive (Astro.load)
+//  - loader de <astro-island>
+// Son strings prebuilt de Astro: estables por versión. Si se actualiza
+// Astro, recalcularlos (sha256 del contenido en el HTML generado).
+// El resto de scripts quedan externalizados gracias a assetsInlineLimit: 0
+// (astro.config.mjs), así que no hacen falta más hashes.
 const csp = import.meta.env.PROD
-  ? "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'"
+  ? "default-src 'self'; script-src 'self' 'sha256-QzWFZi+FLIx23tnm9SBU4aEgx4x8DsuASP07mfqol/c=' 'sha256-Ya0pUYrC7nM5Cn/056TyVuEiz6dFGrzmkWzgON0pF0U='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'"
   : "";
 ---
 

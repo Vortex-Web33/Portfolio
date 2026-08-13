@@ -14,7 +14,6 @@ export default function Marquee({ direction = "ltr", speed = 40, className = "",
   useLayoutEffect(() => {
     const track = trackRef.current;
     if (!track) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const dir = direction === "rtl" ? -1 : 1;
     const tween = gsap.fromTo(
