@@ -1,12 +1,19 @@
 ---
+// Franja de clientes en marquesina infinita (Marquee) con los nombres de "clients";
+// el grupo se repite varias veces para que la cinta siempre cubra el viewport sin huecos.
 import Marquee from "@/components/ui/Marquee";
 import { clients } from "@/lib/data/projects";
+
+// 3 copias: el grupo queda más ancho que cualquier pantalla y el bucle no muestra vacíos.
+const repeated = Array.from({ length: 3 }, () => clients).flat();
 ---
 
-<section class="border-y border-white/5 py-10" aria-label="Clientes que confían en nosotros">
+<section class="border-y border-white/5 pt-20 pb-10" aria-label="Clientes que confían en nosotros">
   <Marquee client:load direction="ltr" speed={50}>
-    {clients.map((client) => (
-      <span class="mx-8 font-mono text-sm tracking-widest text-cream/40 uppercase">{client}</span>
+    {repeated.map((client, i) => (
+      <span key={`${client}-${i}`} class="mx-8 font-mono text-sm tracking-widest text-cream/40 uppercase">
+        {client}
+      </span>
     ))}
   </Marquee>
 </section>

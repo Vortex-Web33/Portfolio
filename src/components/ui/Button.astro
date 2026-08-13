@@ -1,4 +1,6 @@
 ---
+// Botón/enlace reutilizable: renderiza un <a> con la clase .btn (primario) o .btn-dark,
+// soporta enlaces externos (target=_blank + rel) y hereda atributos HTML extra.
 import type { HTMLAttributes } from "astro/types";
 
 interface Props extends Omit<HTMLAttributes<"a">, "variant"> {

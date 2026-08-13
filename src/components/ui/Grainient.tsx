@@ -1,3 +1,5 @@
+// Grainient: gradiente animado en WebGL (ogl) a pantalla completa — un triángulo
+// con shader de fragmento (ondas/color/grano/anisotropía) que se pausa fuera de pantalla.
 import { useLayoutEffect, useRef } from "react";
 import { Renderer, Program, Mesh, Triangle } from "ogl";
 
