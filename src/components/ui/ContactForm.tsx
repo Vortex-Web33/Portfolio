@@ -1,7 +1,8 @@
 import { useLayoutEffect, useRef, useState, type FormEvent } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { contact, socials } from "@/lib/config/site";
+import { contact } from "@/lib/config/site";
+import StickerTrail from "@/components/ui/StickerTrail";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -58,13 +59,29 @@ export default function ContactForm() {
   };
 
   return (
-    <div ref={rootRef} className="grid gap-10 md:grid-cols-[1fr_1.5fr]">
-      <aside className="contact-form-field flex flex-col justify-between gap-10 rounded-3xl border border-white/5 bg-ink-soft/30 p-8 md:p-10">
-        <div>
-          <p className="kicker mb-4 text-cream/40">Contacto directo</p>
+    <div
+      ref={rootRef}
+      className="relative grid gap-10 md:grid-cols-[1fr_1.5fr] md:gap-0 md:rounded-3xl md:shadow-[30px_30px_90px_-20px_rgba(188,128,187,0.55)]"
+    >
+      <StickerTrail size="w-12 md:w-14" />
+      <aside className="contact-form-field relative h-64 overflow-clip rounded-3xl border border-white/5 bg-ink-soft/30 md:h-auto md:rounded-r-none md:border-r-0">
+        <img
+          src="/imagenes/fondito.webp"
+          alt=""
+          draggable={false}
+          className="absolute inset-0 size-full object-cover"
+        />
+      </aside>
+
+      <form
+        onSubmit={handleSubmit}
+        class="relative rounded-3xl border border-white/5 bg-ink-soft/30 p-8 md:rounded-l-none md:border-l-0 md:p-10"
+      >
+        <div class="mb-8">
+          <p className="kicker mb-3 text-cream/40">Contacto directo</p>
           <a
             href={contact.emailHref}
-            class="group text-2xl font-bold text-white transition-colors duration-300 hover:text-vortex md:text-3xl"
+            class="group text-xl font-bold text-white transition-colors duration-300 hover:text-vortex md:text-2xl"
           >
             {contact.email}
             <span class="block h-px w-0 bg-vortex transition-all duration-300 group-hover:w-full" />
@@ -73,31 +90,6 @@ export default function ContactForm() {
             Respuesta en menos de 24 horas, te lo prometemos.
           </p>
         </div>
-
-        <div class="space-y-4 font-mono text-sm text-cream/60">
-          <p>
-            Agencia VORTEX · {contact.address.city}, {contact.address.country}
-          </p>
-          <div class="flex flex-wrap gap-x-6 gap-y-2">
-            {socials.map((s) => (
-              <a
-                key={s.label}
-                href={s.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="text-cream/50 transition-colors duration-300 hover:text-vortex"
-              >
-                {s.label}
-              </a>
-            ))}
-          </div>
-        </div>
-      </aside>
-
-      <form
-        onSubmit={handleSubmit}
-        class="relative rounded-3xl border border-white/5 bg-ink-soft/30 p-8 md:p-10"
-      >
         {sent ? (
           <div
             ref={successRef}
