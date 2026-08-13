@@ -1,10 +1,9 @@
 ---
 import Reveal from "@/components/ui/Reveal";
-import BigWordsMarquee from "@/sections/BigWordsMarquee.astro";
 ---
 
-<section class="mx-auto max-w-5xl px-6 py-24 text-center">
-  <Reveal client:load as="p" className="mx-auto max-w-3xl text-xl leading-relaxed text-cream/70 md:text-2xl">
+<div class="mx-auto max-w-3xl text-center">
+  <Reveal client:load as="p" className="text-xl leading-relaxed text-cream/70 md:text-2xl">
     No solo hacemos sitios web: <span class="font-bold text-white">los hacemos visibles ante todos y en Google.</span>{" "}
     Te ayudamos a entender los entresijos de Internet sin soltarte términos incomprensibles.
     En definitiva, te acompañamos para que lo digital sea genial.
@@ -13,10 +12,4 @@ import BigWordsMarquee from "@/sections/BigWordsMarquee.astro";
     Hemos trabajado en proyectos fuera de lo común. Sitios que nos obligaron a exprimir el cerebro.
     Eso es lo que nos gusta: los retos que nos hacen progresar, no los copia-pega.
   </Reveal>
-</section>
-
-<BigWordsMarquee
-  words={["VORTEX ❋", "VORTEX ❊", "VORTEX ❈", "VORTEX ✢"]}
-  direction="rtl"
-  speed={30}
-/>
+</div>

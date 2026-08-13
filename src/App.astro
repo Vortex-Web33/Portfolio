@@ -8,6 +8,7 @@ import PageHero from "@/sections/PageHero.astro";
 import ProjectsSection from "@/sections/ProjectsSection.astro";
 import ServicesSection from "@/sections/ServicesSection.astro";
 import ContactSection from "@/sections/ContactSection.astro";
+import BigWordsMarquee from "@/sections/BigWordsMarquee.astro";
 import Container from "@/components/ui/Container.astro";
 ---
 
@@ -16,13 +17,24 @@ import Container from "@/components/ui/Container.astro";
 
 <Container className="py-24">
   <PageHero
-    kicker="Realizaciones"
+    title={'¿Quiénes <span class="highlight-gradient">somos</span>?'}
+  />
+  <IntroSection />
+</Container>
+
+<BigWordsMarquee
+  words={["VORTEX ❋", "VORTEX ❊", "VORTEX ❈", "VORTEX ✢"]}
+  direction="rtl"
+  speed={30}
+/>
+
+<Container className="py-24">
+  <PageHero
+    kicker="Proyectos"
     title={'Proyectos que nos hicieron <span class="highlight-gradient">exprimir el cerebro</span>'}
   />
   <ProjectsSection />
 </Container>
-
-<IntroSection />
 
 <Container className="py-24">
   <PageHero
