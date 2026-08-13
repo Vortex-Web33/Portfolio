@@ -58,6 +58,34 @@
   }
 }
 
+/* Ola del footer: banda de gradiente con borde superior ondulado que GSAP
+   morfea con MorphSVGPlugin (src/scripts/footer-wave.ts) al entrar en viewport. */
+.footer {
+  position: relative;
+}
+
+.footer-wave {
+  position: relative;
+  width: 100%;
+}
+
+.footer-wave::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-blend-mode: color-dodge;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.footer-img {
+  display: block;
+  width: 100%;
+  height: clamp(90px, 22vw, 240px);
+  overflow: visible;
+}
+
 .animate-loop-rotate {
   animation: looped-rotate 24s linear infinite;
 }
