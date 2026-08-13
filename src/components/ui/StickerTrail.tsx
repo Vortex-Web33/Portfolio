@@ -1,3 +1,5 @@
+// StickerTrail: estela de stickers (clones de <img> de /stickers/) que sigue al cursor
+// con la Web Animations API; controla frecuencia, cantidad máxima y tamaño.
 import { useLayoutEffect, useRef } from "react";
 
 interface Props {
@@ -47,10 +49,22 @@ export default function StickerTrail({
       trail.appendChild(img);
       const anim = img.animate(
         [
-          { opacity: 0, transform: `translate(-50%,-50%) rotate(${rotate}deg) scale(0.2)` },
-          { opacity: 1, transform: `translate(-50%,-50%) rotate(${rotate}deg) scale(1)` },
-          { opacity: 1, transform: `translate(-50%,-50%) rotate(${rotate}deg) scale(1.05)` },
-          { opacity: 0, transform: `translate(-50%,-50%) rotate(${rotate}deg) scale(1.2)` },
+          {
+            opacity: 0,
+            transform: `translate(-50%,-50%) rotate(${rotate}deg) scale(0.2)`,
+          },
+          {
+            opacity: 1,
+            transform: `translate(-50%,-50%) rotate(${rotate}deg) scale(1)`,
+          },
+          {
+            opacity: 1,
+            transform: `translate(-50%,-50%) rotate(${rotate}deg) scale(1.05)`,
+          },
+          {
+            opacity: 0,
+            transform: `translate(-50%,-50%) rotate(${rotate}deg) scale(1.2)`,
+          },
         ],
         { duration: 1600, easing: "ease-out", fill: "forwards" },
       );
@@ -80,7 +94,10 @@ export default function StickerTrail({
     const onTouchMove = (e: TouchEvent) => {
       if (!e.touches || e.touches.length === 0) return;
       const rect = trail.getBoundingClientRect();
-      handleMove(e.touches[0].clientX - rect.left, e.touches[0].clientY - rect.top);
+      handleMove(
+        e.touches[0].clientX - rect.left,
+        e.touches[0].clientY - rect.top,
+      );
     };
 
     const resetLast = () => {
@@ -111,7 +128,7 @@ export default function StickerTrail({
       {stickers.map((src) => (
         <img
           key={src}
-          className="pointer-events-none absolute top-0 left-[-9999px] h-auto w-[72px] opacity-0 md:w-20"
+          className="pointer-events-none absolute top-0 left-[-9999px] h-auto w-18 opacity-0 md:w-20"
           src={src}
           alt=""
           draggable={false}

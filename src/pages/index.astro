@@ -1,4 +1,6 @@
 ---
+// Página de inicio: compone todas las secciones del sitio (hero, clientes, intro,
+// marquesinas, proyectos con CardStack, servicios, agencia, CTA y contacto).
 import Layout from "@/layouts/Layout.astro";
 import Hero from "@/sections/Hero.astro";
 import ClientsMarquee from "@/sections/ClientsMarquee.astro";
@@ -14,7 +16,22 @@ import Container from "@/components/ui/Container.astro";
 
 <Layout title="Vortex - Agencia de Marketing Digital">
   <Hero />
-  <ClientsMarquee />
+  <BigWordsMarquee
+    words={[
+      "VORTEX ",
+      "❋",
+      "VORTEX",
+      "❊",
+      "VORTEX",
+      "❈",
+      "VORTEX",
+      "✢",
+      "VORTEX",
+      "❋",
+    ]}
+    direction="rtl"
+    speed={50}
+  />
 
   <Container className="py-24">
     <PageHero
@@ -23,12 +40,6 @@ import Container from "@/components/ui/Container.astro";
     <IntroSection />
   </Container>
 
-  <BigWordsMarquee
-    words={["VORTEX ❋", "VORTEX ❊", "VORTEX ❈", "VORTEX ✢"]}
-    direction="rtl"
-    speed={30}
-  />
-
   <Container className="py-24">
     <PageHero
       kicker="Proyectos"
@@ -36,9 +47,11 @@ import Container from "@/components/ui/Container.astro";
     />
   </Container>
 
-  <div>
+  <div class="pb-44">
     <ProjectsSection />
   </div>
+
+  <ClientsMarquee />
 
   <Container className="py-24">
     <PageHero

@@ -1,4 +1,5 @@
 ---
+// Pie de página: contacto (email, dirección) y enlaces a redes sociales desde la config.
 import { contact, socials } from "@/lib/config/site";
 ---
 
@@ -9,15 +10,14 @@ import { contact, socials } from "@/lib/config/site";
         <strong class="kicker text-cream/40">Contacto</strong>
         <ul class="mt-4 space-y-3 text-sm">
           <li>
-            <a href={contact.phoneHref} class="text-cream/70 hover:text-vortex">{contact.phone}</a>
-          </li>
-          <li>
-            <a href={contact.emailHref} class="text-cream/70 hover:text-vortex">{contact.email}</a>
+            <a href={contact.emailHref} class="text-cream/70 hover:text-vortex"
+              >{contact.email}</a
+            >
           </li>
           <li class="text-cream/50">
             {contact.address.street}
             <br />
-            {contact.address.postalCode} {contact.address.city} – {contact.address.country}
+            {contact.address.city} – {contact.address.country}
           </li>
         </ul>
       </div>
@@ -25,24 +25,30 @@ import { contact, socials } from "@/lib/config/site";
       <nav aria-label="Redes sociales">
         <strong class="kicker text-cream/40">Redes</strong>
         <ul class="mt-4 space-y-3 text-sm">
-          {socials.map((social) => (
-            <li>
-              <a
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="text-cream/70 hover:text-vortex"
-              >
-                {social.label}
-              </a>
-            </li>
-          ))}
+          {
+            socials.map((social) => (
+              <li>
+                <a
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-cream/70 hover:text-vortex"
+                >
+                  {social.label}
+                </a>
+              </li>
+            ))
+          }
         </ul>
       </nav>
     </div>
 
-    <div class="flex flex-col items-center justify-between gap-4 border-t border-hairline/40 py-8 text-xs text-cream/40 md:flex-row">
-      <p>© {new Date().getFullYear()} Agencia VORTEX – Todos los derechos reservados</p>
+    <div
+      class="flex flex-col items-center justify-between gap-4 border-t border-hairline/40 py-8 text-xs text-cream/40 md:flex-row"
+    >
+      <p>
+        © {new Date().getFullYear()} Agencia VORTEX – Todos los derechos reservados
+      </p>
     </div>
   </div>
 </footer>

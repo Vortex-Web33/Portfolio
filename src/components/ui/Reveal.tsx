@@ -1,3 +1,5 @@
+// Reveal: primitiva de entrada animada (GSAP + ScrollTrigger). Con trigger="scroll"
+// aparece al entrar en viewport; con trigger="mount" anima al montar. Props: as/delay.
 import { useLayoutEffect, useRef, type ElementType, type ReactNode } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";

@@ -1,3 +1,5 @@
+// TextLoop: texto que fluye a lo largo de una ruta SVG (circle/infinity/arch/line/wave)
+// animado con GSAP tweens de startOffset; soporta velocidad, cinta y pausa al hover.
 import { useId, useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 

@@ -1,5 +1,14 @@
+// CardStack: mazo de tarjetas en abanico (fan 3D) replicado con GSAP — geometría de
+// solapamiento/giró/translación-Z, entrada animada, auto-advance con pause-on-hover,
+// drag elástico con swipe por umbral/velocidad, navegación por teclado y dots.
 import * as React from "react";
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import { gsap } from "gsap";
 
 function cn(...classes: Array<string | undefined | null | false>) {
@@ -161,7 +170,8 @@ export function CardStack<T extends CardStackItem>({
 
   // natural spacing shrinks the fan to always fit the available width (no edge clipping)
   const naturalSpacing = Math.round(w * (1 - overlap));
-  const roomForFan = containerW > w ? (containerW - w) / (2 * Math.max(1, maxOffset)) : 0;
+  const roomForFan =
+    containerW > w ? (containerW - w) / (2 * Math.max(1, maxOffset)) : 0;
   const cardSpacing =
     containerW > 0 && roomForFan < naturalSpacing
       ? Math.max(8, Math.round(roomForFan))
@@ -186,7 +196,7 @@ export function CardStack<T extends CardStackItem>({
     setActive((a) => wrapIndex(a + 1, len));
   }, [canGoNext, len]);
 
-    const setCardRef = useCallback((el: HTMLDivElement | null) => {
+  const setCardRef = useCallback((el: HTMLDivElement | null) => {
     if (el) {
       cardRefs.current.set(String(el.dataset.cardId), el);
       return;
@@ -232,7 +242,14 @@ export function CardStack<T extends CardStackItem>({
         tweens.push(
           gsap.fromTo(
             el,
-            { opacity: 0, x: t.x, y: t.y + 40, rotateZ: t.rotateZ, rotateX: t.rotateX, scale: t.scale },
+            {
+              opacity: 0,
+              x: t.x,
+              y: t.y + 40,
+              rotateZ: t.rotateZ,
+              rotateX: t.rotateX,
+              scale: t.scale,
+            },
             {
               opacity: 1,
               x: t.x,
@@ -264,7 +281,21 @@ export function CardStack<T extends CardStackItem>({
     });
     return () => tweens.forEach((tween) => tween.kill());
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [active, containerW, len, items, loop, cardSpacing, stepDeg, fitDepth, fitLift, tiltXDeg, activeScale, inactiveScale, layoutFor]);
+  }, [
+    active,
+    containerW,
+    len,
+    items,
+    loop,
+    cardSpacing,
+    stepDeg,
+    fitDepth,
+    fitLift,
+    tiltXDeg,
+    activeScale,
+    inactiveScale,
+    layoutFor,
+  ]);
 
   // drag only on the active card: elastic x follow + swipe detection (travel / velocity)
   useEffect(() => {
@@ -294,7 +325,11 @@ export function CardStack<T extends CardStackItem>({
       const offset = e.clientX - startX;
       travel = offset;
       const elastic =
-        offset > limit ? limit + (offset - limit) * 0.3 : offset < -limit ? -limit + (offset + limit) * 0.3 : offset;
+        offset > limit
+          ? limit + (offset - limit) * 0.3
+          : offset < -limit
+            ? -limit + (offset + limit) * 0.3
+            : offset;
       gsap.set(el, { x: elastic });
       samples.push({ t: performance.now(), x: offset });
       if (samples.length > 8) samples.shift();
@@ -313,7 +348,13 @@ export function CardStack<T extends CardStackItem>({
       suppressClick.current = Math.abs(travel) > 8;
       if (travel > threshold || v > 650) prev();
       else if (travel < -threshold || v < -650) next();
-      else gsap.to(el, { x: 0, duration: 0.55, ease: "power3.out", overwrite: "auto" });
+      else
+        gsap.to(el, {
+          x: 0,
+          duration: 0.55,
+          ease: "power3.out",
+          overwrite: "auto",
+        });
       travel = 0;
     };
 
@@ -344,7 +385,16 @@ export function CardStack<T extends CardStackItem>({
 
     return () => window.clearInterval(id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [autoAdvance, intervalMs, hovering, pauseOnHover, len, loop, active, next]);
+  }, [
+    autoAdvance,
+    intervalMs,
+    hovering,
+    pauseOnHover,
+    len,
+    loop,
+    active,
+    next,
+  ]);
 
   // keyboard navigation (when stage focused)
   const onKeyDown = (e: React.KeyboardEvent) => {
@@ -402,7 +452,9 @@ export function CardStack<T extends CardStackItem>({
                 className={cn(
                   "absolute bottom-0 rounded-2xl shadow-xl",
                   "will-change-transform select-none",
-                  isActive ? "cursor-grab active:cursor-grabbing" : "cursor-pointer",
+                  isActive
+                    ? "cursor-grab active:cursor-grabbing"
+                    : "cursor-pointer",
                 )}
                 style={{
                   width: w,
@@ -423,7 +475,10 @@ export function CardStack<T extends CardStackItem>({
               >
                 <div
                   className="h-full w-full overflow-hidden rounded-2xl"
-                  style={{ transform: `translateZ(${t.z}px)`, transformStyle: "preserve-3d" }}
+                  style={{
+                    transform: `translateZ(${t.z}px)`,
+                    transformStyle: "preserve-3d",
+                  }}
                 >
                   <DefaultFanCard item={item} active={isActive} />
                 </div>
@@ -458,7 +513,13 @@ export function CardStack<T extends CardStackItem>({
   );
 }
 
-function DefaultFanCard({ item, active }: { item: CardStackItem; active: boolean }) {
+function DefaultFanCard({
+  item,
+  active,
+}: {
+  item: CardStackItem;
+  active: boolean;
+}) {
   return (
     <div className="relative h-full w-full">
       {/* image or brand-color block */}
@@ -486,11 +547,13 @@ function DefaultFanCard({ item, active }: { item: CardStackItem; active: boolean
       </div>
 
       {/* subtle gradient overlay at bottom for text readability */}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+      <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/70 via-black/10 to-transparent" />
 
       {/* content */}
       <div className="relative z-10 flex h-full flex-col justify-end p-5">
-        <div className="truncate text-lg font-semibold text-white md:text-xl">{item.title}</div>
+        <div className="truncate text-lg font-semibold text-white md:text-xl">
+          {item.title}
+        </div>
         {item.description ? (
           <div className="mt-1 line-clamp-2 font-mono text-xs text-white/80">
             {item.description}

@@ -1,3 +1,5 @@
+// Marquee: cinta de contenido (children) que se desplaza en bucle infinito con GSAP;
+// dirección ltr/rtl y duración definidas por props.
 import { useLayoutEffect, useRef, type ReactNode } from "react";
 import gsap from "gsap";
 

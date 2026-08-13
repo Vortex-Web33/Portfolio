@@ -1,4 +1,5 @@
 ---
+// Marquesina de palabras gigantes (Marquee) con palabras/dirección/velocidad por props.
 import Marquee from "@/components/ui/Marquee";
 
 interface Props {
@@ -12,16 +13,24 @@ interface Props {
 const {
   words,
   direction = "ltr",
-  speed = 35,
+  speed = 50,
   className = "border-y",
   textClass = "text-4xl font-bold tracking-tight text-white/80 md:text-6xl",
 } = Astro.props;
+
+// Se repite el grupo varias veces para que la cinta sea siempre más ancha que
+// cualquier viewport y el bucle nunca muestre un hueco entre final y reinicio.
+const repeated = Array.from({ length: 3 }, () => words).flat();
 ---
 
 <section class:list={["overflow-hidden py-12", className]} aria-hidden="true">
   <Marquee client:load direction={direction} speed={speed}>
-    {words.map((word) => (
-      <span class:list={["mx-6", textClass]}>{word}</span>
-    ))}
+    {
+      repeated.map((word, i) => (
+        <span key={i} class:list={["mx-6", textClass]}>
+          {word}
+        </span>
+      ))
+    }
   </Marquee>
 </section>
