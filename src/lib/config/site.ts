@@ -1,31 +1,30 @@
 import type { SiteConfig, ContactConfig, SocialLink } from "@/lib/types";
 
 export const site: SiteConfig = {
+  twitterHandle: "@vortex_agency",
   name: "VORTEX",
   legalName: "Agencia VORTEX",
   url: "https://vortex.agency",
   locale: "es_ES",
   lang: "es",
-  defaultTitle: "Agencia Web Malaga - Creación de sitios web, SEO & SEA",
+  defaultTitle:
+    "Agencia Web en Malaga - Creación de sitios web & posicionamiento SEO",
   defaultDescription:
     "VORTEX es una agencia web con sede en Malaga, especialista en creación de sitios web a medida, webdesign, e-commerce y estrategia digital.",
   ogImage: "/og-default.svg",
   themeColor: "#000000",
-  twitterHandle: "@vortex_agency",
   founded: "2026",
 };
 
 export const contact: ContactConfig = {
-  phone: "+34 663 00 74 73",
-  phoneHref: "tel:+34663007473",
   email: "hello@vortex.agency",
   emailHref: "mailto:hello@vortex.agency",
   address: {
     street: "",
     city: "Malaga",
-    postalCode: "29010",
+    postalCode: "29013",
     country: "España",
-    full: "29010 Málaga – España",
+    full: "29013 Málaga – España",
   },
 };
 

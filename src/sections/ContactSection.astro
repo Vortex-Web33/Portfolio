@@ -6,32 +6,43 @@ import Reveal from "@/components/ui/Reveal";
 
 <section class="mx-auto max-w-6xl px-6 pb-24">
   <Reveal client:load className="grid gap-8 md:grid-cols-3">
-    <a href={contact.phoneHref} class="group flex flex-col items-center gap-6 rounded-3xl border border-white/5 bg-ink-soft/30 p-12 text-center transition-all duration-300 hover:-translate-y-1 hover:border-vortex/50">
-      <span class="flex size-16 items-center justify-center rounded-full border border-white/10 font-mono text-xl text-cream/60 transition-colors duration-300 group-hover:border-vortex/60 group-hover:text-vortex" aria-hidden="true">☎</span>
-      <span class="text-lg font-bold text-white">Por teléfono</span>
-      <span class="font-mono text-sm text-cream/60">{contact.phone}</span>
-    </a>
-    <a href={contact.emailHref} class="group flex flex-col items-center gap-6 rounded-3xl border border-white/5 bg-ink-soft/30 p-12 text-center transition-all duration-300 hover:-translate-y-1 hover:border-vortex/50">
-      <span class="flex size-16 items-center justify-center rounded-full border border-white/10 font-mono text-xl text-cream/60 transition-colors duration-300 group-hover:border-vortex/60 group-hover:text-vortex" aria-hidden="true">✉</span>
-      <span class="text-lg font-bold text-white">Por email</span>
-      <span class="font-mono text-sm text-cream/60">{contact.email}</span>
-    </a>
-    <div class="flex flex-col items-center gap-6 rounded-3xl border border-white/5 bg-ink-soft/30 p-12 text-center">
-      <span class="flex size-16 items-center justify-center rounded-full border border-white/10 font-mono text-xl text-cream/60" aria-hidden="true">◈</span>
-      <span class="text-lg font-bold text-white">En la agencia</span>
-      <address class="font-mono text-sm leading-relaxed not-italic text-cream/60">
-        Agencia VORTEX<br />
-        {contact.address.street}<br />
-        <strong class="text-white">{contact.address.postalCode} {contact.address.city} – {contact.address.country}</strong>
-      </address>
-    </div>
+    <span class="text-lg font-bold text-white">Por teléfono</span>
   </Reveal>
-
-  <Reveal client:load className="mt-20 text-center">
-    <p class="kicker mb-4 text-cream/40">Es ahora cuando empieza</p>
-    <h2 class="mx-auto max-w-2xl text-3xl font-bold tracking-tight text-white md:text-5xl">
-      Es ahora cuando <span class="highlight-gradient">empieza</span>
-    </h2>
-    <Button href={contact.emailHref} class="mt-8">Solicitar presupuesto</Button>
-  </Reveal>
+  <a
+    href={contact.emailHref}
+    class="group flex flex-col items-center gap-6 rounded-3xl border border-white/5 bg-ink-soft/30 p-12 text-center transition-all duration-300 hover:-translate-y-1 hover:border-vortex/50"
+  >
+    <span
+      class="flex size-16 items-center justify-center rounded-full border border-white/10 font-mono text-xl text-cream/60 transition-colors duration-300 group-hover:border-vortex/60 group-hover:text-vortex"
+      aria-hidden="true">✉</span
+    >
+    <span class="text-lg font-bold text-white">Por email</span>
+    <span class="font-mono text-sm text-cream/60">{contact.email}</span>
+  </a>
+  <div
+    class="flex flex-col items-center gap-6 rounded-3xl border border-white/5 bg-ink-soft/30 p-12 text-center"
+  >
+    <span
+      class="flex size-16 items-center justify-center rounded-full border border-white/10 font-mono text-xl text-cream/60"
+      aria-hidden="true">◈</span
+    >
+    <span class="text-lg font-bold text-white">En la agencia</span>
+    <address class="font-mono text-sm leading-relaxed not-italic text-cream/60">
+      Agencia VORTEX<br />
+      {contact.address.street}<br />
+      <strong class="text-white">
+        {contact.address.city} – {contact.address.country}</strong
+      >
+    </address>
+  </div>
 </section>
+
+<Reveal client:load className="mt-20 text-center">
+  <p class="kicker mb-4 text-cream/40">Es ahora cuando empieza</p>
+  <h2
+    class="mx-auto max-w-2xl text-3xl font-bold tracking-tight text-white md:text-5xl"
+  >
+    Es ahora cuando <span class="highlight-gradient">empieza</span>
+  </h2>
+  <Button href={contact.emailHref} class="mt-8">Solicitar presupuesto</Button>
+</Reveal>

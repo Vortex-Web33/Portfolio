@@ -42,8 +42,6 @@ export interface SocialLink {
 }
 
 export interface ContactConfig {
-  phone: string;
-  phoneHref: string;
   email: string;
   emailHref: string;
   address: Address;
