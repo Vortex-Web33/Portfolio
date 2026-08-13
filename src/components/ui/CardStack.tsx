@@ -428,7 +428,7 @@ export function CardStack<T extends CardStackItem>({
         />
 
         <div
-          className="absolute inset-0 flex items-end justify-center"
+          className="absolute inset-0 flex items-center justify-center"
           style={{ perspective: `${perspectivePx}px` }}
         >
           {items.map((item, i) => {
@@ -450,7 +450,7 @@ export function CardStack<T extends CardStackItem>({
                 data-card-id={item.id}
                 ref={setCardRef}
                 className={cn(
-                  "absolute bottom-0 rounded-2xl shadow-xl",
+                  "absolute inset-y-0 m-auto rounded-2xl shadow-xl",
                   "will-change-transform select-none",
                   isActive
                     ? "cursor-grab active:cursor-grabbing"

@@ -31,9 +31,14 @@ document.addEventListener("click", (event) => {
   if (!link) return;
 
   const url = new URL(link.href, window.location.origin);
-  if (url.origin !== window.location.origin || url.pathname !== window.location.pathname) return;
+  if (
+    url.origin !== window.location.origin ||
+    url.pathname !== window.location.pathname
+  )
+    return;
 
-  const section = url.hash.length > 1 ? document.getElementById(url.hash.slice(1)) : null;
+  const section =
+    url.hash.length > 1 ? document.getElementById(url.hash.slice(1)) : null;
   if (!section) return;
 
   event.preventDefault();

@@ -33,18 +33,32 @@ export default function HorizontalGallery({ items }: Props) {
     const strip = stripRef.current;
     if (!wrapper || !strip || strip.scrollWidth === 0) return;
 
-    const tween = gsap.to(strip, {
-      x: () => -(strip.scrollWidth - window.innerWidth),
-      ease: "none",
-      scrollTrigger: {
-        trigger: wrapper,
-        pin: wrapper,
-        start: "center center",
-        end: () => "+=" + strip.scrollWidth,
-        scrub: true,
-        invalidateOnRefresh: true,
+    // El strip arranca adelantado para que el panel 1 quede ligeramente a la
+    // izquierda del centro (su centro al 40% del ancho de viewport), no pegado
+    // al borde izquierdo. El recorrido total no cambia: solo se desplaza el punto
+    // de partida (y el end del pin suma ese lead para mantener el scrub 1:1).
+    const lead = (): number => {
+      const first = strip.children[0] as HTMLElement | undefined;
+      const panelWidth = first?.offsetWidth ?? 0;
+      return Math.max(0, Math.round(window.innerWidth * 0.4 - panelWidth / 2));
+    };
+
+    const tween = gsap.fromTo(
+      strip,
+      { x: () => lead() },
+      {
+        x: () => -(strip.scrollWidth - window.innerWidth),
+        ease: "none",
+        scrollTrigger: {
+          trigger: wrapper,
+          pin: wrapper,
+          start: "center center",
+          end: () => "+=" + (strip.scrollWidth + lead()),
+          scrub: true,
+          invalidateOnRefresh: true,
+        },
       },
-    });
+    );
 
     return () => {
       tween.scrollTrigger?.kill();
