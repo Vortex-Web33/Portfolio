@@ -3,6 +3,15 @@
     scroll-behavior: smooth;
   }
 
+  html {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  html::-webkit-scrollbar {
+    display: none;
+  }
+
   body {
     @apply bg-ink font-sans text-cream antialiased;
   }
