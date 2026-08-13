@@ -1,34 +1,21 @@
 ---
-// Sección de servicios: grid de tarjetas (Reveal as="a") generadas desde "services".
-import Reveal from "@/components/ui/Reveal";
+// Sección de servicios: galería horizontal con pin de scroll (GSAP, HorizontalGallery)
+// que pasea los servicios de la agencia como paneles a lo ancho del viewport.
+import HorizontalGallery from "@/components/ui/HorizontalGallery";
+import type { GalleryPanel } from "@/components/ui/HorizontalGallery";
 import { services } from "@/lib/data/services";
+
+const panels: GalleryPanel[] = services.map((service) => ({
+  id: service.slug,
+  tagline: service.tagline,
+  title: service.title,
+  description: service.description,
+  glyph: service.glyph,
+  accent: service.accent,
+  ctaLabel: service.ctaLabel,
+  href: service.href,
+  features: service.features,
+}));
 ---
 
-<ul class="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
-  {
-    services.map((service) => (
-      <li>
-        <Reveal
-          client:load
-          as="a"
-          href={service.href}
-          className={[
-            service.accent,
-            "group flex h-full flex-col gap-10 rounded-3xl border border-white/5 bg-gradient-to-br to-transparent p-10 transition-all duration-300 hover:-translate-y-1 hover:border-white/15 hover:bg-ink-soft/60",
-          ].join(" ")}
-        >
-          <span class="flex size-20 items-center justify-center rounded-full border border-white/10 font-mono text-2xl text-cream/80 transition-colors duration-300 group-hover:border-vortex/60 group-hover:text-vortex">
-            {service.glyph}
-          </span>
-          <div class="flex flex-1 flex-col gap-4">
-            <h3 class="text-2xl font-bold text-white">{service.title}</h3>
-            <p class="text-sm leading-relaxed text-cream/60">{service.description}</p>
-          </div>
-          <span class="font-mono text-xs tracking-widest uppercase text-cream/50 transition-colors duration-300 group-hover:text-vortex">
-            Descubrir →
-          </span>
-        </Reveal>
-      </li>
-    ))
-  }
-</ul>
+<HorizontalGallery items={panels} client:load />

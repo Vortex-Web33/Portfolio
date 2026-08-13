@@ -1,7 +1,5 @@
 @layer base {
-  html {
-    scroll-behavior: smooth;
-  }
+  /* Sin scroll-behavior: smooth: el suavizado lo gestiona Lenis (src/scripts/lenis.ts). */
 
   html {
     scrollbar-width: none;
