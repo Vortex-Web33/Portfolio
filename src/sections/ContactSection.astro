@@ -1,48 +1,31 @@
 ---
-import { contact } from "@/lib/config/site";
-import Button from "@/components/ui/Button.astro";
 import Reveal from "@/components/ui/Reveal";
+import ContactForm from "@/components/ui/ContactForm";
 ---
 
 <section class="mx-auto max-w-6xl px-6 pb-24">
-  <Reveal client:load className="grid gap-8 md:grid-cols-3">
-    <span class="text-lg font-bold text-white">Por teléfono</span>
-  </Reveal>
-  <a
-    href={contact.emailHref}
-    class="group flex flex-col items-center gap-6 rounded-3xl border border-white/5 bg-ink-soft/30 p-12 text-center transition-all duration-300 hover:-translate-y-1 hover:border-vortex/50"
-  >
-    <span
-      class="flex size-16 items-center justify-center rounded-full border border-white/10 font-mono text-xl text-cream/60 transition-colors duration-300 group-hover:border-vortex/60 group-hover:text-vortex"
-      aria-hidden="true">✉</span
+  <section class="relative overflow-hidden px-6 py-15 text-center">
+    <div
+      class="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-vortex/10 to-transparent"
     >
-    <span class="text-lg font-bold text-white">Por email</span>
-    <span class="font-mono text-sm text-cream/60">{contact.email}</span>
-  </a>
-  <div
-    class="flex flex-col items-center gap-6 rounded-3xl border border-white/5 bg-ink-soft/30 p-12 text-center"
-  >
-    <span
-      class="flex size-16 items-center justify-center rounded-full border border-white/10 font-mono text-xl text-cream/60"
-      aria-hidden="true">◈</span
-    >
-    <span class="text-lg font-bold text-white">En la agencia</span>
-    <address class="font-mono text-sm leading-relaxed not-italic text-cream/60">
-      Agencia VORTEX<br />
-      {contact.address.street}<br />
-      <strong class="text-white">
-        {contact.address.city} – {contact.address.country}</strong
+    </div>
+    <div class="relative mx-auto max-w-3xl">
+      <Reveal client:load as="p" className="kicker mb-6 text-vortex"
+        >Let's gooo !!</Reveal
       >
-    </address>
-  </div>
+      <Reveal
+        client:load
+        as="h2"
+        className="text-5xl font-bold tracking-tight text-white md:text-7xl"
+      >
+        ¿Necesitas un <span class="highlight-gradient">sitio web</span>?
+      </Reveal>
+      <Reveal
+        client:load
+        as="p"
+        className="mt-6 font-mono text-sm text-cream/50">¡Lo hablamos!</Reveal
+      >
+    </div>
+  </section>
+  <ContactForm client:load />
 </section>
-
-<Reveal client:load className="mt-20 text-center">
-  <p class="kicker mb-4 text-cream/40">Es ahora cuando empieza</p>
-  <h2
-    class="mx-auto max-w-2xl text-3xl font-bold tracking-tight text-white md:text-5xl"
-  >
-    Es ahora cuando <span class="highlight-gradient">empieza</span>
-  </h2>
-  <Button href={contact.emailHref} class="mt-8">Solicitar presupuesto</Button>
-</Reveal>
