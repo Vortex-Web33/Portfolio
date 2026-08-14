@@ -1,7 +1,10 @@
 ---
-// Pie de página: ola decorativa animada en el borde superior (GSAP + MorphSVGPlugin,
-// ver src/scripts/footer-wave.ts), y contacto/redes sociales desde la config.
-import { contact, socials } from "@/lib/config/site";
+// Pie de página: ola animada que ocupa TODO el footer (SVG de gradiente absoluto,
+// morfeado con GSAP + MorphSVGPlugin, ver src/scripts/footer-wave.ts). El contenido
+// va encima con z-10 y texto en ink para leer sobre el degradado claro.
+// Marca, navegación, contacto y redes desde la config.
+import { contact, socials, site } from "@/lib/config/site";
+import Button from "@/components/ui/Button.astro";
 ---
 
 <footer class="footer">
@@ -30,31 +33,66 @@ import { contact, socials } from "@/lib/config/site";
         class="footer-svg"
         id="bouncy-path"
         fill="url(#footer-grad)"
-        d="M0-0.3C0-0.3,464,156,1139,156S2278-0.3,2278-0.3V683H0V-0.3z"
+        d="M0 0 C0 0,464 260,1139 260 S1814 260,2278 0 V683 H0 V0 z"
       />
     </svg>
   </div>
 
-  <div class="mx-auto max-w-7xl px-6 pb-10">
-    <div class="grid gap-12 border-t border-hairline/40 py-16 md:grid-cols-2">
+  <div class="footer-content relative z-10 mx-auto max-w-7xl px-6 pb-10">
+    <div class="grid gap-12 border-t border-ink/15 py-16 lg:grid-cols-[1.5fr_1fr_1fr_1fr]">
       <div>
-        <strong class="kicker text-cream/40">Contacto</strong>
+        <p class="kicker text-ink/50">Agencia de diseño digital</p>
+        <a
+          href="/"
+          class="mt-4 block text-4xl font-bold tracking-tight text-ink md:text-5xl"
+          aria-label="VORTEX - Inicio"
+        >
+          VORTEX<span class="text-white">.</span>
+        </a>
+        <p class="mt-4 max-w-sm text-sm leading-relaxed text-ink/60">
+          Creamos sitios web a medida que convierten visitantes en clientes.
+          Con sede en {contact.address.city}, para todo el mundo.
+        </p>
+        <Button href="/#contacto" class="mt-8 px-7 py-3.5 text-sm">
+          Hablemos de tu proyecto
+        </Button>
+      </div>
+
+      <nav aria-label="Navegación">
+        <strong class="kicker text-ink/50">Navegación</strong>
         <ul class="mt-4 space-y-3 text-sm">
           <li>
-            <a href={contact.emailHref} class="text-cream/70 hover:text-vortex"
+            <a href="/" class="text-ink/70 transition-colors hover:text-ink">Inicio</a>
+          </li>
+          <li>
+            <a href="/#servicios" class="text-ink/70 transition-colors hover:text-ink">Servicios</a>
+          </li>
+          <li>
+            <a href="/#proyectos" class="text-ink/70 transition-colors hover:text-ink">Proyectos</a>
+          </li>
+          <li>
+            <a href="/#contacto" class="text-ink/70 transition-colors hover:text-ink">Contacto</a>
+          </li>
+        </ul>
+      </nav>
+
+      <div>
+        <strong class="kicker text-ink/50">Contacto</strong>
+        <ul class="mt-4 space-y-3 text-sm">
+          <li>
+            <a href={contact.emailHref} class="text-ink/70 hover:text-ink"
               >{contact.email}</a
             >
           </li>
-          <li class="text-cream/50">
-            {contact.address.street}
-            <br />
-            {contact.address.city} – {contact.address.country}
+          <li class="text-ink/55">
+            {contact.address.postalCode} {contact.address.city} –{" "}
+            {contact.address.country}
           </li>
         </ul>
       </div>
 
       <nav aria-label="Redes sociales">
-        <strong class="kicker text-cream/40">Redes</strong>
+        <strong class="kicker text-ink/50">Redes</strong>
         <ul class="mt-4 space-y-3 text-sm">
           {
             socials.map((social) => (
@@ -63,7 +101,7 @@ import { contact, socials } from "@/lib/config/site";
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="text-cream/70 hover:text-vortex"
+                  class="text-ink/70 hover:text-ink"
                 >
                   {social.label}
                 </a>
@@ -75,11 +113,15 @@ import { contact, socials } from "@/lib/config/site";
     </div>
 
     <div
-      class="flex flex-col items-center justify-between gap-4 border-t border-hairline/40 py-8 text-xs text-cream/40 md:flex-row"
+      class="flex flex-col items-center justify-between gap-4 border-t border-ink/15 py-8 text-xs text-ink/50 md:flex-row"
     >
       <p>
-        © {new Date().getFullYear()} Agencia VORTEX – Todos los derechos reservados
+        © {new Date().getFullYear()} {site.legalName} – Todos los derechos
+        reservados
       </p>
+      <a href="#contenido" class="font-mono transition-colors hover:text-ink">
+        Volver arriba ↑
+      </a>
     </div>
   </div>
 </footer>
