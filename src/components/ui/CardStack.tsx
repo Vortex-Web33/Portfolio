@@ -549,17 +549,44 @@ function DefaultFanCard({
       {/* subtle gradient overlay at bottom for text readability */}
       <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/70 via-black/10 to-transparent" />
 
-      {/* content */}
-      <div className="relative z-10 flex h-full flex-col justify-end p-5">
-        <div className="truncate text-lg font-semibold text-white md:text-xl">
-          {item.title}
-        </div>
-        {item.description ? (
-          <div className="mt-1 line-clamp-2 font-mono text-xs text-white/80">
-            {item.description}
-          </div>
-        ) : null}
-      </div>
+{/* content */}
+       <div className="relative z-10 flex h-full flex-col justify-end p-5">
+         <div className="flex items-end justify-between gap-4">
+           <div className="min-w-0">
+             <div className="truncate text-lg font-semibold text-white md:text-xl">
+               {item.title}
+             </div>
+             {item.description ? (
+               <div className="mt-1 line-clamp-2 font-mono text-xs text-white/80">
+                 {item.description}
+               </div>
+             ) : null}
+           </div>
+           {item.href && (
+             <a
+               href={item.href}
+               className="flex items-center gap-1.5 shrink-0 rounded-full bg-white/10 px-3 py-1.5 text-xs font-medium text-white hover:bg-white/20 transition-colors"
+               target="_blank"
+               rel="noopener noreferrer"
+             >
+               {item.ctaLabel ?? "Ver proyecto"}
+               <svg
+                 className="h-3.5 w-3.5"
+                 viewBox="0 0 24 24"
+                 fill="none"
+                 stroke="currentColor"
+                 strokeWidth="2.5"
+                 strokeLinecap="round"
+                 strokeLinejoin="round"
+                 aria-hidden="true"
+               >
+                 <path d="M5 12h14" />
+                 <path d="m12 5 7 7-7 7" />
+               </svg>
+             </a>
+           )}
+         </div>
+       </div>
     </div>
   );
 }
