@@ -4,7 +4,7 @@ export const projects: Project[] = [
   {
     name: "WOOD",
     tagline: "Hotel & Spa",
-    url: "/404",
+    url: "https://tech-universe1.vercel.app/",
     bg: "bg-vortex",
   },
   {

@@ -515,30 +515,26 @@ export function CardStack<T extends CardStackItem>({
 
 function DefaultFanCard({
   item,
-  active,
 }: {
   item: CardStackItem;
-  active: boolean;
 }) {
+  const hasImage = Boolean(item.imageSrc);
+  const bgClass = item.tag ?? "bg-ink-soft/60";
+
   return (
     <div className="relative h-full w-full">
       {/* image or brand-color block */}
       <div className="absolute inset-0">
-        {item.imageSrc ? (
+        {hasImage ? (
           <img
-            src={item.imageSrc}
+            src={item.imageSrc!}
             alt={item.title}
             className="h-full w-full object-cover"
             draggable={false}
             loading="eager"
           />
         ) : (
-          <div
-            className={cn(
-              "flex h-full w-full items-center justify-center",
-              item.tag ?? "bg-ink-soft/60",
-            )}
-          >
+          <div className={cn("flex h-full w-full items-center justify-center", bgClass)}>
             <span className="font-mono text-xs tracking-[0.3em] text-white/70 uppercase">
               {item.title}
             </span>
@@ -549,44 +545,46 @@ function DefaultFanCard({
       {/* subtle gradient overlay at bottom for text readability */}
       <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/70 via-black/10 to-transparent" />
 
-{/* content */}
-       <div className="relative z-10 flex h-full flex-col justify-end p-5">
-         <div className="flex items-end justify-between gap-4">
-           <div className="min-w-0">
-             <div className="truncate text-lg font-semibold text-white md:text-xl">
-               {item.title}
-             </div>
-             {item.description ? (
-               <div className="mt-1 line-clamp-2 font-mono text-xs text-white/80">
-                 {item.description}
-               </div>
-             ) : null}
-           </div>
-           {item.href && (
-             <a
-               href={item.href}
-               className="flex items-center gap-1.5 shrink-0 rounded-full bg-white/10 px-3 py-1.5 text-xs font-medium text-white hover:bg-white/20 transition-colors"
-               target="_blank"
-               rel="noopener noreferrer"
-             >
-               {item.ctaLabel ?? "Ver proyecto"}
-               <svg
-                 className="h-3.5 w-3.5"
-                 viewBox="0 0 24 24"
-                 fill="none"
-                 stroke="currentColor"
-                 strokeWidth="2.5"
-                 strokeLinecap="round"
-                 strokeLinejoin="round"
-                 aria-hidden="true"
-               >
-                 <path d="M5 12h14" />
-                 <path d="m12 5 7 7-7 7" />
-               </svg>
-             </a>
-           )}
-         </div>
-       </div>
+      {/* content - keep text in 3D context */}
+      <div className="relative z-10 flex h-full flex-col justify-end p-5">
+        <div className="min-w-0">
+          <div className="truncate text-lg font-semibold text-white md:text-xl">
+            {item.title}
+          </div>
+          {item.description ? (
+            <div className="mt-1 line-clamp-2 font-mono text-xs text-white/80">
+              {item.description}
+            </div>
+          ) : null}
+        </div>
+      </div>
+
+      {/* button - separate layer to avoid 3D transform blur */}
+      {item.href && (
+        <a
+          href={item.href}
+          className="absolute bottom-5 right-5 z-20 flex items-center gap-1.5 shrink-0 rounded-full bg-white/10 px-3 py-1.5 text-xs font-medium text-white hover:bg-white/20 transition-colors transform translate-z-20"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ transform: "translateZ(20px)" }}
+          onClick={(e) => e.stopPropagation()}
+        >
+          {item.ctaLabel ?? "Ver proyecto"}
+          <svg
+            className="h-3.5 w-3.5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M5 12h14" />
+            <path d="m12 5 7 7-7 7" />
+</svg>
+        </a>
+      )}
     </div>
   );
 }
