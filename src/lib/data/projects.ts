@@ -1,11 +1,12 @@
 import type { Project } from "@/lib/types";
 
 export const projects: Project[] = [
-  {
-    name: "WOOD",
-    tagline: "Hotel & Spa",
+{
+    name: "TechUniverse",
+    tagline: "E-commerce",
     url: "https://tech-universe1.vercel.app/",
     bg: "bg-vortex",
+    image: "/imagenes/techuniverse.jpg",
   },
   {
     name: "ISAUTIER",
