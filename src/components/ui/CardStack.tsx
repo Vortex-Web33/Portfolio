@@ -54,6 +54,9 @@ export type CardStackProps<T extends CardStackItem> = {
   activeScale?: number;
   inactiveScale?: number;
 
+  /** Reduce 3D tilt on inactive cards to avoid blur */
+  reduceInactiveTilt?: boolean;
+
   /** Motion */
   springStiffness?: number;
   springDamping?: number;
@@ -114,6 +117,8 @@ export function CardStack<T extends CardStackItem>({
   activeLiftPx = 22,
   activeScale = 1.03,
   inactiveScale = 0.94,
+
+  reduceInactiveTilt = true,
 
   springStiffness = 280,
   springDamping = 28,
@@ -218,11 +223,11 @@ export function CardStack<T extends CardStackItem>({
         y: abs * 10, // subtle arc-down feel
         z: -abs * fitDepth,
         rotateZ: off * stepDeg,
-        rotateX: isActive ? 0 : tiltXDeg,
-        scale: isActive ? activeScale : inactiveScale,
+        rotateX: reduceInactiveTilt ? 0 : isActive ? 0 : tiltXDeg,
+        scale: reduceInactiveTilt ? 1 : isActive ? activeScale : inactiveScale,
       };
     },
-    [cardSpacing, stepDeg, fitDepth, tiltXDeg, activeScale, inactiveScale],
+    [cardSpacing, stepDeg, fitDepth, tiltXDeg, activeScale, inactiveScale, reduceInactiveTilt],
   );
 
   // GSAP: animate every mounted card to its fan position for the current active offset.
