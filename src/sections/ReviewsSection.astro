@@ -1,0 +1,20 @@
+---
+// Sección de reseñas: carrusel de testimonios con auto-advance y navegación.
+import { reviews } from "@/lib/data/reviews";
+import Reveal from "@/components/ui/Reveal";
+import { Carousel } from "@/components/ui/Carousel";
+import Container from "@/components/ui/Container.astro";
+import PageHero from "@/sections/PageHero.astro";
+---
+
+<Container className="py-24">
+  <PageHero
+    kicker="Opiniones"
+    title={'Lo que <span class="highlight-gradient">dicen de nosotros</span>'}
+    description="Más de 20 clientes satisfechos avalan nuestro trabajo. Sus experiencias hablan por sí solas."
+  />
+</Container>
+
+<div id="reseñas" class="pb-24">
+  <Carousel client:load items={reviews} autoAdvance intervalMs={4000} pauseOnHover showDots />
+</div>
