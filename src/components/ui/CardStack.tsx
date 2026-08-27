@@ -312,6 +312,8 @@ export function CardStack<T extends CardStackItem>({
 
     const onDown = (e: PointerEvent) => {
       if (e.button !== 0) return;
+      const target = e.target as HTMLElement;
+      if (target.closest("a[href]")) return;
       dragging = true;
       travel = 0;
       startX = e.clientX;
@@ -568,6 +570,7 @@ function DefaultFanCard({
           rel="noopener noreferrer"
           style={{ transform: "translateZ(20px)" }}
           onClick={(e) => e.stopPropagation()}
+          onPointerDown={(e) => e.stopPropagation()}
         >
           {item.ctaLabel ?? "Ver proyecto"}
           <svg
