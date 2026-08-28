@@ -17,8 +17,8 @@ export const site: SiteConfig = {
 };
 
 export const contact: ContactConfig = {
-  email: "hello@vortex.agency",
-  emailHref: "mailto:hello@vortex.agency",
+  email: "vortexagency3@gmail.com",
+  emailHref: "mailto:vortexagency3@gmail.com",
   address: {
     street: "",
     city: "Malaga",
@@ -26,14 +26,15 @@ export const contact: ContactConfig = {
     country: "España",
     full: "29013 Málaga – España",
   },
+  formspreeEndpoint: "https://formspree.io/f/mjyvvpyk",
 };
 
 export const socials: SocialLink[] = [
-  { label: "Facebook", href: "https://www.facebook.com/vortex.agency/" },
-  { label: "Instagram", href: "https://www.instagram.com/vortex.agency/" },
+  { label: "Facebook", href: "" },
+  { label: "Instagram", href: "" },
   {
     label: "LinkedIn",
-    href: "https://www.linkedin.com/company/vortex.agency/",
+    href: "",
   },
   { label: "GitHub", href: "https://github.com/vortex.agency/" },
 ];
