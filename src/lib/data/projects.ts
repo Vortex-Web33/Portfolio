@@ -22,12 +22,6 @@ export const projects: Project[] = [
     bg: "bg-vortex-coral",
     image: "/imagenes/terralstudio.jpg",
   },
-  {
-    name: "VAKOA",
-    tagline: "Destilería",
-    url: "/404",
-    bg: "bg-vortex",
-  },
 ];
 
 export const clients = [
