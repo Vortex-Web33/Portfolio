@@ -1,149 +1,151 @@
+// Datos de reseñas extraídos fielmente de Terral Studio — Reviews.B4YnFDsH.js
 export interface Review {
-  quote: string;
-  author: string;
+  id: number;
+  name: string;
   role: string;
-  avatar: string;
+  body: string;
+  img: string;
 }
 
 export const reviews: Review[] = [
   {
-    quote:
-      "La gestión en mi propiedad fue impecable. Entienden el lujo mediterráneo y logran un equilibrio perfecto.",
-    author: "Lars Svensson",
+    id: 1,
+    name: "Lars Svensson",
     role: "Inversor Sueco",
-    avatar: "/reviews/user5.webp",
+    body: "La gestión de Terral Studio en mi propiedad de Marbella fue impecable. Entienden el lujo mediterráneo y logran un equilibrio perfecto.",
+    img: "/photos/User/user5.webp",
   },
   {
-    quote:
-      "No es solo arquitectura, es cómo capturan la luz de Málaga en cada rincón. Transformaron mi vivienda en algo mágico.",
-    author: "Carmen Heredia",
+    id: 2,
+    name: "Carmen Heredia",
     role: "Propietaria",
-    avatar: "/reviews/user2.webp",
+    body: "No es solo arquitectura, es cómo capturan la luz de Málaga en cada rincón. Transformaron mi vivienda en algo mágico.",
+    img: "/photos/User/user2.webp",
   },
   {
-    quote:
-      "El equipo demostró un nivel de profesionalidad increíble. El proyecto se completó a tiempo y superó nuestras expectativas.",
-    author: "Michael Chen",
+    id: 3,
+    name: "Michael Chen",
     role: "Inversor Internacional",
-    avatar: "/reviews/user3.webp",
+    body: "El equipo de Terral Studio demostró un nivel de profesionalidad increíble. El proyecto se completó a tiempo y superó nuestras expectativas.",
+    img: "/photos/User/user3.webp",
   },
   {
-    quote:
-      "Colaborar con ellos ha sido un acierto total. Su visión contemporánea y el respeto por el entorno hacen que cada villa sea única e irrepetible.",
-    author: "Elena Góngora",
+    id: 4,
+    name: "Elena Góngora",
     role: "Promotora Inmobiliaria",
-    avatar: "/reviews/user14.webp",
+    body: "Colaborar con ellos ha sido un acierto total. Su visión contemporánea y el respeto por el entorno hacen que cada villa sea única e irrepetible.",
+    img: "/photos/User/user14.webp",
   },
   {
-    quote:
-      "Desde el diseño inicial hasta la entrega de llaves, el proceso fue muy claro. Han creado la casa de nuestros sueños sin retrasos.",
-    author: "Thomas Müller",
+    id: 5,
+    name: "Thomas Müller",
     role: "Residente en la Costa del Sol",
-    avatar: "/reviews/user17.webp",
+    body: "Desde el diseño inicial hasta la entrega de llaves, el proceso fue muy claro. Han creado la casa de nuestros sueños sin retrasos.",
+    img: "/photos/User/user17.webp",
   },
   {
-    quote:
-      "Trabajar codo con codo con su equipo de arquitectos es una delicia. Tienen una sensibilidad espacial exquisita de principio a fin.",
-    author: "Sofía Valenzuela",
+    id: 6,
+    name: "Sofía Valenzuela",
     role: "Interiorista",
-    avatar: "/reviews/user1.webp",
+    body: "Trabajar codo con codo con su equipo de arquitectos es una delicia. Tienen una sensibilidad espacial exquisita de principio a fin.",
+    img: "/photos/User/user1.webp",
   },
   {
-    quote:
-      "Gracias a su servicio integral de edificación, nuestra transición a la vida en España ha sido mucho más fácil.",
-    author: "James y Sarah Wright",
+    id: 7,
+    name: "James y Sarah Wright",
     role: "Expatriados Británicos",
-    avatar: "/reviews/user18.webp",
+    body: "Gracias a Terral Studio nuestra transición a la vida en España ha sido mucho más fácil. Su servicio integral de edificación es modélico.",
+    img: "/photos/User/user18.webp",
   },
   {
-    quote:
-      "El rediseño de nuestras oficinas corporativas no solo superó nuestras expectativas sino que aumentó notablemente la moral del equipo.",
-    author: "Alejandra Ruiz",
+    id: 8,
+    name: "Alejandra Ruiz",
     role: "Empresaria",
-    avatar: "/reviews/user19.webp",
+    body: "El rediseño de nuestras oficinas corporativas no solo superó nuestras expectativas sino que aumentó notablemente la moral del equipo.",
+    img: "/photos/User/user19.webp",
   },
   {
-    quote:
-      "Increíble la calidad de los materiales y acabados elegidos. Cada textura tiene un sentido dentro del espacio arquitectónico propuesto.",
-    author: "Verónica López",
+    id: 9,
+    name: "Verónica López",
     role: "Propietaria",
-    avatar: "/reviews/user20.webp",
+    body: "Increíble la calidad de los materiales y acabados elegidos. Cada textura tiene un sentido dentro del espacio arquitectónico propuesto.",
+    img: "/photos/User/user20.webp",
   },
   {
-    quote:
-      "Rentabilidad asegurada gracias a su excelente asesoramiento para conseguir los mejores terrenos y diseños de alta demanda en Marbella.",
-    author: "Jean-Pierre Blanc",
+    id: 10,
+    name: "Jean-Pierre Blanc",
     role: "Inversor Francés",
-    avatar: "/reviews/user4.webp",
+    body: "Rentabilidad asegurada gracias a su excelente asesoramiento para conseguir los mejores terrenos y diseños de alta demanda en Marbella.",
+    img: "/photos/User/user4.webp",
   },
   {
-    quote:
-      "La reforma del lobby del hotel ha sido un éxito unánime y a los clientes les encanta la nueva atmósfera elegante que han conseguido.",
-    author: "Marta Domínguez",
+    id: 11,
+    name: "Marta Domínguez",
     role: "Directora de Hotel",
-    avatar: "/reviews/user6.webp",
+    body: "La reforma del lobby del hotel ha sido un éxito unánime y a los clientes les encanta la nueva atmósfera elegante que han conseguido.",
+    img: "/photos/User/user6.webp",
   },
   {
-    quote:
-      "Nos acompañaron atentamente durante toda la construcción de nuestra villa en Estepona. La atención fue totalmente personalizada.",
-    author: "David y Emma Jones",
+    id: 12,
+    name: "David y Emma Jones",
     role: "Propietarios",
-    avatar: "/reviews/user16.webp",
+    body: "Nos acompañaron atentamente durante toda la construcción de nuestra villa en Estepona. La atención fue totalmente personalizada.",
+    img: "/photos/User/user16.webp",
   },
   {
-    quote:
-      "La innovación conceptual y el desarrollo riguroso de cada plano los sitúan como referentes en la Costa del Sol.",
-    author: "Angelina Ferrer",
+    id: 13,
+    name: "Angelina Ferrer",
     role: "Arquitecta Asociada",
-    avatar: "/reviews/user15.webp",
+    body: "La innovación conceptual y el desarrollo riguroso de cada plano en Terral Studio los sitúa como referentes en la Costa del Sol.",
+    img: "/photos/User/user15.webp",
   },
   {
-    quote:
-      "Rediseñaron mi boutique captando la verdadera esencia de mi marca de ropa. Los clientes pasan más tiempo gracias a la fluidez del espacio.",
-    author: "Marina Castaño",
+    id: 14,
+    name: "Marina Castaño",
     role: "Emprendedora",
-    avatar: "/reviews/user8.webp",
+    body: "Rediseñaron mi boutique captando la verdadera esencia de mi marca de ropa. Los clientes pasan más tiempo gracias a la fluidez del espacio.",
+    img: "/photos/User/user8.webp",
   },
   {
-    quote:
-      "Incluso gestionando la obra desde mi país, sentí confianza plena. Son comunicativos, resuelven los problemas técnicos y cuidan el detalle.",
-    author: "Olivia Smith",
+    id: 15,
+    name: "Olivia Smith",
     role: "Inversor Privado",
-    avatar: "/reviews/user9.webp",
+    body: "Incluso gestionando la obra desde mi país, sentí confianza plena. Son comunicativos, resuelven los problemas técnicos y cuidan el detalle.",
+    img: "/photos/User/user9.webp",
   },
   {
-    quote:
-      "La cantidad de luz natural que consiguieron introducir en una casa que era oscura inicialmente me dejó boquiabierta. Magnífico trabajo.",
-    author: "Laura Jiménez",
+    id: 16,
+    name: "Laura Jiménez",
     role: "Propietaria",
-    avatar: "/reviews/user13.webp",
+    body: "La cantidad de luz natural que consiguieron introducir en una casa que era oscura inicialmente me dejó boquiabierta. Magnífico trabajo.",
+    img: "/photos/User/user13.webp",
   },
   {
-    quote:
-      "Eficientes, resolutivos y enormemente creativos a la hora de maximizar parcelas complicadas. Seguiremos trabajando a largo plazo.",
-    author: "Carlota Medina",
+    id: 17,
+    name: "Carlota Medina",
     role: "Promotora Local",
-    avatar: "/reviews/user11.webp",
+    body: "Eficientes, resolutivos y enormemente creativos a la hora de maximizar parcelas complicadas. Seguiremos trabajando a largo plazo.",
+    img: "/photos/User/user11.webp",
   },
   {
-    quote:
-      "Valoro muchísimo la exclusividad y la privacidad. Supieron concebir un diseño en el que nunca te sientes expuesto pero estás en pleno campo.",
-    author: "Aisha Al-Fayed",
+    id: 18,
+    name: "Aisha Al-Fayed",
     role: "Propietaria",
-    avatar: "/reviews/user10.webp",
+    body: "Valoro muchísimo la exclusividad y la privacidad. Supieron concebir un diseño en el que nunca te sientes expuesto pero estás en pleno campo.",
+    img: "/photos/User/user10.webp",
   },
   {
-    quote:
-      "Una arquitectura que respeta el entorno y dialoga con la naturaleza. Los espacios exteriores e interiores están perfectamente conectados.",
-    author: "Gonzalo Herrera",
+    id: 19,
+    name: "Gonzalo Herrera",
     role: "Abogado",
-    avatar: "/reviews/user12.webp",
+    body: "Una arquitectura que respeta el entorno y dialoga con la naturaleza. Los espacios exteriores e interiores están perfectamente conectados.",
+    img: "/photos/User/user12.webp",
   },
   {
-    quote:
-      "La aplicación de estándares de confort nórdico en el cálido clima mediterráneo. Es el equilibrio definitivo entre bienestar y buen diseño.",
-    author: "Ingrid Petersen",
+    id: 20,
+    name: "Ingrid Petersen",
     role: "Inversora Danesa",
-    avatar: "/reviews/user19.webp",
+    body: "La aplicación de estándares de confort nórdico en el cálido clima mediterráneo. Es el equilibrio definitivo entre bienestar y buen diseño.",
+    img: "/photos/User/user19.webp",
   },
 ];

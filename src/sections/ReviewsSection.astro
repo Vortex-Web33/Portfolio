@@ -1,13 +1,13 @@
 ---
-// Sección de reseñas: carrusel de testimonios con auto-advance y navegación.
+// Sección de reseñas fiel a Terral Studio — doble marquee infinito
+// Extraída de Reviews.B4YnFDsH.js: py-24 bg-background, mask gradient, dos filas con marquee-left/right 60s.
 import { reviews } from "@/lib/data/reviews";
-import Reveal from "@/components/ui/Reveal";
-import { Carousel } from "@/components/ui/Carousel";
+import ReviewCard from "@/components/ui/ReviewCard.astro";
 import Container from "@/components/ui/Container.astro";
 import PageHero from "@/sections/PageHero.astro";
 ---
 
-<Container className="py-24">
+<Container class="py-24">
   <PageHero
     kicker="Opiniones"
     title={'Lo que <span class="highlight-gradient">dicen de nosotros</span>'}
@@ -15,6 +15,53 @@ import PageHero from "@/sections/PageHero.astro";
   />
 </Container>
 
-<div id="reseñas" class="pb-24">
-  <Carousel client:load items={reviews} autoAdvance intervalMs={4000} pauseOnHover showDots />
+<div class="pb-24 bg-ink relative overflow-hidden" id="reviews">
+  <div
+    class="relative w-full"
+    style="mask-image:linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%); -webkit-mask-image:linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)"
+  >
+    <div class="flex flex-col gap-6">
+      <!-- Fila 1: marquee hacia la izquierda -->
+      <div class="flex overflow-hidden whitespace-nowrap group">
+        <div
+          class="reviews-marquee reviews-marquee-left flex flex-nowrap py-4 will-change-transform"
+          data-direction="left"
+        >
+          {reviews.map((r) => <ReviewCard name={r.name} role={r.role} body={r.body} img={r.img} />)}
+          {reviews.map((r) => <ReviewCard name={r.name} role={r.role} body={r.body} img={r.img} />)}
+        </div>
+      </div>
+      <!-- Fila 2: marquee hacia la derecha -->
+      <div class="flex overflow-hidden whitespace-nowrap group">
+        <div
+          class="reviews-marquee reviews-marquee-right flex flex-nowrap py-4 will-change-transform"
+          data-direction="right"
+        >
+          {reviews.map((r) => <ReviewCard name={r.name} role={r.role} body={r.body} img={r.img} />)}
+          {reviews.map((r) => <ReviewCard name={r.name} role={r.role} body={r.body} img={r.img} />)}
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
+<style>
+  .reviews-marquee-left {
+    animation: marquee-left 60s linear infinite;
+  }
+  .reviews-marquee-right {
+    animation: marquee-right 60s linear infinite;
+  }
+  .reviews-marquee:hover {
+    animation-play-state: paused;
+  }
+</style>
+
+<script>
+  // Pause on hover — replica exacta de Terral: onMouseEnter/Leave → animationPlayState
+  const marquees = document.querySelectorAll<HTMLElement>(".reviews-marquee");
+  marquees.forEach((el) => {
+    el.addEventListener("mouseenter", () => (el.style.animationPlayState = "paused"));
+    el.addEventListener("mouseleave", () => (el.style.animationPlayState = "running"));
+  });
+</script>

@@ -1,0 +1,25 @@
+---
+// Sección "La agencia": presentación en dos columnas con reveals animados.
+import Reveal from "@/components/ui/Reveal";
+---
+
+<section class="border-y border-white/5 bg-ink-soft/30 py-24">
+  <div class="mx-auto grid max-w-7xl gap-16 px-6 md:grid-cols-2">
+    <Reveal client:load>
+      <p class="kicker mb-4 text-cream/40">La agencia</p>
+      <h2 class="text-4xl font-bold tracking-tight text-white md:text-5xl">
+        Una agencia digital que se adapta a <span class="highlight-gradient">todos los oficios</span>
+      </h2>
+    </Reveal>
+    <Reveal client:load className="space-y-6 text-cream/60">
+      <p>
+        No nos gustan los sitios hechos en cadena. Cada proyecto se piensa para encajar con tu
+        identidad y responder a tus necesidades.
+      </p>
+      <p>
+        Colaborar con la agencia es elegir un equipo de Madrid que conoce su oficio, contesta al
+        teléfono y te acompaña a largo plazo.
+      </p>
+    </Reveal>
+  </div>
+</section>

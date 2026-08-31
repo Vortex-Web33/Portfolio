@@ -58,6 +58,24 @@
   }
 }
 
+@keyframes marquee-left {
+  0% {
+    transform: translate(0);
+  }
+  to {
+    transform: translate(-50%);
+  }
+}
+
+@keyframes marquee-right {
+  0% {
+    transform: translate(-50%);
+  }
+  to {
+    transform: translate(0);
+  }
+}
+
 /* Ola del footer: el SVG de gradiente ocupa todo el footer (absoluto, inset-0) y
    GSAP morfea su curva superior con MorphSVGPlugin (src/scripts/footer-wave.ts).
    El contenido del footer va encima (z-10) con texto en ink sobre el degradado. */
