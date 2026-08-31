@@ -58,7 +58,8 @@ import Button from "@/components/ui/Button.astro";
         </Button>
       </div>
 
-      <nav aria-label="Navegación">
+      <!-- Navegación: oculta en móvil -->
+      <nav class="hidden lg:block" aria-label="Navegación">
         <strong class="kicker text-ink/50">Navegación</strong>
         <ul class="mt-4 space-y-3 text-sm">
           <li>
@@ -71,12 +72,17 @@ import Button from "@/components/ui/Button.astro";
             <a href="/#proyectos" class="text-ink/70 transition-colors hover:text-ink">Proyectos</a>
           </li>
           <li>
+            <a href="/#reseñas" class="text-ink/70 transition-colors hover:text-ink">Reseñas</a>
+          </li>
+          <li>
             <a href="/#contacto" class="text-ink/70 transition-colors hover:text-ink">Contacto</a>
           </li>
         </ul>
       </nav>
 
-      <div>
+
+      <!-- Contacto: oculta en móvil -->
+      <div class="hidden lg:block">
         <strong class="kicker text-ink/50">Contacto</strong>
         <ul class="mt-4 space-y-3 text-sm">
           <li>

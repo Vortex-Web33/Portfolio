@@ -30,11 +30,5 @@ export const contact: ContactConfig = {
 };
 
 export const socials: SocialLink[] = [
-  { label: "Facebook", href: "" },
-  { label: "Instagram", href: "" },
-  {
-    label: "LinkedIn",
-    href: "",
-  },
-  { label: "GitHub", href: "https://github.com/vortex.agency/" },
+  { label: "GitHub", href: "https://github.com/Vortex-Web33" },
 ];
