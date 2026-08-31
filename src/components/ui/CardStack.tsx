@@ -154,7 +154,12 @@ export function CardStack<T extends CardStackItem>({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [active]);
 
-  const maxOffset = Math.max(0, Math.floor(maxVisible / 2));
+  const isMobile = containerW > 0 && containerW < 640;
+  const effectiveMaxVisible = isMobile ? 3 : maxVisible;
+  const effectiveSpreadDeg = isMobile ? 14 : spreadDeg;
+  const effectiveOverlap = isMobile ? 0.18 : overlap;
+  const effectiveDepthPx = isMobile ? 0 : depthPx;
+  const maxOffset = Math.max(0, Math.floor(effectiveMaxVisible / 2));
 
   useEffect(() => {
     const el = stageRef.current;
@@ -168,23 +173,27 @@ export function CardStack<T extends CardStackItem>({
     return () => ro.disconnect();
   }, []);
 
-  // scale the whole fan down to fit narrow (mobile) containers while keeping size on desktop
+  // Mobile: cards fill width with safe padding; desktop: scale fan to fit
   const fit = Math.min(1, (containerW || cardWidth) / cardWidth);
-  const w = Math.max(240, Math.round(cardWidth * fit));
-  const h = Math.max(160, Math.round(cardHeight * fit));
+  const w = isMobile
+    ? Math.max(280, Math.min(cardWidth, containerW - 32))
+    : Math.max(240, Math.round(cardWidth * fit));
+  const h = isMobile
+    ? Math.max(340, Math.round(w * (cardHeight / cardWidth)))
+    : Math.max(160, Math.round(cardHeight * fit));
 
   // natural spacing shrinks the fan to always fit the available width (no edge clipping)
-  const naturalSpacing = Math.round(w * (1 - overlap));
+  const naturalSpacing = Math.round(w * (1 - effectiveOverlap));
   const roomForFan =
     containerW > w ? (containerW - w) / (2 * Math.max(1, maxOffset)) : 0;
   const cardSpacing =
     containerW > 0 && roomForFan < naturalSpacing
-      ? Math.max(8, Math.round(roomForFan))
+      ? Math.max(isMobile ? 16 : 8, Math.round(roomForFan))
       : naturalSpacing;
 
-  const stepDeg = maxOffset > 0 ? spreadDeg / maxOffset : 0;
-  const fitDepth = Math.round(depthPx * fit);
-  const fitLift = Math.round(activeLiftPx * fit);
+  const stepDeg = maxOffset > 0 ? effectiveSpreadDeg / maxOffset : 0;
+  const fitDepth = Math.round(effectiveDepthPx * (isMobile ? 1 : fit));
+  const fitLift = Math.round(activeLiftPx * (isMobile ? 0.5 : fit));
 
   const canGoPrev = loop || active > 0;
   const canGoNext = loop || active < len - 1;
@@ -308,8 +317,8 @@ export function CardStack<T extends CardStackItem>({
     const el = activeItem ? cardRefs.current.get(activeItem.id) : undefined;
     if (!el) return;
 
-    const threshold = Math.min(160, w * 0.22);
-    const limit = w * 0.3;
+    const threshold = isMobile ? Math.min(80, w * 0.18) : Math.min(160, w * 0.22);
+    const limit = isMobile ? w * 0.28 : w * 0.3;
     let dragging = false;
     let travel = 0;
     let startX = 0;
@@ -375,7 +384,7 @@ export function CardStack<T extends CardStackItem>({
       el.removeEventListener("pointerup", onUp);
       el.removeEventListener("pointercancel", onUp);
     };
-  }, [active, w, len, items, prev, next]);
+  }, [active, w, len, items, prev, next, isMobile]);
 
   // autoplay
   useEffect(() => {
@@ -421,7 +430,7 @@ export function CardStack<T extends CardStackItem>({
       <div
         ref={stageRef}
         className="relative w-full"
-        style={{ height: Math.max(380, h + 80) }}
+        style={{ height: isMobile ? h + 48 : Math.max(380, h + 80) }}
         tabIndex={0}
         onKeyDown={onKeyDown}
       >
@@ -493,12 +502,36 @@ export function CardStack<T extends CardStackItem>({
             );
           })}
         </div>
+
+        {/* Mobile arrows - larger hit area */}
+        {isMobile && len > 1 && (
+          <>
+            <button
+              onClick={prev}
+              className="absolute left-2 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-black/40 backdrop-blur-md border border-white/15 text-white shadow-lg hover:bg-black/60 active:scale-95 transition-all md:hidden touch-manipulation"
+              aria-label="Proyecto anterior"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="m15 18-6-6 6-6" />
+              </svg>
+            </button>
+            <button
+              onClick={next}
+              className="absolute right-2 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-black/40 backdrop-blur-md border border-white/15 text-white shadow-lg hover:bg-black/60 active:scale-95 transition-all md:hidden touch-manipulation"
+              aria-label="Proyecto siguiente"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="m9 18 6-6-6-6" />
+              </svg>
+            </button>
+          </>
+        )}
       </div>
 
-      {/* Dots navigation centered at bottom */}
+      {/* Dots navigation centered at bottom - larger hit area on mobile */}
       {showDots ? (
-        <div className="mt-6 flex items-center justify-center gap-3">
-          <div className="flex items-center gap-2">
+        <div className="mt-4 md:mt-6 flex items-center justify-center gap-3">
+          <div className="flex items-center gap-2.5 md:gap-2">
             {items.map((it, idx) => {
               const on = idx === active;
               return (
@@ -506,16 +539,22 @@ export function CardStack<T extends CardStackItem>({
                   key={it.id}
                   onClick={() => setActive(idx)}
                   className={cn(
-                    "h-2 w-2 rounded-full transition",
-                    on ? "w-6 bg-vortex" : "bg-white/30 hover:bg-white/50",
+                    "h-3 w-3 md:h-2.5 md:w-2.5 rounded-full transition-all duration-300 touch-manipulation",
+                    on ? "w-8 md:w-7 bg-vortex" : "bg-white/40 hover:bg-white/60 active:bg-white/70",
                   )}
                   aria-label={`Ir a ${it.title}`}
+                  style={{ minHeight: "12px", minWidth: on ? "32px" : "12px" }}
                 />
               );
             })}
           </div>
         </div>
       ) : null}
+      {isMobile && len > 1 && showDots && (
+        <div className="mt-3 flex justify-center md:hidden">
+          <span className="font-mono text-[10px] tracking-[0.2em] text-white/25 uppercase">Desliza • Toca para ver</span>
+        </div>
+      )}
     </div>
   );
 }
@@ -553,33 +592,34 @@ function DefaultFanCard({
       <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/70 via-black/10 to-transparent" />
 
       {/* content - keep text in 3D context */}
-      <div className="relative z-10 flex h-full flex-col justify-end p-5">
-        <div className="min-w-0">
-          <div className="truncate text-lg font-semibold text-white md:text-xl">
+      <div className="relative z-10 flex h-full flex-col justify-end p-4 md:p-5">
+        <div className="min-w-0 pr-2 md:pr-0">
+          <div className="truncate text-base font-bold tracking-tight text-white md:text-xl">
             {item.title}
           </div>
           {item.description ? (
-            <div className="mt-1 line-clamp-2 font-mono text-xs text-white/80">
+            <div className="mt-1.5 line-clamp-2 text-sm leading-snug font-medium text-white/85 md:font-mono md:text-xs md:text-white/80">
               {item.description}
             </div>
           ) : null}
         </div>
       </div>
 
-      {/* button - separate layer to avoid 3D transform blur */}
+      {/* button - separate layer to avoid 3D transform blur, larger hit area on mobile */}
       {item.href && (
         <a
           href={item.href}
-          className="absolute bottom-5 right-5 z-20 flex items-center gap-1.5 shrink-0 rounded-full bg-white/10 px-3 py-1.5 text-xs font-medium text-white hover:bg-white/20 transition-colors transform translate-z-20"
+          className="absolute bottom-4 right-4 md:bottom-5 md:right-5 z-20 flex items-center gap-1.5 shrink-0 rounded-full bg-white text-ink px-4 py-2.5 text-sm font-semibold shadow-lg hover:bg-white/90 active:scale-95 md:bg-white/15 md:text-white md:px-3 md:py-1.5 md:text-xs md:font-medium md:shadow-none md:hover:bg-white/20 transition-all duration-200 touch-manipulation"
           target="_blank"
           rel="noopener noreferrer"
-          style={{ transform: "translateZ(20px)" }}
+          style={{ transform: "translateZ(20px)", minHeight: "44px", minWidth: "44px" }}
           onClick={(e) => e.stopPropagation()}
           onPointerDown={(e) => e.stopPropagation()}
         >
-          {item.ctaLabel ?? "Ver proyecto"}
+          <span className="hidden md:inline">{item.ctaLabel ?? "Ver proyecto"}</span>
+          <span className="md:hidden">{item.ctaLabel ?? "Ver"}</span>
           <svg
-            className="h-3.5 w-3.5"
+            className="h-4 w-4 md:h-3.5 md:w-3.5"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -590,7 +630,7 @@ function DefaultFanCard({
           >
             <path d="M5 12h14" />
             <path d="m12 5 7 7-7 7" />
-</svg>
+          </svg>
         </a>
       )}
     </div>

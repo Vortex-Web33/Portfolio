@@ -3,197 +3,177 @@ import type { Service } from "@/lib/types";
 export const services: Service[] = [
   {
     slug: "creacion-sitios-web",
-    title: "Creación de sitios web",
-    tagline: "Sitios a medida, llave en mano",
+    title: "Webs que convierten",
+    tagline: "De la idea al deploy en 3 semanas",
     description:
-      "Cada sitio se fabrica a medida. Montamos, probamos, pulimos y entregamos. Llave en mano, listo para rendir.",
+      "Diseño y código a medida. Sin plantillas, sin plugins que lastran. Rápidas, accesibles y pensadas para vender desde el primer día.",
     href: "/creacion-sitios-web/",
-    accent: "from-vortex/25",
-    glyph: "</>",
+    accent: "from-vortex/30 via-vortex/15",
+    glyph: "◈",
     heroColor: "bg-vortex/15",
-    ctaLabel: "¿Listo para tu sitio web?",
+    ctaLabel: "Quiero mi web →",
     features: [
       {
-        title: "Sitios vitrina",
-        description:
-          "Presenta tu actividad con un sitio limpio, rápido y elegante que inspira confianza desde el primer vistazo.",
+        title: "Vitrina que impone",
+        description: "Primera impresión que enamora: tipografía, ritmo y fotos que transmiten confianza en 3 segundos.",
       },
       {
-        title: "Tiendas online",
-        description:
-          "E-commerce completo: catálogo, carrito, pagos y gestión de pedidos. Pensado para vender, no solo para mostrar.",
+        title: "E-commerce sin fricción",
+        description: "Checkout en 2 clics, pagos, stock y envíos conectados. La tienda que no abandona carritos.",
       },
       {
-        title: "Webs a medida",
-        description:
-          "Funcionalidades específicas para tu negocio. Si lo imaginas, lo construimos.",
+        title: "A medida, de verdad",
+        description: "¿Necesitas un configurador, un portal privado, reservas? Si se puede soñar, se puede codear.",
       },
       {
-        title: "Optimización SEO",
-        description:
-          "Desde el primer día, cada sitio se construye pensando en Google: técnico, contenido y experiencia de usuario.",
+        title: "WPO obsesivo",
+        description: "Lighthouse 95+ en performance. Carga en <1s y SEO técnico impecable desde el commit 1.",
       },
     ],
     seo: {
-      title: "Creación de sitios web Málaga",
+      title: "Creación de sitios web Málaga — Vortex",
       description:
-        "Creamos sitios web a medida en Málaga: vitrina, tiendas online y webs corporativas, optimizadas para Google y listas para vender.",
+        "Creamos webs a medida en Málaga: vitrinas, e-commerce y corporativas. Rápidas, accesibles y optimizadas para convertir y posicionar.",
     },
   },
   {
     slug: "auditoria-consultoria",
-    title: "Auditoría y Consultoría",
-    tagline: "Un verdadero plan de batalla",
+    title: "Auditoría sin humo",
+    tagline: "Datos, no opiniones",
     description:
-      "Publicar posts al azar esperando que funcionen no es una estrategia. Te construimos un verdadero plan de batalla.",
+      "Radiografía completa de tu negocio online y un roadmap priorizado por impacto. Sin jerga, solo qué hacer primero y por qué.",
     href: "/auditoria-consultoria/",
-    accent: "from-vortex-green/25",
-    glyph: " ϟ ",
+    accent: "from-vortex-green/30 via-vortex-green/15",
+    glyph: "◎",
     heroColor: "bg-vortex-green/15",
-    ctaLabel: "Una estrategia sin humo",
+    ctaLabel: "Audita mi proyecto →",
     features: [
       {
-        title: "Diagnóstico completo",
-        description:
-          "Analizamos tu sitio, tu posicionamiento, tu competencia y tus canales para detectar fugas y oportunidades.",
+        title: "Diagnóstico 360º",
+        description: "Web, SEO, competencia, analítica y embudo. Detectamos fugas de conversión y oportunidades de €.",
       },
       {
-        title: "Informe sin humo",
-        description:
-          "Un diagnóstico claro, sin tecnicismos, con acciones concretas priorizadas por impacto.",
+        title: "Roadmap ROI-first",
+        description: "Lista priorizada: esfuerzo vs impacto. Sabrás qué tocar hoy para facturar mañana.",
       },
       {
-        title: "Acompañamiento",
-        description:
-          "Te acompañamos en la ejecución: contenidos, campañas, mejoras técnicas… paso a paso.",
+        title: "Acompañamiento real",
+        description: "No te dejamos con un PDF. Implementamos contigo: sprints quincenales y métricas a la vista.",
       },
       {
-        title: "Estrategia digital",
-        description:
-          "Definimos objetivos, canales y KPIs para que cada euro y cada hora cuente.",
+        title: "Decisiones con datos",
+        description: "KPIs claros, dashboards en Looker y una lectura mensual sin tecnicismos.",
       },
     ],
     seo: {
-      title: "Auditoría y Consultoría web",
+      title: "Auditoría y Consultoría web — Vortex",
       description:
-        "Auditoría de tu presencia online y consultoría estratégica en Málaga: diagnóstico claro, acciones concretas y acompañamiento real.",
+        "Auditoría web y consultoría estratégica en Málaga: diagnóstico sin humo, roadmap priorizado y acompañamiento en la ejecución.",
     },
   },
   {
     slug: "diseno-identidad-visual",
-    title: "Diseño e Identidad visual",
-    tagline: "Una imagen que se queda en la mente",
+    title: "Marca que se recuerda",
+    tagline: "No es un logo, es un sistema",
     description:
-      "Se acabaron los visuales torcidos y los logos que espantan. Diseñamos una identidad que atrapa la mirada para quedarse en la mente.",
+      "Identidad que se queda en la retina y funciona en todos los soportes: web, redes, papel y producto. Coherente y memorable.",
     href: "/diseno-identidad-visual/",
-    accent: "from-vortex-blue/25",
+    accent: "from-vortex-blue/30 via-vortex-blue/15",
     glyph: "✦",
     heroColor: "bg-vortex-blue/15",
-    ctaLabel: "Una imagen que se queda en la mente",
+    ctaLabel: "Diseña mi marca →",
     features: [
       {
-        title: "Identidad de marca",
-        description:
-          "Logotipo, paleta de colores, tipografías y reglas de uso. Una imagen coherente en todos los soportes.",
+        title: "Sistema de marca",
+        description: "Logo, paleta, tipografías, iconografía y tono. Un manual vivo, no un PDF bonito que nadie usa.",
       },
       {
-        title: "Webdesign",
-        description:
-          "Interfaces pensadas para el usuario: bonitas, claras y que guían hacia la acción.",
+        title: "Webdesign que guía",
+        description: "Interfaces con jerarquía, micro-interacciones y estados vacíos que convierten sin gritar.",
       },
       {
-        title: "Soportes de comunicación",
-        description:
-          "Tarjetas, cartelería, presentaciones y redes sociales alineados con tu identidad.",
+        title: "Kit de crecimiento",
+        description: "Plantillas para redes, pitch decks y cartelería. Tu equipo crea rápido y siempre on-brand.",
       },
       {
         title: "Dirección de arte",
-        description:
-          "Mirada fresca y exigente sobre tus visuales para que destaques frente a la competencia.",
+        description: "Curamos fotografía, ilustración y motion para que todo respire la misma historia.",
       },
     ],
     seo: {
-      title: "Diseño e Identidad visual",
+      title: "Diseño e Identidad visual — Vortex",
       description:
-        "Diseño de identidad visual y webdesign en Málaga: logos, paletas e interfaces que atraen la mirada y construyen marca.",
+        "Diseño de identidad visual en Málaga: sistemas de marca, webdesign y kits que hacen que te recuerden y te elijan.",
     },
   },
   {
     slug: "posicionamiento-seo-lyon",
-    title: "Posicionamiento SEO & SEA",
-    tagline: "Visible donde te buscan",
+    title: "Primero en Google",
+    tagline: "De invisible a imprescindible",
     description:
-      "Un sitio invisible en Google es un comercial que se queda en la cama. Te lanzamos justo donde tus clientes te buscan.",
+      "Aparecer donde te buscan tus clientes. SEO que suma mes a mes y SEA que rinde desde el día uno. Todo medido.",
     href: "/posicionamiento-seo-lyon/",
-    accent: "from-vortex-coral/25",
-    glyph: "◉",
+    accent: "from-vortex-coral/30 via-vortex-coral/15",
+    glyph: "⬢",
     heroColor: "bg-vortex-coral/15",
-    ctaLabel: "Sé visible donde te buscan",
+    ctaLabel: "Quiero ser visible →",
     features: [
       {
-        title: "SEO natural",
-        description:
-          "Optimización técnica, de contenido y de enlaces para posicionar en los resultados orgánicos a largo plazo.",
+        title: "SEO técnico impecable",
+        description: "Core Web Vitals en verde, indexación limpia y arquitectura que a Google le encanta rastear.",
       },
       {
-        title: "SEA / Google Ads",
-        description:
-          "Campañas publicitarias rentables, segmentadas y medidas. Visibilidad inmediata donde importa.",
+        title: "Contenido que posiciona",
+        description: "Clusters de keywords, E-E-A-T y calendario editorial que responde a lo que tu cliente pregunta.",
       },
       {
-        title: "Web analytics",
-        description:
-          "Instalación y lectura de datos para entender qué funciona y qué hay que ajustar.",
+        title: "SEA rentable",
+        description: "Google Ads con ROAS claro: campañas que se pausan solas si no convierten.",
       },
       {
-        title: "Estrategia de contenidos",
-        description:
-          "Palabras clave, estructura y redacción orientada a responder lo que tus clientes buscan.",
+        title: "Analytics que entiendes",
+        description: "Deja de mirar rebotes. Mide leads, ventas y LTV en un dashboard que cabe en una pantalla.",
       },
     ],
     seo: {
-      title: "Posicionamiento SEO Málaga",
+      title: "Posicionamiento SEO y SEA Málaga — Vortex",
       description:
-        "Posicionamiento SEO y SEA en Málaga: optimización técnica, contenidos y campañas Google Ads para ser visible donde tus clientes te buscan.",
+        "SEO y Google Ads en Málaga: técnico, contenidos y campañas rentables para pasar de invisible a top 3.",
     },
   },
   {
     slug: "automatizacion-inteligencia",
-    title: "Automatización e Inteligencia",
-    tagline: "Menos tareas, más resultados",
+    title: "Piloto automático",
+    tagline: "10h/semana de vuelta",
     description:
-      "Los correos repetitivos, las relanzadas olvidadas, los procesos que se eternizan… Lo automatizamos todo. Guarda tu energía para lo demás.",
+      "Lo repetitivo, automatizado. Lo complejo, asistido por IA. Tus procesos fluyen y tu equipo respira. Sin humo, solo horas devueltas.",
     href: "/automatizacion-inteligencia/",
-    accent: "from-vortex/25",
-    glyph: "❋",
+    accent: "from-vortex/25 via-vortex-green/20",
+    glyph: "⬣",
     heroColor: "bg-vortex/15",
-    ctaLabel: "Menos tareas, más resultados",
+    ctaLabel: "Automatiza mi negocio →",
     features: [
       {
-        title: "Automatización de procesos",
-        description:
-          "Relanzadas comerciales, emails de seguimiento, generación de documentos… Todo lo repetitivo, en piloto automático.",
+        title: "Workflows que no fallan",
+        description: "Leads → CRM → email → factura → seguimiento. Todo encadenado, cero copiar-pegar.",
       },
       {
-        title: "Inteligencia artificial",
-        description:
-          "Integramos IA en tu negocio: chatbots, generación de contenidos, análisis de datos y más.",
+        title: "IA útil, no demo",
+        description: "Chatbots que resuelven, clasificadores que priorizan y generadores que escriben como tu marca.",
       },
       {
-        title: "CRM y conexiones",
-        description:
-          "Conectamos tus herramientas para que la información fluya sola, sin copiar-pegar.",
+        title: "Stack conectado",
+        description: "Notion, Slack, Stripe, HubSpot... donde entra un dato, sale en todos lados. Sin Zapier frágil.",
       },
       {
-        title: "Formación",
-        description:
-          "Te explicamos cómo funcionan tus herramientas en un lenguaje claro, sin humo.",
+        title: "Tu equipo, autónomo",
+        description: "Formación en lenguaje humano. En 2h sabes tocar tus automatizaciones sin llamarnos.",
       },
     ],
     seo: {
-      title: "Automatización e Inteligencia",
+      title: "Automatización e IA — Vortex",
       description:
-        "Automatización de procesos e integración de inteligencia artificial para tu negocio: menos tareas repetitivas, más resultados.",
+        "Automatiza tu negocio con IA: workflows, CRM conectado y formación para recuperar 10h a la semana.",
     },
   },
 ];

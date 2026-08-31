@@ -15,6 +15,7 @@ import Button from "@/components/ui/Button.astro";
       class="footer-img"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 2278 683"
+      shape-rendering="geometricPrecision"
     >
       <defs>
         <linearGradient
@@ -29,11 +30,14 @@ import Button from "@/components/ui/Button.astro";
           <stop offset="0.8" stop-color="#00bae2"></stop>
         </linearGradient>
       </defs>
+      <!-- Fondo negro detrás de la ola para que el hueco cuando baja sea exactamente el color de la página -->
+      <rect width="2278" height="683" fill="#000000" />
       <path
         class="footer-svg"
         id="bouncy-path"
         fill="url(#footer-grad)"
-        d="M0 0 C0 0,464 260,1139 260 S1814 260,2278 0 V683 H0 V0 z"
+        shape-rendering="geometricPrecision"
+        d="M0 0 C0 0,464 140,1139 140 S1814 140,2278 0 V683 H0 V0 z"
       />
     </svg>
   </div>
