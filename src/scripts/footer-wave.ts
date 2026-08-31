@@ -23,7 +23,7 @@ mq.addEventListener("change", () => {
   amp = mq.matches ? 0.45 : 1;
 });
 
-const down = () => wave(260 * amp);
+const down = () => wave(80 * amp);
 const center = wave(0);
 const rise = (h: number) => wave(-h * amp);
 const dip = (h: number) => wave(h * amp);
@@ -40,8 +40,8 @@ function undulate() {
   loopTween?.kill();
   loopTween = gsap
     .timeline({ onComplete: undulate })
-    .to(path, { duration: 3.6, morphSVG: rise(55), ease: "sine.inOut" })
-    .to(path, { duration: 3.6, morphSVG: dip(55), ease: "sine.inOut" });
+    .to(path, { duration: 3.6, morphSVG: rise(32), ease: "sine.inOut" })
+    .to(path, { duration: 3.6, morphSVG: dip(32), ease: "sine.inOut" });
 }
 
 ScrollTrigger.create({
@@ -81,8 +81,8 @@ ScrollTrigger.create({
       duration: 1.1,
       morphSVG:
         velocity > 0
-          ? rise(Math.min(velocity / 9, 150))
-          : dip(Math.min(-velocity / 9, 90)),
+          ? rise(Math.min(velocity / 12, 45))
+          : dip(Math.min(-velocity / 12, 45)),
       ease: "power2.out",
       overwrite: "auto",
       onComplete: undulate,
